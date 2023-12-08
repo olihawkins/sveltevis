@@ -1,12 +1,12 @@
 <script>
 
+  import { settings } from "./settings.js";
+  import { createConfigs } from "$lib/configs.js";
   import Visualisation from "$lib/Visualisation.svelte";
   import Plot from "$lib/Plot.svelte";
-  import { getConfigs } from "$lib/configs.js";
-  import { settingsVisA, settingsVisB } from "./settings.js";
+  import PropertyReport from "$lib/PropertyReport.svelte";
 
-  const configsVisA = getConfigs(settingsVisA);
-  const configsVisB = getConfigs(settingsVisB);
+  const configs = createConfigs(settings);
 
 </script>
 
@@ -17,28 +17,16 @@
 
 <div id="column">
   <h1>SvelteVis</h1>
-  <Visualisation configs={configsVisA}>
+  <Visualisation configs={configs}>
     <div slot="header">
-      <p>Title: Vis A</p>
+      <p>Title</p>
       <p>Subtitle</p>
     </div>
-    <rect x=0 y=0 width=50 height=4 />
-    <rect x=0 y=0 width=4 height=50 />
-    <Plot></Plot>
-    <div slot="footer">
-      <p>Source</p>
-      <p>Footnote</p>
-    </div>
-  </Visualisation>
-  <br />
-  <Visualisation configs={configsVisB}>
-    <div slot="header">
-      <p>Title: Vis B</p>
-      <p>Subtitle</p>
-    </div>
-    <rect x=0 y=0 width=50 height=4 />
-    <rect x=0 y=0 width=4 height=50 />
-    <Plot></Plot>
+    <rect x=0 y=0 width=50 height=3 />
+    <rect x=0 y=0 width=3 height=50 />
+    <Plot>
+      <PropertyReport />
+    </Plot>
     <div slot="footer">
       <p>Source</p>
       <p>Footnote</p>
@@ -48,9 +36,9 @@
 
 <style>
   h1 {
-    text-align: center;
-    margin: 0 0 1rem 0;
+    margin: 4rem 0 2rem 0;
     padding: 1rem;
+    text-align: center;
   }
 
   #column {
