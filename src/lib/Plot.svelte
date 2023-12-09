@@ -1,20 +1,20 @@
 <script>
   
-  // Imports ----------------------------------------------------------------------------
+  // Imports ------------------------------------------------------------------
 
   import { getLayout } from "./contexts.svelte.js"
   
-  // Contexts ---------------------------------------------------------------------------
+  // Contexts -----------------------------------------------------------------
 
   const layout = getLayout();
 
-  // Derived values ---------------------------------------------------------------------
+  // Derived values -----------------------------------------------------------
 
-  let graphicMargin = $derived(layout.graphicMargin);
+  let margin = $derived(layout.graphic.margin);
 
 </script>
 
-<g id="plot" transform={`translate(${graphicMargin.left} ${graphicMargin.top})`}>
+<g id="plot" transform={`translate(${margin.left} ${margin.top})`}>
   <slot />
 </g>
 

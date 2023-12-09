@@ -1,58 +1,59 @@
-// Imports ------------------------------------------------------------------------------
+// Imports --------------------------------------------------------------------
 
 import { getContext, hasContext, setContext } from "svelte";
 
-// Constants ----------------------------------------------------------------------------
+// Constants ------------------------------------------------------------------
 
 const LAYOUT_CONTEXT = "layout";
 
-// Choose config based on graphicWidth --------------------------------------------------
+// Choose config based on width -----------------------------------------------
 
-function getNextConfig(configs, graphicWidth) {
+function getNextConfig(configs, width) {
   for (let i = 0; i < configs.length; i++) {
-    if (graphicWidth >= configs[i].vis.minwidth) {
+    if (width >= configs[i].vis.minwidth) {
       return configs[i];
     }
   }
   return configs[configs.length - 1];
 }
 
-// Create layout object -----------------------------------------------------------------
+// Create layout object -------------------------------------------------------
 
 export function createLayout(configs) {
 
   // State
-  let graphicWidth = $state(configs[0].vis.minwidth);
+  let width = $state(configs[0].vis.minwidth);
 
   // Derived values
-  let config = $derived(getNextConfig(configs, graphicWidth));
-  let graphicHeight = $derived(config.vis.graphic.height);
-  let graphicMargin = $derived(config.vis.graphic.margin);
-  let plotWidth = $derived(graphicWidth - graphicMargin.left - graphicMargin.right);
-  let plotHeight = $derived(graphicHeight - graphicMargin.top - graphicMargin.bottom);
+  let config = $derived(getNextConfig(configs, width));
+
+  let graphic = $derived({ 
+    width: width, 
+    height: config.vis.graphic.height,
+    margin: config.vis.graphic.margin
+  });
+
+  let plot = $derived({ 
+    width: graphic.width - graphic.margin.left - graphic.margin.right, 
+    height: graphic.height - graphic.margin.top - graphic.margin.bottom
+  });
 
   // Public interface
   const layout = {
     get config() {
       return config;
     },
-    get graphicWidth() {
-      return graphicWidth;
+    get graphic() {
+      return graphic;
     },
-    set graphicWidth(w) {
-      graphicWidth = w;
+    get plot() {
+      return plot;
     },
-    get graphicHeight() {
-      return graphicHeight;
+    get width() {
+      return width;
     },
-    get graphicMargin() {
-      return graphicMargin;
-    },
-    get plotWidth() {
-      return plotWidth;
-    },
-    get plotHeight() {
-      return plotHeight;
+    set width(w) {
+      width = w;
     }
   }
 

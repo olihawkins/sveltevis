@@ -1,31 +1,31 @@
 <script>
 
-  // Imports ----------------------------------------------------------------------------
+  // Imports ------------------------------------------------------------------
 
   import { onMount } from "svelte";
   import { createLayout } from "./contexts.svelte.js";
 
-  // Props ------------------------------------------------------------------------------
+  // Props --------------------------------------------------------------------
 
   let { configs } = $props();
 
-  // Contexts ---------------------------------------------------------------------------
+  // Contexts -----------------------------------------------------------------
 
   const layout = createLayout(configs);
 
-  // Bound elements ---------------------------------------------------------------------
+  // Bound elements -----------------------------------------------------------
   
   let vis = $state();
 
-  // Derived values ---------------------------------------------------------------------
+  // Derived values -----------------------------------------------------------
 
-  let graphicWidth = $derived(layout.graphicWidth);
-  let graphicHeight = $derived(layout.graphicHeight);
+  let width = $derived(layout.width);
+  let height = $derived(layout.graphic.height);
 
-  // Observe width and update config ----------------------------------------------------
+  // Observe width and update config ------------------------------------------
 
   function updateLayout() {
-    layout.graphicWidth = vis.clientWidth;
+    layout.width = vis.clientWidth;
   }
 
   // Set up resize handling 
@@ -36,7 +36,7 @@
     
     // Add resize listener
     const resizeListener = () => {
-      if (graphicWidth !== vis.clientWidth) {
+      if (width !== vis.clientWidth) {
         updateLayout();
       }
     };
@@ -55,7 +55,7 @@
   <div id="header" >
       <slot name="header" />
   </div>
-  <div id="graphic" style:height={`${graphicHeight}px`}>
+  <div id="graphic" style:height={`${height}px`}>
       <svg>
         <slot />
       </svg>
