@@ -22,11 +22,8 @@
       <p>Title</p>
       <p>Subtitle</p>
     </div>
-    <rect x=0 y=0 width=50 height=3 />
-    <rect x=0 y=0 width=3 height=50 />
-    <Plot>
-      <PropertyReport />
-    </Plot>
+    <PropertyReport color="#707070" />
+    <Plot />
     <div slot="footer">
       <p>Source</p>
       <p>Footnote</p>
@@ -45,7 +42,6 @@
     max-width: 900px;
     margin: 0 auto;
     color: #707070;
-    fill: #707070;
   }
 </style>
 

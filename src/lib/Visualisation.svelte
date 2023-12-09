@@ -69,7 +69,6 @@
   #vis {
     margin: 0;
     padding: 0;
-    border: 1px solid #909090;
   }
 
   #header {
@@ -80,7 +79,6 @@
   #graphic {
     margin: 0;
     padding: 0;
-    border: 1px solid #909090;
   }
 
   #footer {

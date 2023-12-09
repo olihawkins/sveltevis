@@ -22,7 +22,7 @@ function getNextConfig(configs, width) {
 export function createLayout(configs) {
 
   // State
-  let width = $state(configs[0].vis.minwidth);
+  let width = $state(0);
 
   // Derived values
   let config = $derived(getNextConfig(configs, width));
