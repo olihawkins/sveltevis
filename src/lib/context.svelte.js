@@ -10,7 +10,7 @@ const LAYOUT_CONTEXT = "layout";
 
 function getNextConfig(configs, width) {
   for (let i = 0; i < configs.length; i++) {
-    if (width >= configs[i].vis.minwidth) {
+    if (width >= configs[i].visualisation.minwidth) {
       return configs[i];
     }
   }
@@ -29,8 +29,8 @@ export function createLayout(configs) {
 
   let graphic = $derived({ 
     width: width, 
-    height: config.vis.graphic.height,
-    margin: config.vis.graphic.margin
+    height: config.visualisation.graphic.height,
+    margin: config.visualisation.graphic.margin
   });
 
   let plot = $derived({ 

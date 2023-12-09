@@ -3,7 +3,7 @@
   // Imports ------------------------------------------------------------------
 
   import { onMount } from "svelte";
-  import { createLayout } from "./contexts.svelte.js";
+  import { createLayout } from "./context.svelte.js";
 
   // Props --------------------------------------------------------------------
 

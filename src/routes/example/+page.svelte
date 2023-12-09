@@ -1,10 +1,10 @@
 <script>
 
   import { settings } from "./settings.js";
-  import { createConfigs } from "$lib/configs.js";
+  import { createConfigs } from "$lib/config.js";
   import Visualisation from "$lib/Visualisation.svelte";
   import Plot from "$lib/Plot.svelte";
-  import PropertyReport from "$lib/PropertyReport.svelte";
+  import LayoutReport from "$lib/LayoutReport.svelte";
 
   const configs = createConfigs(settings);
 
@@ -22,11 +22,11 @@
       <p>Title</p>
       <p>Subtitle</p>
     </div>
-    <PropertyReport color="#707070" />
+    <LayoutReport color="#707070" />
     <Plot />
     <div slot="footer">
+      <p>Footnotes</p>
       <p>Source</p>
-      <p>Footnote</p>
     </div>
   </Visualisation>
 </div>

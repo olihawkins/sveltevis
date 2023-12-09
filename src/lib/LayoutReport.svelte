@@ -2,7 +2,7 @@
   
   // Imports ----------------------------------------------------------------------------
 
-  import { getLayout } from "./contexts.svelte.js"
+  import { getLayout } from "./context.svelte.js"
   
   // Props ------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@
   fill={color} />
 
 <g transform={`translate(${margin.left} ${margin.top})`} fill={color}>
-  <text x=0 y=20>config: {config.vis.name}</text>
+  <text x=0 y=20>config: {config.visualisation.name}</text>
   <text x=0 y=40>graphic.width: {graphic.width}</text>
   <text x=0 y=60>graphic.height: {graphic.height}</text>
   <text x=0 y=80>plot.width: {plot.width}</text>

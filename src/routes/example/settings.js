@@ -1,6 +1,6 @@
 const settings = {
   default: {
-    vis: {
+    visualisation: {
       name: "desktop",
       minwidth: 700,
       graphic: {
@@ -16,7 +16,7 @@ const settings = {
   },
   alts: [
     {
-      vis: {
+      visualisation: {
         name: "mobile",
         minwidth: 0,
         graphic: {
