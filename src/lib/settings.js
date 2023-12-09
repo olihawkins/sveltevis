@@ -6,7 +6,7 @@ function isObject(o) {
     o.constructor === Object;
 }
 
-// Update the values in one config object from the matching keys in another
+// Update the values in one config object with the values in another
 export function mergeConfigs(src, updates) {
  
   const { ...dest } = src;
@@ -26,6 +26,11 @@ export function mergeConfigs(src, updates) {
       } else {
         dest[key] = updateValue;
       }
+    
+    } else {
+
+      const updateValue = updates[key];
+      dest[key] = updateValue;
     }
   }
   return dest;
@@ -85,7 +90,7 @@ export function getVisSettings(defaults, config) {
   return settings;
 }
 
-// Update the the default config for a component with a user config
+// Update the default config for a component with a user config
 export function getSettings(defaults, config, key) {
   let settings;
   if (Object.hasOwn(config, key)) {
@@ -94,4 +99,9 @@ export function getSettings(defaults, config, key) {
     settings = defaults;
   }
   return settings;
+}
+
+// Update global font settings with component font settings
+export function getFont(global, component) {
+  return mergeConfigs(global, component)
 }

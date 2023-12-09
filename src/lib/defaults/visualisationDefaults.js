@@ -1,3 +1,5 @@
+import { COLOR } from "./constants.js";
+
 export default {
   main: {
 		name: "main",
@@ -11,6 +13,13 @@ export default {
           bottom: 50, 
           left: 50
         }
+      },
+      font: {
+        family: "Helvetica, Arial, sans-serif",
+        size: "12pt",
+        weight: "normal",
+        decoration: "none",
+        color: COLOR
       }
     }
   },

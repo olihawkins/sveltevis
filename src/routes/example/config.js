@@ -11,6 +11,9 @@ const config = {
           bottom: 50, 
           left: 50
         }
+      },
+      font: {
+        size: "12pt" 
       }
     }
   },
@@ -21,7 +24,15 @@ const config = {
         minwidth: 0,
         graphic: {
           height: 300
+        },
+        font: {
+          size: "11pt",
+          color: "#32a887",
+          weight: 700
         }
+      },
+      layoutReport: {
+        color: "#3277a8"
       }
     }
   ]
