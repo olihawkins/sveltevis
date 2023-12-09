@@ -2,9 +2,9 @@
   
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./context.svelte.js"
+  import { getLayout } from "./context.svelte.js";
   
-  // Contexts -----------------------------------------------------------------
+  // Layout -------------------------------------------------------------------
 
   const layout = getLayout();
 

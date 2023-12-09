@@ -2,25 +2,27 @@
   
   // Imports ----------------------------------------------------------------------------
 
-  import { getLayout } from "./context.svelte.js"
+  import defaults from "./defaults/layoutReportDefaults.js"
+  import { getLayout } from "./context.svelte.js";
+  import { getSettings } from "./settings.js";
   
-  // Props ------------------------------------------------------------------------------
-
-  let { color } = $props();
-
-  // Contexts ---------------------------------------------------------------------------
+  // Layout -----------------------------------------------------------------------------
 
   const layout = getLayout();
 
-  // Derived values ---------------------------------------------------------------------
-
-  let config = $derived(layout.config);
-  let graphic = $derived(layout.graphic);
-  let plot = $derived(layout.plot);
-  let margin = $derived(graphic.margin);
+  // Settings ---------------------------------------------------------------------------
   
+  const settings = $derived(getSettings(defaults, layout.config, "layoutReport"));
+  const color = $derived(settings.color);
   const rectLong = 50;
   const rectShort = 3;
+
+  // Report properties ------------------------------------------------------------------
+
+  const config = $derived(layout.config);
+  const graphic = $derived(layout.graphic);
+  const plot = $derived(layout.plot);
+  const margin = $derived(graphic.margin);
 
 </script>
 
@@ -94,11 +96,12 @@
   height={rectLong}
   fill={color} />
 
+<!-- Report -->
 <g transform={`translate(${margin.left} ${margin.top})`} fill={color}>
-  <text x=0 y=20>config: {config.visualisation.name}</text>
-  <text x=0 y=40>graphic.width: {graphic.width}</text>
-  <text x=0 y=60>graphic.height: {graphic.height}</text>
-  <text x=0 y=80>plot.width: {plot.width}</text>
-  <text x=0 y=100>plot.height: {plot.height}</text>
+  <text x=0 y=10>config.name: {config.name}</text>
+  <text x=0 y=30>graphic.width: {graphic.width}</text>
+  <text x=0 y=50>graphic.height: {graphic.height}</text>
+  <text x=0 y=70>plot.width: {plot.width}</text>
+  <text x=0 y=90>plot.height: {plot.height}</text>
 </g>
 

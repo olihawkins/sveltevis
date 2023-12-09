@@ -2,15 +2,19 @@
 
   // Imports ------------------------------------------------------------------
 
+  import defaults from "./defaults/visualisationDefaults.js"
   import { onMount } from "svelte";
+  import { createConfigs, getVisSettings } from "./settings.js";
   import { createLayout } from "./context.svelte.js";
 
   // Props --------------------------------------------------------------------
 
-  let { configs } = $props();
+  let { config } = $props();
 
-  // Contexts -----------------------------------------------------------------
+  // Layout -------------------------------------------------------------------
 
+  const visSettings = getVisSettings(defaults, config);
+  const configs = createConfigs(visSettings);
   const layout = createLayout(configs);
 
   // Bound elements -----------------------------------------------------------

@@ -1,23 +1,23 @@
-const settings = {
-  default: {
+const config = {
+  main: {
+    name: "desktop",
     visualisation: {
-      name: "desktop",
       minwidth: 700,
       graphic: {
         height: 450,
         margin: {
-          top: 25, 
-          right: 30, 
-          bottom: 25, 
-          left: 30
+          top: 50, 
+          right: 50, 
+          bottom: 50, 
+          left: 50
         }
       }
     }
   },
   alts: [
     {
+      name: "mobile",
       visualisation: {
-        name: "mobile",
         minwidth: 0,
         graphic: {
           height: 300
@@ -28,5 +28,5 @@ const settings = {
 };
 
 export {
-  settings
+  config
 };

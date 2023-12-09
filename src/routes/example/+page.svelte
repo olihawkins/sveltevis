@@ -1,12 +1,9 @@
 <script>
 
-  import { settings } from "./settings.js";
-  import { createConfigs } from "$lib/config.js";
   import Visualisation from "$lib/Visualisation.svelte";
   import Plot from "$lib/Plot.svelte";
   import LayoutReport from "$lib/LayoutReport.svelte";
-
-  const configs = createConfigs(settings);
+  import { config } from "./config.js";
 
 </script>
 
@@ -17,12 +14,12 @@
 
 <div id="column">
   <h1>SvelteVis</h1>
-  <Visualisation configs={configs}>
+  <Visualisation config={config}>
     <div slot="header">
       <p>Title</p>
       <p>Subtitle</p>
     </div>
-    <LayoutReport color="#707070" />
+    <LayoutReport />
     <Plot />
     <div slot="footer">
       <p>Footnotes</p>
