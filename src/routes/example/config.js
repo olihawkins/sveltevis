@@ -26,14 +26,9 @@ const config = {
           height: 300
         },
         font: {
-          size: "11pt",
-          color: "#32a887",
-          weight: 700
+          size: "11pt"
         }
       },
-      layoutReport: {
-        color: "#3277a8"
-      }
     }
   ]
 };
