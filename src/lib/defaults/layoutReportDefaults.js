@@ -1,6 +1,6 @@
-import { COLOR } from "./constants.js";
-
 export default {
-  color: COLOR,
-  font: {}
+  rect: {
+    long: 50,
+    short: 3
+  }
 }

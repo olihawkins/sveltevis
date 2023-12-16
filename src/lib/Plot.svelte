@@ -14,12 +14,12 @@
 
 </script>
 
-<g id="plot" transform={`translate(${margin.left} ${margin.top})`}>
+<g class="sveltevis-plot" transform={`translate(${margin.left} ${margin.top})`}>
   <slot />
 </g>
 
 <style>
-  #plot {
+  .sveltevis-plot {
     margin: 0;
     padding: 0;
   }

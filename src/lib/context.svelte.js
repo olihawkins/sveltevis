@@ -10,7 +10,7 @@ const LAYOUT_CONTEXT = "layout";
 
 function getNextConfig(configs, width) {
   for (let i = 0; i < configs.length; i++) {
-    if (width >= configs[i].visualisation.minwidth) {
+    if (width > configs[i].visualisation.minwidth) {
       return configs[i];
     }
   }
@@ -22,10 +22,11 @@ function getNextConfig(configs, width) {
 export function createLayout(configs) {
 
   // State
+  let windowWidth = $state(0);
   let width = $state(0);
 
   // Derived values
-  let config = $derived(getNextConfig(configs, width));
+  let config = $derived(getNextConfig(configs, windowWidth));
 
   let graphic = $derived({ 
     width: width, 
@@ -54,6 +55,12 @@ export function createLayout(configs) {
     },
     set width(w) {
       width = w;
+    },
+    get windowWidth() {
+      return windowWidth;
+    },
+    set windowWidth(w) {
+      windowWidth = w;
     }
   }
 

@@ -100,8 +100,3 @@ export function getSettings(defaults, config, key) {
   }
   return settings;
 }
-
-// Update global font settings with component font settings
-export function getFont(global, component) {
-  return mergeConfigs(global, component)
-}

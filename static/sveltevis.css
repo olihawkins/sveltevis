@@ -1,9 +1,22 @@
 :root {
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --sveltevis-color: #606060;
+  --sveltevis-font-size: 12pt;
+}
+
+@media all and (max-width: 600px) {
+  :root {
+    --sveltevis-font-size: 11pt;
+  } 
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --sveltevis-color: #606060;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sveltevis-color: #b0b0b0;
+  }
 }

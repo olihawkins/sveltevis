@@ -4,7 +4,7 @@
 
   import defaults from "./defaults/layoutReportDefaults.js"
   import { getLayout } from "./context.svelte.js";
-  import { getSettings, getFont } from "./settings.js";
+  import { getSettings } from "./settings.js";
   
   // Layout -------------------------------------------------------------------
 
@@ -14,100 +14,101 @@
 
   const config = $derived(layout.config);
   const settings = $derived(getSettings(defaults, config, "layoutReport"));
-  const font = $derived(getFont(config.visualisation.font, settings.font));
-  const color = $derived(settings.color);
-  const rectLong = 50;
-  const rectShort = 3;
+  const rectLong = $derived(settings.rect.long);
+  const rectShort = $derived(settings.rect.short);
 
   // Report properties --------------------------------------------------------
 
+  const windowWidth = $derived(layout.windowWidth);
   const graphic = $derived(layout.graphic);
   const plot = $derived(layout.plot);
   const margin = $derived(graphic.margin);
 
 </script>
 
-<!-- Border -->
-<rect 
-  x=0
-  y=0
-  width={graphic.width}
-  height={graphic.height}
-  fill-opacity=0
-  stroke={color}
-  stroke-width=1 />
+<g class="sveltevis-layout-report-margin">
 
-<!-- Top left -->
-<rect 
-  x=0 
-  y=0 
-  width={rectLong} 
-  height={rectShort}
-  fill={color} />
+  <!-- Border -->
+  <rect 
+    x=0
+    y=0
+    width={graphic.width}
+    height={graphic.height}
+    fill-opacity=0
+    stroke-width=1 />
 
-<rect 
-  x=0 
-  y=0 
-  width={rectShort} 
-  height={rectLong} 
-  fill={color} />
+  <!-- Top left -->
+  <rect 
+    x=0 
+    y=0 
+    width={rectLong} 
+    height={rectShort} />
 
-<!-- Top right -->
-<rect 
-  x={graphic.width - rectLong} 
-  y=0 
-  width={rectLong} 
-  height={rectShort}
-  fill={color} />
+  <rect 
+    x=0 
+    y=0 
+    width={rectShort} 
+    height={rectLong}  />
 
-<rect 
-  x={graphic.width - rectShort} 
-  y=0 
-  width={rectShort}  
-  height={rectLong}
-  fill={color} />
+  <!-- Top right -->
+  <rect 
+    x={graphic.width - rectLong} 
+    y=0 
+    width={rectLong} 
+    height={rectShort} />
 
-<!-- Bottom right -->
-<rect 
-  x={graphic.width - rectLong} 
-  y={graphic.height - rectShort} 
-  width={rectLong} 
-  height={rectShort}
-  fill={color} />
+  <rect 
+    x={graphic.width - rectShort} 
+    y=0 
+    width={rectShort}  
+    height={rectLong} />
 
-<rect 
-  x={graphic.width - rectShort} 
-  y={graphic.height - rectLong} 
-  width={rectShort} 
-  height={rectLong}
-  fill={color} />
+  <!-- Bottom right -->
+  <rect 
+    x={graphic.width - rectLong} 
+    y={graphic.height - rectShort} 
+    width={rectLong} 
+    height={rectShort} />
 
-<!-- Bottom left -->
-<rect 
-  x=0 
-  y={graphic.height - rectShort} 
-  width={rectLong} 
-  height={rectShort}
-  fill={color} />
+  <rect 
+    x={graphic.width - rectShort} 
+    y={graphic.height - rectLong} 
+    width={rectShort} 
+    height={rectLong} />
 
-<rect 
-  x=0 
-  y={graphic.height - rectLong} 
-  width={rectShort} 
-  height={rectLong}
-  fill={color} />
+  <!-- Bottom left -->
+  <rect 
+    x=0 
+    y={graphic.height - rectShort} 
+    width={rectLong} 
+    height={rectShort} />
 
-<!-- Report -->
-<g 
-  transform={`translate(${margin.left} ${margin.top})`} 
-  fill={font.color}
-  style:font-family={font.family}
-  style:font-size={font.size}
-  style:font-weight={font.weight}>
-    <text x=0 y=10>config.name: {config.name}</text>
-    <text x=0 y=30>graphic.width: {graphic.width}</text>
-    <text x=0 y=50>graphic.height: {graphic.height}</text>
-    <text x=0 y=70>plot.width: {plot.width}</text>
-    <text x=0 y=90>plot.height: {plot.height}</text>
+  <rect 
+    x=0 
+    y={graphic.height - rectLong} 
+    width={rectShort} 
+    height={rectLong} />
+
 </g>
 
+<!-- Report -->
+<g class="sveltevis-layout-report-content" 
+  transform={`translate(${margin.left} ${margin.top})`} >
+    <text x=0 y=10>windowWidth: {windowWidth}</text>
+    <text x=0 y=30>config.name: {config.name}</text>
+    <text x=0 y=50>graphic.width: {graphic.width}</text>
+    <text x=0 y=70>graphic.height: {graphic.height}</text>
+    <text x=0 y=90>plot.width: {plot.width}</text>
+    <text x=0 y=110>plot.height: {plot.height}</text>
+</g>
+
+<style>
+.sveltevis-layout-report-margin {
+  fill: var(--sveltevis-color);
+  stroke: var(--sveltevis-color);
+}
+.sveltevis-layout-report-content {
+  fill: var(--sveltevis-color);
+  font-size: var(--sveltevis-font-size);
+}
+</style>

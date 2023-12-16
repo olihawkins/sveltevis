@@ -1,3 +1,15 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<svelte:head>
+  <link rel="stylesheet" href="site.css" />
+  <link rel="stylesheet" href="sveltevis.css" />
+</svelte:head>
+
+<div id="column">
+  <h1>SvelteVis</h1>
+  <p>SvelteVis is a Svelte component library for composing responsive interactive data visualisations.</p>
+  <ul>
+    <li><a data-sveltekit-reload href="/example">Example</a></li>
+  </ul>
+</div>
+
+<style>
+</style>

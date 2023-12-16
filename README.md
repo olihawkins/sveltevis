@@ -78,3 +78,4 @@ npm publish
 - https://svelte-5-preview.vercel.app/docs/runes
 - https://svelte.dev/blog/whats-new-in-svelte-december-2023
 - https://dev.to/robertobutti/my-first-svelte5-reactive-component-5elc
+- https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/

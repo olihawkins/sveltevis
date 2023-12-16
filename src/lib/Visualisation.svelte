@@ -23,13 +23,14 @@
 
   // Derived values -----------------------------------------------------------
 
-  let width = $derived(layout.width);
+  let windowWidth = $derived(layout.windowWidth);
   let height = $derived(layout.graphic.height);
 
   // Observe width and update config ------------------------------------------
 
   function updateLayout() {
     layout.width = vis.clientWidth;
+    layout.windowWidth = window.innerWidth;
   }
 
   // Set up resize handling 
@@ -40,7 +41,7 @@
     
     // Add resize listener
     const resizeListener = () => {
-      if (width !== vis.clientWidth) {
+      if (windowWidth !== window.innerWidth) {
         updateLayout();
       }
     };
@@ -55,37 +56,37 @@
 
 </script>
 
-<div id="vis" bind:this={vis}>
-  <div id="header" >
+<div class="sveltevis-visualisation" bind:this={vis}>
+  <div class="sveltevis-visualisation-header" >
       <slot name="header" />
   </div>
-  <div id="graphic" style:height={`${height}px`}>
+  <div class="sveltevis-visualisation-graphic" style:height={`${height}px`}>
       <svg>
         <slot />
       </svg>
   </div>
-  <div id="footer">
+  <div class="sveltevis-visualisation-footer">
       <slot name="footer" />
   </div>
 </div>
 
 <style>
-  #vis {
+  .sveltevis-visualisation {
     margin: 0;
     padding: 0;
   }
 
-  #header {
+  .sveltevis-visualisation-header {
     margin: 0;
     padding: 0;
   }
 
-  #graphic {
+  .sveltevis-visualisation-graphic {
     margin: 0;
     padding: 0;
   }
 
-  #footer {
+  .sveltevis-visualisation-footer {
     margin: 0;
     padding: 0;
   }

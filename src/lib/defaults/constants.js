@@ -1,1 +1,1 @@
-export const COLOR = "#707070";
+export const EXAMPLE = 1;
