@@ -28,7 +28,7 @@
 
 <g class="sveltevis-layout-report-margin">
 
-  <!-- Border -->
+  <!-- Graphic Border -->
   <rect 
     x=0
     y=0
@@ -36,6 +36,16 @@
     height={graphic.height}
     fill-opacity=0
     stroke-width=1 />
+
+  <!-- Plot Border -->
+    <rect 
+    x={graphic.margin.left}
+    y={graphic.margin.top}
+    width={plot.width}
+    height={plot.height}
+    fill-opacity=0
+    stroke-width=1
+    stroke-dasharray="2, 2" />
 
   <!-- Top left -->
   <rect 
@@ -91,15 +101,35 @@
 
 </g>
 
+<!-- Graphic label-->
+<text 
+  x={graphic.width / 2} 
+  y={graphic.height - 20} 
+  text-anchor="middle"
+  class="sveltevis-layout-report-label">
+    Graphic
+</text>
+
 <!-- Report -->
 <g class="sveltevis-layout-report-content" 
   transform={`translate(${margin.left} ${margin.top})`} >
-    <text x=0 y=10>windowWidth: {windowWidth}</text>
-    <text x=0 y=30>config.name: {config.name}</text>
-    <text x=0 y=50>graphic.width: {graphic.width}</text>
-    <text x=0 y=70>graphic.height: {graphic.height}</text>
-    <text x=0 y=90>plot.width: {plot.width}</text>
-    <text x=0 y=110>plot.height: {plot.height}</text>
+    
+    <!-- Plot label-->
+    <text 
+    x={plot.width / 2} 
+    y={plot.height - 20} 
+    text-anchor="middle"
+    class="sveltevis-layout-report-label">
+      Plot
+    </text>
+
+    <!-- Layout properties -->
+    <text x=20 y=30>window.innerWidth: {windowWidth}</text>
+    <text x=20 y=50>config.name: {config.name}</text>
+    <text x=20 y=70>graphic.width: {graphic.width}</text>
+    <text x=20 y=90>graphic.height: {graphic.height}</text>
+    <text x=20 y=110>plot.width: {plot.width}</text>
+    <text x=20 y=130>plot.height: {plot.height}</text>
 </g>
 
 <style>
@@ -109,6 +139,12 @@
 }
 .sveltevis-layout-report-content {
   fill: var(--sveltevis-color);
+  font-size: var(--sveltevis-font-size);
+}
+
+.sveltevis-layout-report-label {
+  fill: var(--sveltevis-color);
+  stroke: "none";
   font-size: var(--sveltevis-font-size);
 }
 </style>

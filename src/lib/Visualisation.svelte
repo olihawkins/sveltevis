@@ -21,6 +21,10 @@
   
   let vis = $state();
 
+  // State --------------------------------------------------------------------
+
+  let visibility = $state("hidden");
+
   // Derived values -----------------------------------------------------------
 
   let windowWidth = $derived(layout.windowWidth);
@@ -36,8 +40,11 @@
   // Set up resize handling 
   onMount(() => {		
 
-    // Update width and downstream properties
+    // Update width and downstream layout properties
     updateLayout();
+
+    // Set visible once layout properties are known
+    visibility = "visible";
     
     // Add resize listener
     const resizeListener = () => {
@@ -56,7 +63,7 @@
 
 </script>
 
-<div class="sveltevis-visualisation" bind:this={vis}>
+<div class="sveltevis-visualisation" style:visibility={visibility} bind:this={vis}>
   <div class="sveltevis-visualisation-header" >
       <slot name="header" />
   </div>

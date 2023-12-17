@@ -1,5 +1,5 @@
 :root {
-  --sveltevis-color: #606060;
+  --sveltevis-color: #505050;
   --sveltevis-font-size: 12pt;
 }
 
@@ -11,12 +11,12 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --sveltevis-color: #606060;
+    --sveltevis-color: #505050;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --sveltevis-color: #b0b0b0;
+    --sveltevis-color: #b8b8b8;
   }
 }
