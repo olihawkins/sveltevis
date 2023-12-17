@@ -2,7 +2,7 @@ const config = {
   main: {
     name: "desktop",
     visualisation: {
-      minwidth: 600,
+      minwidth: 700,
       graphic: {
         height: 450,
         margin: {

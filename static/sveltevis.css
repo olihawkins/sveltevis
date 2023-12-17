@@ -3,7 +3,7 @@
   --sveltevis-font-size: 12pt;
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 700px) {
   :root {
     --sveltevis-font-size: 11pt;
   } 
