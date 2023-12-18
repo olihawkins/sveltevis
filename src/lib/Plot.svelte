@@ -1,3 +1,5 @@
+<svelte:options namespace="svg" />
+
 <script>
   
   // Imports ------------------------------------------------------------------
@@ -17,10 +19,3 @@
 <g class="sveltevis-plot" transform={`translate(${margin.left} ${margin.top})`}>
   <slot />
 </g>
-
-<style>
-  .sveltevis-plot {
-    margin: 0;
-    padding: 0;
-  }
-</style>

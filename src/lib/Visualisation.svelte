@@ -65,15 +65,13 @@
 
 <div class="sveltevis-visualisation" style:visibility={visibility} bind:this={vis}>
   <div class="sveltevis-visualisation-header" >
-      <slot name="header" />
+    <slot name="header" />
   </div>
   <div class="sveltevis-visualisation-graphic" style:height={`${height}px`}>
-      <svg>
-        <slot />
-      </svg>
+    <slot />
   </div>
   <div class="sveltevis-visualisation-footer">
-      <slot name="footer" />
+    <slot name="footer" />
   </div>
 </div>
 
@@ -98,8 +96,4 @@
     padding: 0;
   }
 
-  svg {
-    width: 100%;
-    height: 100%
-  }
 </style>
