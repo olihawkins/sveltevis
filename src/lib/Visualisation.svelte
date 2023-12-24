@@ -28,7 +28,6 @@
   // Derived values -----------------------------------------------------------
 
   let windowWidth = $derived(layout.windowWidth);
-  let height = $derived(layout.graphic.height);
 
   // Observe width and update config ------------------------------------------
 
@@ -64,15 +63,7 @@
 </script>
 
 <div class="sveltevis-visualisation" style:visibility={visibility} bind:this={vis}>
-  <div class="sveltevis-visualisation-header" >
-    <slot name="header" />
-  </div>
-  <div class="sveltevis-visualisation-graphic" style:height={`${height}px`}>
-    <slot />
-  </div>
-  <div class="sveltevis-visualisation-footer">
-    <slot name="footer" />
-  </div>
+  <slot />
 </div>
 
 <style>
@@ -80,20 +71,4 @@
     margin: 0;
     padding: 0;
   }
-
-  .sveltevis-visualisation-header {
-    margin: 0;
-    padding: 0;
-  }
-
-  .sveltevis-visualisation-graphic {
-    margin: 0;
-    padding: 0;
-  }
-
-  .sveltevis-visualisation-footer {
-    margin: 0;
-    padding: 0;
-  }
-
 </style>

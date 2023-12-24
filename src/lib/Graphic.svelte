@@ -1,7 +1,25 @@
-<svelte:options namespace="svg" />
+<script>
+  // Imports ------------------------------------------------------------------
 
-<svg width="100%" height="100%">
-  <g class="sveltevis-graphic">
-    <slot />
-  </g>
-</svg>
+  import { getLayout } from "./context.svelte.js";
+  
+  // Layout -------------------------------------------------------------------
+
+  const layout = getLayout();
+
+  // Derived values -----------------------------------------------------------
+
+  let height = $derived(layout.graphic.height);
+
+</script>
+
+<div class="sveltevis-visualisation-graphic" style:height={`${height}px`}>
+  <slot />
+</div>
+
+<style>
+.sveltevis-visualisation-graphic {
+  margin: 0;
+  padding: 0;
+}
+</style>
