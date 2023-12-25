@@ -1,11 +1,14 @@
 :root {
   --sveltevis-color: #505050;
   --sveltevis-font-size: 12pt;
+  --sveltevis-heading-font-size: 16pt;
+  --sveltevis-line-height: 1.5;
 }
 
 @media all and (max-width: 700px) {
   :root {
     --sveltevis-font-size: 11pt;
+    --sveltevis-heading-font-size: 14pt;
   } 
 }
 

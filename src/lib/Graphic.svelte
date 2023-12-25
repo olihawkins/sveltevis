@@ -13,12 +13,12 @@
 
 </script>
 
-<div class="sveltevis-visualisation-graphic" style:height={`${height}px`}>
+<div class="sveltevis-graphic" style:height={`${height}px`}>
   <slot />
 </div>
 
 <style>
-.sveltevis-visualisation-graphic {
+.sveltevis-graphic {
   margin: 0;
   padding: 0;
 }
