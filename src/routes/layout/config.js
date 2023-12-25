@@ -12,6 +12,14 @@ const config = {
           left: 50
         }
       }
+    },
+    header: {
+      title: "<b>Title</b>",
+      subtitle: "Subtitle"
+    },
+    footer: {
+      footnote: "Footnote",
+      source: "Source"
     }
   },
   alts: [

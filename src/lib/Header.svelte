@@ -1,6 +1,31 @@
-<div class="sveltevis-header" >
-  <p class="sveltevis-header-title">Title</p>
-  <p class="sveltevis-header-subtitle">Subtitle</p>
+<script>
+  // Imports ------------------------------------------------------------------
+
+  import defaults from "./defaults/headerDefaults.js"
+  import { getLayout } from "./context.svelte.js";
+  import { getSettings } from "./settings.js";
+  
+  // Layout -------------------------------------------------------------------
+
+  const layout = getLayout();
+
+  // Settings -----------------------------------------------------------------
+
+  const config = $derived(layout.config);
+  const settings = $derived(getSettings(defaults, config, "header"));
+</script>
+
+<div class="sveltevis-header">
+  {#if settings.title !== null}
+    <p class="sveltevis-header-title">
+      {@html settings.title}
+    </p>
+  {/if}
+  {#if settings.subtitle !== null}
+    <p class="sveltevis-header-subtitle">
+      {@html settings.subtitle}
+    </p>
+  {/if}
   <slot />
 </div>
 
@@ -15,12 +40,14 @@
     padding: 0;
     line-height: var(--sveltevis-line-height);
     font-size: var(--sveltevis-heading-font-size);
+    color: var(--sveltevis-color);
   }
 
   .sveltevis-header-subtitle {
-    margin: 0 0 0.5rem 0;
+    margin: 0;
     padding: 0;
     line-height: var(--sveltevis-line-height);
     font-size: var(--sveltevis-font-size);
+    color: var(--sveltevis-color);
   }
 </style> 

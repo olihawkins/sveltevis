@@ -1,7 +1,32 @@
+<script>
+  // Imports ------------------------------------------------------------------
+
+  import defaults from "./defaults/footerDefaults.js"
+  import { getLayout } from "./context.svelte.js";
+  import { getSettings } from "./settings.js";
+  
+  // Layout -------------------------------------------------------------------
+
+  const layout = getLayout();
+
+  // Settings -----------------------------------------------------------------
+
+  const config = $derived(layout.config);
+  const settings = $derived(getSettings(defaults, config, "footer"));
+</script>
+
 <div class="sveltevis-footer">
   <slot />
-  <p class="sveltevis-footer-footnote">Footnote</p>
-  <p class="sveltevis-footer-source">Source</p>
+  {#if settings.footnote !== null}
+    <p class="sveltevis-footer-footnote">
+      {@html settings.footnote}
+    </p>
+  {/if}
+  {#if settings.source !== null}
+    <p class="sveltevis-footer-source">
+      {@html settings.source}
+    </p>
+  {/if}
 </div>
 
 <style>
@@ -13,13 +38,15 @@
   .sveltevis-footer-footnote {
     margin: 0 0 0.5rem 0;
     line-height: var(--sveltevis-line-height);
-    font-size: var(--sveltevis-font-size);      
+    font-size: var(--sveltevis-font-size);
+    color: var(--sveltevis-color); 
   }
 
   .sveltevis-footer-source {
-    margin: 0 0 0.5rem 0;
+    margin: 0;
     padding: 0;
     line-height: var(--sveltevis-line-height);
     font-size: var(--sveltevis-font-size);
-}
+    color: var(--sveltevis-color);
+  }
 </style>
