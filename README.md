@@ -2,80 +2,13 @@
 
 A Svelte component library for composing responsive interactive data visualisations.
 
-# Setup
+This package is in active development and is not yet ready for use. The first milestone is to develop the smallest set of fully-functional components needed to make a responsive, interactive scatterplot, using the project's approach to configuring component settings and managing state.
 
-Install SvelteKit and Svelte 5
+This project is targetting <a href="https://svelte.dev/blog/whats-new-in-svelte-december-2023">Svelte 5</a> and uses <a href="https://svelte.dev/blog/runes">runes</a>. If you want to try the currently available components, or contribute to development:
 
-```bash
-npm create svelte@latest sveltevis
-cd sveltevis
-npm install
-npm i svelte@next 
-```
+1. Clone the repository from <a href="https://github.com/olihawkins/sveltevis">GitHub</a>
 
-## create-svelte
+2. Run `npm install` to install the dependencies
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+3. Run `npm run dev` to start the demo application on localhost:5173 
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
-
-```bash
-npm run package
-```
-
-To create a production version of your showcase app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
-
-# Links
-
-- https://svelte.dev/blog/runes
-- https://svelte-5-preview.vercel.app/docs/runes
-- https://svelte.dev/blog/whats-new-in-svelte-december-2023
-- https://dev.to/robertobutti/my-first-svelte5-reactive-component-5elc
-- https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
