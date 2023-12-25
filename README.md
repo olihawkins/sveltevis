@@ -10,7 +10,7 @@ This package is in active development and is **not yet ready for use**. The proj
 
 The first objective is to develop the smallest set of fully-functional components needed to make a responsive, interactive scatterplot, using the project's approach to configuring component settings and managing state. Progress towards this milestone is set out below.
 
-### First milestone: Components completed
+### Components completed
 
 - Visualisation
 - Graphic
@@ -19,7 +19,7 @@ The first objective is to develop the smallest set of fully-functional component
 - Header
 - Footer
 
-### First milestone: Components to be completed
+### Components to be completed
 
 - AxisX
 - AxisY
