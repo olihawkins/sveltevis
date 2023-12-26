@@ -13,11 +13,11 @@ The first objective is to develop the smallest set of fully-functional component
 ### Components completed
 
 - Visualisation
+- Header
+- Footer
 - Graphic
 - Svg
 - Plot
-- Header
-- Footer
 
 ### Components to be completed
 
