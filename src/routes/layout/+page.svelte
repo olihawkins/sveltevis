@@ -54,7 +54,6 @@
     LayoutReport 
   &#125; from "sveltevis";
   
-
   &lt;Visualisation config=&#123;config&#125;&gt;
     &lt;Header /&gt;
     &lt;Graphic&gt;
