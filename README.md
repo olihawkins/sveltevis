@@ -27,7 +27,7 @@ The first objective is to develop the smallest set of fully-functional component
 
 ## Trying the components
 
-If you want to try the existing components, or contribute to development, the easiest way right now is to download and run the demo project.
+If you want to try the existing components, the easiest way right now is to download and run the demo project.
 
 1. Clone the project repository from <a href="https://github.com/olihawkins/sveltevis">GitHub</a>
 
