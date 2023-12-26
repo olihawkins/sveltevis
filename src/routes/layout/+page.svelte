@@ -43,15 +43,27 @@
   <div class="codeblock">
   <pre>
   <code>
-    &lt;Visualisation config=&#123;config&#125;&gt;
-      &lt;Header /&gt;
-      &lt;Graphic&gt;
-        &lt;Svg&gt;
-          &lt;LayoutReport /&gt;
-        &lt;/Svg&gt;
-      &lt;/Graphic&gt;
-      &lt;Footer /&gt;
-    &lt;/Visualisation&gt;</code>
+  import &#123; config &#125; from "./lib/config.js";
+  
+  import &#123; 
+    Visualisation, 
+    Header,
+    Footer,
+    Graphic,
+    Svg,
+    LayoutReport 
+  &#125; from "sveltevis";
+  
+
+  &lt;Visualisation config=&#123;config&#125;&gt;
+    &lt;Header /&gt;
+    &lt;Graphic&gt;
+      &lt;Svg&gt;
+        &lt;LayoutReport /&gt;
+      &lt;/Svg&gt;
+    &lt;/Graphic&gt;
+    &lt;Footer /&gt;
+  &lt;/Visualisation&gt;</code>
   </pre>
   </div>
 
@@ -60,46 +72,46 @@
   <p>The <code>config</code> used in the visualisation is shown below. A <code>config</code> contains objects specifying the settings for each SvelteVis component used in the visualisation. Components are identified with names in <code>camelCase</code> rather than <code>PascalCase</code>. So in the example below, the <code>visualisation</code>, <code>header</code> and <code>footer</code> objects contain the user-specified settings for those components</p>
   
   <div class="codeblock">
-    <pre>
-    <code>
-      const config = &#123;
-        main: &#123;
-          name: "desktop",
-          visualisation: &#123;
-            minwidth: 700,
-            graphic: &#123;
-              height: 450,
-              margin: &#123;
-                top: 50, 
-                right: 50, 
-                bottom: 50, 
-                left: 50
-              &#125;
-            &#125;
-          &#125;,
-          header: &#123;
-            title: "&lt;b&gt;Title&lt;/b&gt;",
-            subtitle: "Subtitle"
-          &#125;,
-          footer: &#123;
-            footnote: "Footnote",
-            source: "Source"
+  <pre>
+  <code>
+  const config = &#123;
+    main: &#123;
+      name: "desktop",
+      visualisation: &#123;
+        minwidth: 700,
+        graphic: &#123;
+          height: 450,
+          margin: &#123;
+            top: 50, 
+            right: 50, 
+            bottom: 50, 
+            left: 50
+          &#125;
+        &#125;
+      &#125;,
+      header: &#123;
+        title: "&lt;b&gt;Title&lt;/b&gt;",
+        subtitle: "Subtitle"
+      &#125;,
+      footer: &#123;
+        footnote: "Footnote",
+        source: "Source"
+      &#125;
+    &#125;,
+    alts: [
+      &#123;
+        name: "mobile",
+        visualisation: &#123;
+          minwidth: 0,
+          graphic: &#123;
+            height: 300
           &#125;
         &#125;,
-        alts: [
-          &#123;
-            name: "mobile",
-            visualisation: &#123;
-              minwidth: 0,
-              graphic: &#123;
-                height: 300
-              &#125;
-            &#125;,
-          &#125;
-        ]
-      &#125;;</code>
-    </pre>
-    </div>
+      &#125;
+    ]
+  &#125;;</code>
+  </pre>
+  </div>
 
 <p>Every component has default settings, so you only need to specify config values for settings that you need to override. The appearance of SvelteVis components is controlled with global CSS, so there are typically only a small number of settings for each component, which control their behaviour rather than their appearance.</p>
 
