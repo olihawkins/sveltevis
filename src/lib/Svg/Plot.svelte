@@ -4,7 +4,7 @@
   
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./context.svelte.js";
+  import { getLayout } from "../context.svelte.js";
   
   // Layout -------------------------------------------------------------------
 

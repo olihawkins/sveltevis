@@ -1,4 +1,4 @@
-# sveltevis
+# SvelteVis
 
 A Svelte component library for composing responsive interactive data visualisations.
 
@@ -21,9 +21,9 @@ The first objective is to develop the smallest set of fully-functional component
 
 ### Components to be completed
 
-- AxisX
-- AxisY
-- GeomScatter
+- AxisContinuousX
+- AxisContinuousY
+- GeomPoint
 
 ## Trying the components
 
@@ -35,7 +35,7 @@ If you want to try the existing components, or contribute to development, the ea
 
 3. Run `npm run dev` to start the demo application on localhost:5173 
 
-It is also possible to install the package into a Vite Svelte template, but this requires modifying the template to run Svelte 5. Using the components in this way means you won't have the default stylesheet automatically installed in the project.
+It is also possible to install the package into a Vite Svelte template, but this requires modifying the template to run Svelte 5.
 
 1. Create a Svelte project with Vite using `npm create vite@latest my-svelte-project -- --template svelte`
 
@@ -45,7 +45,7 @@ It is also possible to install the package into a Vite Svelte template, but this
 
 4. Install the package with `npm install sveltevis`
 
-Note that you will need to edit `main.js` in the Vite project to replace the old method of instatiating the app with the new method.
+Note that you will need to edit `main.js` in the Vite project to replace the old method of instantiating the app with the new method.
 
 ```javascript
 // Comment out old method
@@ -56,3 +56,7 @@ Note that you will need to edit `main.js` in the Vite project to replace the old
 // Add new method
 const app = createRoot(App, { target: document.getElementById("app") });
 ```
+
+## Styling components
+
+SvelteVis allows you to target the styles used in its components using your own stylesheets, so that the styles of your visualisations match your website. Importing SvelteVis components into a new project doesn't automatically add the default styles used in the demo application. However, if you want to use these stylesheets as a starting poing for modification, they can be found in the `sveltevis/dist/css/` folder: simply copy them as stylesheets to use in your own app. The stylesheet for targeting SvelteVis components is called `sveltevis.css` and this is the stylesheet you should modify to implement your own visualisation style. The `site.css` stylesheet is the stylesheet used for the demo application. Both of these default stylesheets are set up to provide alternate light and dark styles based on operating system mode. It is up to you to decide if your website needs light and dark styles, and whether it should offer users an override.

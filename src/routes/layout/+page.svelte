@@ -1,20 +1,15 @@
 <script>
-
+  import "$lib/css/site.css";
+  import "$lib/css/sveltevis.css";
   import Visualisation from "$lib/Visualisation.svelte";
-  import Graphic from "$lib/Graphic.svelte";
-  import Svg from "$lib/Svg.svelte";
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
-  import LayoutReport from "$lib/LayoutReport.svelte";
+  import Graphic from "$lib/Graphic.svelte";
+  import Svg from "$lib/Svg/Svg.svelte";
+  import LayoutReport from "$lib/Svg/LayoutReport.svelte";
   import { config } from "./config.js";
   
 </script>
-
-<svelte:head>
-  <link rel="stylesheet" href="site.css" />
-  <link rel="stylesheet" href="sveltevis.css" />
-</svelte:head>
-
 
 <div id="column">
   

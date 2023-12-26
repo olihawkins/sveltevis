@@ -1,10 +1,16 @@
 <script>
   // Imports ------------------------------------------------------------------
 
-  import defaults from "./defaults/headerDefaults.js"
   import { getLayout } from "./context.svelte.js";
   import { getSettings } from "./settings.js";
   
+  // Defaults -----------------------------------------------------------------
+
+  const defaults = {
+    title: null,
+    subtitle: null
+  };
+
   // Layout -------------------------------------------------------------------
 
   const layout = getLayout();

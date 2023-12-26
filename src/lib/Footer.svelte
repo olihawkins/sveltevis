@@ -1,10 +1,16 @@
 <script>
   // Imports ------------------------------------------------------------------
 
-  import defaults from "./defaults/footerDefaults.js"
   import { getLayout } from "./context.svelte.js";
   import { getSettings } from "./settings.js";
   
+  // Defaults -----------------------------------------------------------------
+
+  const defaults = {
+    footnote: null,
+    source: null
+  };
+
   // Layout -------------------------------------------------------------------
 
   const layout = getLayout();

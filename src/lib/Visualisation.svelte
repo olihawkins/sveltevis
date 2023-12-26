@@ -2,10 +2,30 @@
 
   // Imports ------------------------------------------------------------------
 
-  import defaults from "./defaults/visualisationDefaults.js"
   import { onMount } from "svelte";
   import { createConfigs, getVisSettings } from "./settings.js";
   import { createLayout } from "./context.svelte.js";
+
+  // Defaults -----------------------------------------------------------------
+
+  const defaults = {
+    main: {
+      name: "main",
+      visualisation: {
+        minwidth: 0,
+        graphic: {
+          height: 450,
+          margin: {
+            top: 50, 
+            right: 50, 
+            bottom: 50, 
+            left: 50
+          }
+        }
+      }
+    },
+    alts: []
+  };
 
   // Props --------------------------------------------------------------------
 

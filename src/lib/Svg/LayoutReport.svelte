@@ -4,10 +4,18 @@
   
   // Imports ------------------------------------------------------------------
 
-  import defaults from "./defaults/layoutReportDefaults.js"
-  import { getLayout } from "./context.svelte.js";
-  import { getSettings } from "./settings.js";
+  import { getLayout } from "../context.svelte.js";
+  import { getSettings } from "../settings.js";
   
+  // Defaults -----------------------------------------------------------------
+
+  const defaults = {
+    rect: {
+      long: 50,
+      short: 3
+    }
+  };
+
   // Layout -------------------------------------------------------------------
 
   const layout = getLayout();

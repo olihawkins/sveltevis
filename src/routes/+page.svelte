@@ -1,7 +1,7 @@
-<svelte:head>
-  <link rel="stylesheet" href="site.css" />
-  <link rel="stylesheet" href="sveltevis.css" />
-</svelte:head>
+<script>
+  import "$lib/css/site.css";
+  import "$lib/css/sveltevis.css";
+</script>
 
 <div id="column">
   <h1>SvelteVis</h1>
