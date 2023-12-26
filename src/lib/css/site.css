@@ -35,9 +35,19 @@
 }
 
 h1 {
-  margin: 4rem 0 2rem 0;
+  margin: 3rem 0 2rem 0;
   padding: 1rem;
   text-align: center;
+}
+
+h2 {
+  margin: 2rem 0 2rem 0;
+  padding: 0; 
+}
+
+h3 {
+  margin: 2rem 0 1rem 0;
+  padding: 0; 
 }
 
 #column {
@@ -55,6 +65,13 @@ p code {
   color: var(--code-color);
   background-color: var(--code-background-color);
   border-radius: 3px;
+}
+
+.codeblock {
+  margin: 0 0 2rem 0;
+  padding: 0;
+  color: var(--code-color);
+  background-color: var(--code-background-color);
 }
 
 a {

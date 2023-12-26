@@ -8,7 +8,7 @@ This package is in active development and is **not yet ready for use**. The proj
 
 ## Roadmap
 
-The first objective is to develop the smallest set of fully-functional components needed to make a responsive, interactive scatterplot, using the project's approach to configuring component settings and managing state. Progress towards this milestone is set out below.
+The first objective is to develop the smallest set of fully-functional components needed to make a responsive scatterplot, using the project's approach to configuring component settings and managing state. Progress towards this milestone is set out below.
 
 ### Components completed
 
@@ -27,7 +27,7 @@ The first objective is to develop the smallest set of fully-functional component
 
 ## Trying the components
 
-If you want to try the existing components, or contribute to development, the easiest way to try them is to download and run the demo project.
+If you want to try the existing components, or contribute to development, the easiest way right now is to download and run the demo project.
 
 1. Clone the project repository from <a href="https://github.com/olihawkins/sveltevis">GitHub</a>
 
