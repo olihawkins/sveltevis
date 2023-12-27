@@ -4,7 +4,7 @@ A Svelte component library for composing responsive interactive data visualisati
 
 ## Status
 
-This package is in active development and is **not yet ready for use**. The API should be regarded as unstable until version 1.0.0. The project is targetting <a href="https://svelte.dev/blog/whats-new-in-svelte-december-2023">Svelte 5</a> and uses <a href="https://svelte.dev/blog/runes">runes</a>.
+This package is in active development and is **not yet ready for use**. The API should be regarded as unstable until version 1.0.0. The project is targetting <a href="https://svelte.dev/blog/whats-new-in-svelte-december-2023">Svelte 5</a> and uses <a href="https://svelte-5-preview.vercel.app/docs/runes">runes</a>.
 
 ## Roadmap
 

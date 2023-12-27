@@ -11,6 +11,10 @@
     source: null
   };
 
+  // Props --------------------------------------------------------------------
+
+  let { key = "footer" } = $props();
+
   // Layout -------------------------------------------------------------------
 
   const layout = getLayout();
@@ -18,7 +22,7 @@
   // Settings -----------------------------------------------------------------
 
   const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, "footer"));
+  const settings = $derived(getSettings(defaults, config, key));
 </script>
 
 <div class="sveltevis-footer">

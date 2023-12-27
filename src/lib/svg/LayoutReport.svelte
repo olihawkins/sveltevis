@@ -16,6 +16,10 @@
     }
   };
 
+  // Props --------------------------------------------------------------------
+
+  let { key = "layoutReport" } = $props();
+
   // Layout -------------------------------------------------------------------
 
   const layout = getLayout();
@@ -23,7 +27,7 @@
   // Settings -----------------------------------------------------------------
 
   const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, "layoutReport"));
+  const settings = $derived(getSettings(defaults, config, key));
   const rectLong = $derived(settings.rect.long);
   const rectShort = $derived(settings.rect.short);
 

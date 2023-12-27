@@ -3,13 +3,17 @@
 
   import { getLayout } from "./context.svelte.js";
   import { getSettings } from "./settings.js";
-  
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
     title: null,
     subtitle: null
   };
+
+  // Props --------------------------------------------------------------------
+
+  let { key = "header" } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -18,7 +22,7 @@
   // Settings -----------------------------------------------------------------
 
   const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, "header"));
+  const settings = $derived(getSettings(defaults, config, key));
 </script>
 
 <div class="sveltevis-header">
