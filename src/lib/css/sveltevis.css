@@ -1,5 +1,5 @@
 :root {
-  --sveltevis-color: #505050;
+  --sveltevis-color: #404040;
   --sveltevis-font-size: 12pt;
   --sveltevis-heading-font-size: 16pt;
   --sveltevis-line-height: 1.5;
@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --sveltevis-color: #505050;
+    --sveltevis-color: #404040;
   }
 }
 

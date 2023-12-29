@@ -1,0 +1,1 @@
+<h1><a href="/">SvelteVis</a></h1>
