@@ -28,7 +28,13 @@ const config = {
       visualisation: {
         minwidth: 0,
         graphic: {
-          height: 300
+          height: 300,
+          margin: {
+            top: 40, 
+            right: 40, 
+            bottom: 40, 
+            left: 40
+          }
         }
       },
     }
