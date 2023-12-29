@@ -20,6 +20,6 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --sveltevis-color: #b8b8b8;
+    --sveltevis-color: #c0c0c0;
   }
 }
