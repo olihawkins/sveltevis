@@ -31,7 +31,7 @@
   const rectLong = $derived(settings.rect.long);
   const rectShort = $derived(settings.rect.short);
 
-  // Report properties --------------------------------------------------------
+  // Properties -----------------------------------------------------------
 
   const windowWidth = $derived(layout.windowWidth);
   const graphic = $derived(layout.graphic);

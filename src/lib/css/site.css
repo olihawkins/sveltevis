@@ -74,6 +74,10 @@ p code {
   background-color: var(--code-background-color);
 }
 
+ul {
+  line-height: 1.5;
+}
+
 a {
   color: var(--text-color);
 }

@@ -9,5 +9,6 @@
   <h2>Concepts</h2>
   <ul>
     <li><a href="/layout">Layout</a></li>
+    <li><a href="/axes">Axes</a></li>
   </ul>
 </div>
