@@ -7,24 +7,109 @@
   import { scaleLinear } from "d3-scale";
   import { getLayout } from "../context.svelte.js";
   import { getSettings } from "../settings.js";
+    import { tick } from "svelte";
   
+  // Functions ----------------------------------------------------------------
+
+  function getLineY(linePosition, linePositionMiddle, plotHeight) {
+    
+    let lineY;
+    
+    switch (linePosition) {
+      case "top":
+        lineY = 0;
+        break;
+      case "middle":
+        lineY = plotHeight * (1 - linePositionMiddle);
+        break;
+      case "bottom":
+        lineY = plotHeight;
+        break;
+      default:
+        lineY = plotHeight;
+    }
+   
+    return lineY;
+  }
+
+  function getTickY(tickPosition, tickHeight) {
+    
+    let tickY;
+
+    switch (tickPosition) {
+      case "top":
+        tickY = -1 * tickHeight;
+        break;
+      case "middle":
+        tickY = -1 * tickHeight / 2;
+        break;
+      case "bottom":
+        tickY = 0;
+        break;
+      default:
+        tickY = 0;
+    }
+
+   return tickY;
+  }
+
+  function getTickLabelY(tickLabelPosition, tickHeight, tickLabelOffset) {
+    
+    let tickLabelY;
+
+    switch (tickLabelPosition) {
+      case "top":
+        tickLabelY = -1 * (tickHeight + tickLabelOffset);
+        break;
+      case "bottom":
+        tickLabelY = tickHeight + tickLabelOffset;
+        break;
+      default:
+        tickLabelY = tickHeight + tickLabelOffset;
+    }
+
+   return tickLabelY;
+  }
+
+  function getTickLabelBaseline(tickLabelPosition) {
+    
+    let tickLabelBaseline;
+
+    switch (tickLabelPosition) {
+      case "top":
+        tickLabelBaseline = "auto";
+        break;
+      case "bottom":
+        tickLabelBaseline = "hanging";
+        break;
+      default:
+        tickLabelBaseline = "hanging";
+    }
+
+   return tickLabelBaseline;
+  }
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    axisDomain: [0, 10],
-    lineDomain: [0, 10],
+    domain: [-10, 10],
+    linePosition: "bottom",
+    linePositionMiddle: 0.5,
+    lineDomain: [-10, 10],
     lineHeight: 1,
     ticks: [
+      {value: -10, label: "-10"},
+      {value: -5, label: "-5"},
       {value: 0, label: "0"},
-      {value: 2, label: "2"},
-      {value: 4, label: "4"},
-      {value: 6, label: "6"},
-      {value: 8, label: "8"},
+      {value: 5, label: "5"},
       {value: 10, label: "10"},
     ],
+    tickPosition: "bottom",
     tickWidth: 1,
     tickHeight: 6,
+    tickLabelPosition: "bottom",
     tickLabelOffset: 8,
+    gridlineWidth: 0.5,
     gridlines: true
   };
 
@@ -46,10 +131,27 @@
   const graphic = $derived(layout.graphic);
   const plot = $derived(layout.plot);
   const margin = $derived(graphic.margin);
-
+  
   const scale = $derived(scaleLinear(
-    settings.axisDomain, 
+    settings.domain, 
     [margin.left, margin.left + plot.width]));
+  
+  const lineY = $derived(getLineY(
+    settings.linePosition, 
+    settings.linePositionMiddle,
+    plot.height));
+  
+  const tickY = $derived(getTickY( 
+    settings.tickPosition,
+    settings.tickHeight));
+
+  const tickLabelY = $derived(getTickLabelY( 
+    settings.tickLabelPosition,
+    settings.tickHeight,
+    settings.tickLabelOffset));
+
+  const tickLabelBaseline = $derived(getTickLabelBaseline( 
+    settings.tickLabelPosition));
 
 </script>
 
@@ -62,9 +164,9 @@
     {#if settings.gridlines === true}
       <rect
         class="sveltevis-axis-x-gridline"
-        x={scale(tick.value) - (settings.tickWidth / 2)}
+        x={scale(tick.value) - (settings.gridlineWidth / 2)}
         y={margin.top}
-        width={settings.tickWidth}
+        width={settings.gridlineWidth}
         height={plot.height} />
     {/if}
 
@@ -72,7 +174,7 @@
     <rect
       class="sveltevis-axis-x-tick"
       x={scale(tick.value) - (settings.tickWidth / 2)}
-      y={margin.top + plot.height}
+      y={margin.top + lineY + tickY}
       width={settings.tickWidth}
       height={settings.tickHeight} />
 
@@ -80,9 +182,9 @@
     <text
       class="sveltevis-axis-x-ticklabel"
       x={scale(tick.value) - (settings.tickWidth / 2)}
-      y={margin.top + plot.height + settings.tickHeight + settings.tickLabelOffset}
+      y={margin.top + lineY + tickLabelY}
       text-anchor="middle"
-      dominant-baseline="hanging">
+      dominant-baseline={tickLabelBaseline}>
         {tick.label}
     </text>
 
@@ -92,7 +194,7 @@
   <rect
     class="sveltevis-axis-x-line"
     x={scale(settings.lineDomain[0])}
-    y={(margin.top + plot.height) - (settings.lineHeight / 2)}
+    y={(margin.top + lineY) - (settings.lineHeight / 2)}
     width={scale(settings.lineDomain[1]) - scale(settings.lineDomain[0])}
     height={settings.lineHeight} />
 
