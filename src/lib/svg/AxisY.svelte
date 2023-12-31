@@ -13,7 +13,7 @@
   const defaults = {
     axisDomain: [0, 10],
     lineDomain: [0, 10],
-    lineHeight: 1,
+    lineWidth: 1,
     ticks: [
       {value: 0, label: "0"},
       {value: 2, label: "2"},
@@ -22,14 +22,14 @@
       {value: 8, label: "8"},
       {value: 10, label: "10"},
     ],
-    tickWidth: 1,
-    tickHeight: 8,
+    tickWidth: 8,
+    tickHeight: 1,
     tickLabelOffset: 8
   };
 
   // Props --------------------------------------------------------------------
 
-  let { key = "axisX" } = $props();
+  let { key = "axisY" } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -48,7 +48,7 @@
 
   const scale = $derived(scaleLinear(
     settings.axisDomain, 
-    [margin.left, margin.left + plot.width]));
+    [margin.top + plot.height, margin.top]));
 
 </script>
 
@@ -56,42 +56,42 @@
   
   <!--Axis line-->
   <rect
-    class="sveltevis-axis-x-line"
-    x={scale(settings.lineDomain[0])}
-    y={(margin.top + plot.height) - (settings.lineHeight / 2)}
-    width={scale(settings.lineDomain[1]) - scale(settings.lineDomain[0])}
-    height={settings.lineHeight} />
+    class="sveltevis-axis-y-line"
+    x={margin.left - (settings.lineWidth / 2)}
+    y={scale(settings.lineDomain[1])}
+    width={settings.lineWidth}
+    height={scale(settings.lineDomain[0]) - scale(settings.lineDomain[1])} />
 
   <!--Axis ticks-->
   {#each settings.ticks as tick (tick.label)}
   <rect
-    class="sveltevis-axis-x-tick"
-    x={scale(tick.value) - (settings.tickWidth / 2)}
-    y={margin.top + plot.height}
+    class="sveltevis-axis-y-tick"
+    x={margin.left - settings.tickWidth}
+    y={scale(tick.value) - (settings.tickHeight / 2)}
     width={settings.tickWidth}
     height={settings.tickHeight} />
   <text
-    class="sveltevis-axis-x-ticklabel"
-    x={scale(tick.value) - (settings.tickWidth / 2)}
-    y={margin.top + plot.height + settings.tickHeight + settings.tickLabelOffset}
-    text-anchor="middle"
-    dominant-baseline="hanging">
+    class="sveltevis-axis-y-ticklabel"
+    x={margin.left - (settings.tickWidth + settings.lineWidth + settings.tickLabelOffset)}
+    y={scale(tick.value) - (settings.tickHeight / 2)}
+    text-anchor="end"
+    dominant-baseline="middle">
       {tick.label}
   </text>  
   {/each}
-
+  
 </g>
 
 <style>
-  .sveltevis-axis-x-line {
+  .sveltevis-axis-y-line {
     fill: var(--sveltevis-color);
   }
 
-  .sveltevis-axis-x-tick {
+  .sveltevis-axis-y-tick {
     fill: var(--sveltevis-color);
   }  
 
-  .sveltevis-axis-x-ticklabel {
+  .sveltevis-axis-y-ticklabel {
     fill: var(--sveltevis-color);
     font-size: var(--sveltevis-font-size);
   }

@@ -17,12 +17,12 @@
 <div class="sveltevis-site-footer-nav">
   {#if hasPrevious}
     <div class="sveltevis-site-footer-nav-previous">
-      <a href={links.previous.href}>&#8678; {links.previous.label}</a>
+      <a href={links.previous.href}>&#8592; {links.previous.label}</a>
     </div>
   {/if}
   {#if hasNext}
     <div class="sveltevis-site-footer-nav-next">
-      <a href={links.next.href}>{links.next.label} &#8680;</a>
+      <a href={links.next.href}>{links.next.label} &#8594;</a>
     </div>
   {/if}
 </div>
