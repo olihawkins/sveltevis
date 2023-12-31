@@ -22,7 +22,7 @@
       {value: 8, label: "8"},
       {value: 10, label: "10"},
     ],
-    tickWidth: 8,
+    tickWidth: 6,
     tickHeight: 1,
     tickLabelOffset: 8,
     gridlines: true

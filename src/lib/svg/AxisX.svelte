@@ -23,7 +23,7 @@
       {value: 10, label: "10"},
     ],
     tickWidth: 1,
-    tickHeight: 8,
+    tickHeight: 6,
     tickLabelOffset: 8,
     gridlines: true
   };
