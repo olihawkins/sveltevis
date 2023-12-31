@@ -4,7 +4,7 @@
   
   // Imports ------------------------------------------------------------------
 
-  import { scaleLinear} from "d3-scale";
+  import { scaleLinear } from "d3-scale";
   import { getLayout } from "../context.svelte.js";
   import { getSettings } from "../settings.js";
   
@@ -24,7 +24,8 @@
     ],
     tickWidth: 1,
     tickHeight: 8,
-    tickLabelOffset: 8
+    tickLabelOffset: 8,
+    gridlines: true
   };
 
   // Props --------------------------------------------------------------------
@@ -53,7 +54,40 @@
 </script>
 
 <g class="sveltevis-axis-x">
-  
+
+  <!--Axis ticks-->
+  {#each settings.ticks as tick (tick.label)}
+
+    <!--Axis gridlines-->
+    {#if settings.gridlines === true}
+      <rect
+        class="sveltevis-axis-x-gridline"
+        x={scale(tick.value) - (settings.tickWidth / 2)}
+        y={margin.top}
+        width={settings.tickWidth}
+        height={plot.height} />
+    {/if}
+
+    <!--Axis ticks-->
+    <rect
+      class="sveltevis-axis-x-tick"
+      x={scale(tick.value) - (settings.tickWidth / 2)}
+      y={margin.top + plot.height}
+      width={settings.tickWidth}
+      height={settings.tickHeight} />
+
+    <!--Axis tick labels-->
+    <text
+      class="sveltevis-axis-x-ticklabel"
+      x={scale(tick.value) - (settings.tickWidth / 2)}
+      y={margin.top + plot.height + settings.tickHeight + settings.tickLabelOffset}
+      text-anchor="middle"
+      dominant-baseline="hanging">
+        {tick.label}
+    </text>
+
+  {/each}
+
   <!--Axis line-->
   <rect
     class="sveltevis-axis-x-line"
@@ -62,37 +96,25 @@
     width={scale(settings.lineDomain[1]) - scale(settings.lineDomain[0])}
     height={settings.lineHeight} />
 
-  <!--Axis ticks-->
-  {#each settings.ticks as tick (tick.label)}
-  <rect
-    class="sveltevis-axis-x-tick"
-    x={scale(tick.value) - (settings.tickWidth / 2)}
-    y={margin.top + plot.height}
-    width={settings.tickWidth}
-    height={settings.tickHeight} />
-  <text
-    class="sveltevis-axis-x-ticklabel"
-    x={scale(tick.value) - (settings.tickWidth / 2)}
-    y={margin.top + plot.height + settings.tickHeight + settings.tickLabelOffset}
-    text-anchor="middle"
-    dominant-baseline="hanging">
-      {tick.label}
-  </text>  
-  {/each}
-
 </g>
 
 <style>
-  .sveltevis-axis-x-line {
+
+.sveltevis-axis-x-gridline {
     fill: var(--sveltevis-color);
+    fill-opacity: 0.5;
   }
 
   .sveltevis-axis-x-tick {
     fill: var(--sveltevis-color);
-  }  
+  }
 
   .sveltevis-axis-x-ticklabel {
     fill: var(--sveltevis-color);
     font-size: var(--sveltevis-font-size);
   }
+
+  .sveltevis-axis-x-line {
+    fill: var(--sveltevis-color);
+  }  
 </style>
