@@ -7,7 +7,6 @@
   import { scaleLinear } from "d3-scale";
   import { getLayout } from "../context.svelte.js";
   import { getSettings } from "../settings.js";
-    import { tick } from "svelte";
   
   // Functions ----------------------------------------------------------------
 
