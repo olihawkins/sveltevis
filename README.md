@@ -31,7 +31,7 @@ If you want to try the existing components, the easiest way right now is to down
 
 1. Clone the project repository from <a href="https://github.com/olihawkins/sveltevis">GitHub</a>
 
-2. Run `npm install` to install the dependencies
+2. Run `npm install --force` to install the dependencies (the `force` argument is needed because the project uses Svelte 5, which is in beta)
 
 3. Run `npm run dev` to start the demo application on localhost:5173 
 
