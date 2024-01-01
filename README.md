@@ -18,12 +18,12 @@ The first objective is to develop the smallest set of fully-functional component
 - Graphic
 - Svg
 - Plot
+- AxisX
+- AxisY
 
 ### Components to be completed
 
-- AxisContinuousX
-- AxisContinuousY
-- GeomPoint
+- PointGeometry
 
 ## Trying the components
 
@@ -35,7 +35,7 @@ If you want to try the existing components, the easiest way right now is to down
 
 3. Run `npm run dev` to start the demo application on localhost:5173 
 
-It is also possible to install the package into a Vite Svelte template, but this requires modifying the template to run Svelte 5.
+It is also possible to install the package from NPM into a Vite Svelte template, but this requires modifying the template to run Svelte 5.
 
 1. Create a Svelte project with Vite using `npm create vite@latest my-svelte-project -- --template svelte`
 
