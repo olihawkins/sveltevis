@@ -91,11 +91,14 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
+    scale: scaleLinear,
     domain: [-10, 10],
+    showLine: true,
     linePosition: "left",
     linePositionMiddle: 0.5,
     lineDomain: [-10, 10],
     lineWidth: 1,
+    showTicks: true,
     ticks: [
       {value: -10, label: "-10"},
       {value: -5, label: "-5"},
@@ -106,10 +109,11 @@
     tickPosition: "left",
     tickWidth: 6,
     tickHeight: 1,
+    showTickLabels: true,
     tickLabelPosition: "left",
     tickLabelOffset: 8,
-    gridlineHeight: 0.5,
-    gridlines: true
+    showGridlines: true,
+    gridlineHeight: 0.5
   };
 
   // Props --------------------------------------------------------------------
@@ -131,7 +135,7 @@
   const plot = $derived(layout.plot);
   const margin = $derived(graphic.margin);
 
-  const scale = $derived(scaleLinear(
+  const scale = $derived(settings.scale(
     settings.domain, 
     [margin.top + plot.height, margin.top]));
 
@@ -157,10 +161,10 @@
 <g class="sveltevis-axis-x">
 
   <!--Axis ticks-->
-  {#each settings.ticks as tick (tick.label)}
+  {#each settings.ticks as tick, i (i)}
 
     <!--Axis gridlines-->
-    {#if settings.gridlines === true}
+    {#if settings.showGridlines === true}
       <rect
         class="sveltevis-axis-y-gridline"
         x={margin.left}
@@ -170,32 +174,38 @@
     {/if}
 
     <!--Axis ticks-->
-    <rect
-      class="sveltevis-axis-y-tick"
-      x={margin.left + lineX + tickX}
-      y={scale(tick.value) - (settings.tickHeight / 2)}
-      width={settings.tickWidth}
-      height={settings.tickHeight} />
+    {#if settings.showTicks === true}
+      <rect
+        class="sveltevis-axis-y-tick"
+        x={margin.left + lineX + tickX}
+        y={scale(tick.value) - (settings.tickHeight / 2)}
+        width={settings.tickWidth}
+        height={settings.tickHeight} />
+    {/if}
 
     <!--Axis ticklabels-->
-    <text
-      class="sveltevis-axis-y-ticklabel"
-      x={margin.left + lineX + tickLabelX}
-      y={scale(tick.value) - (settings.tickHeight / 2)}
-      text-anchor={tickLabelAnchor}
-      dominant-baseline="middle">
-        {tick.label}
-    </text>
+    {#if settings.showTickLabels === true}
+      <text
+        class="sveltevis-axis-y-ticklabel"
+        x={margin.left + lineX + tickLabelX}
+        y={scale(tick.value) - (settings.tickHeight / 2)}
+        text-anchor={tickLabelAnchor}
+        dominant-baseline="middle">
+          {tick.label}
+      </text>
+    {/if}
 
   {/each}
   
   <!--Axis line-->
-  <rect
-    class="sveltevis-axis-y-line"
-    x={(margin.left + lineX) - (settings.lineWidth / 2)}
-    y={scale(settings.lineDomain[1])}
-    width={settings.lineWidth}
-    height={scale(settings.lineDomain[0]) - scale(settings.lineDomain[1])} />
+  {#if settings.showLine === true}
+    <rect
+      class="sveltevis-axis-y-line"
+      x={(margin.left + lineX) - (settings.lineWidth / 2)}
+      y={scale(settings.lineDomain[1])}
+      width={settings.lineWidth}
+      height={scale(settings.lineDomain[0]) - scale(settings.lineDomain[1])} />
+  {/if}
 
 </g>
 
