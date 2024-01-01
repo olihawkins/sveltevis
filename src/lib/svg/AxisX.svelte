@@ -211,8 +211,7 @@
 </g>
 
 <style>
-
-.sveltevis-axis-x-gridline {
+  .sveltevis-axis-x-gridline {
     fill: var(--sveltevis-color);
     fill-opacity: 0.5;
   }
