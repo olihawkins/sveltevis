@@ -8,10 +8,10 @@ const config = {
       graphic: {
         height: 450,
         margin: {
-          top: 50, 
-          right: 50, 
-          bottom: 50, 
-          left: 70
+          top: 20, 
+          right: 20, 
+          bottom: 60, 
+          left: 100
         }
       }
     },
@@ -43,10 +43,12 @@ const config = {
         {value: new Date("2023-12-01"), label: "Dec"},
         {value: new Date("2024-01-01"), label: "Jan"}
       ],
+      showLabel: true
     },
     axisY: {
       scale: scaleLog,
       domain: [1, 100000],
+      linePositionMiddle: 0.4958904,
       lineDomain: [1, 100000],
       lineWidth: 1,
       ticks: [
@@ -56,7 +58,9 @@ const config = {
         {value: 1000, label: "1,000"},
         {value: 10000, label: "10,000"},
         {value: 100000, label: "100,000"}
-      ]
+      ],
+      showLabel: true,
+      labelOffset: 85
     }
 
   },
@@ -68,12 +72,12 @@ const config = {
         graphic: {
           height: 300,
           margin: {
-            top: 40, 
-            right: 40, 
-            bottom: 40, 
-            left: 65
+            top: 15, 
+            right: 15, 
+            bottom: 60, 
+            left: 90
           }
-        }
+        },
       },
       axisX: {
         ticks: [
@@ -85,6 +89,9 @@ const config = {
           {value: new Date("2023-11-01"), label: "Nov"},
           {value: new Date("2024-01-01"), label: "Jan"}
         ],
+      },
+      axisY: {
+        labelOffset: 75
       }
     }
   ]

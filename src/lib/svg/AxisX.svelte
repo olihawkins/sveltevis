@@ -88,6 +88,42 @@
    return tickLabelBaseline;
   }
 
+  function getLabelY(labelPosition, labelOffset, marginTop, plotHeight) {
+    
+    let labelY;
+
+    switch (labelPosition) {
+      case "top":
+        labelY = marginTop + (-1 * labelOffset);
+        break;
+      case "bottom":
+        labelY = marginTop + plotHeight + labelOffset;
+        break;
+      default:
+        labelY = marginTop + plotHeight + labelOffset;
+    }
+
+   return labelY;
+  }
+
+  function getLabelBaseline(labelPosition) {
+    
+    let labelBaseline;
+
+    switch (labelPosition) {
+      case "top":
+        labelBaseline = "auto";
+        break;
+      case "bottom":
+        labelBaseline = "hanging";
+        break;
+      default:
+        labelBaseline = "hanging";
+    }
+
+   return labelBaseline;
+  }
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
@@ -113,7 +149,11 @@
     tickLabelPosition: "bottom",
     tickLabelOffset: 8,
     showGridlines: true,
-    gridlineWidth: 0.5
+    gridlineWidth: 0.5,
+    showLabel: false,
+    label: "Axis X",
+    labelPosition: "bottom",
+    labelOffset: 50
   };
 
   // Props --------------------------------------------------------------------
@@ -155,6 +195,15 @@
 
   const tickLabelBaseline = $derived(getTickLabelBaseline( 
     settings.tickLabelPosition));
+
+  const labelY = $derived(getLabelY( 
+    settings.labelPosition,
+    settings.labelOffset,
+    margin.top,
+    plot.height));
+
+  const labelBaseline = $derived(getLabelBaseline( 
+    settings.labelPosition));
 
 </script>
 
@@ -207,6 +256,18 @@
       height={settings.lineHeight} />
   {/if}
 
+  <!--Axis label-->
+  {#if settings.showLabel === true}
+    <text
+      class="sveltevis-axis-x-label"
+      x={margin.left + (plot.width / 2)}
+      y={labelY}
+      text-anchor="middle"
+      dominant-baseline={labelBaseline}>
+      {settings.label}
+    </text>
+  {/if}
+
 </g>
 
 <style>
@@ -226,5 +287,10 @@
 
   .sveltevis-axis-x-line {
     fill: var(--sveltevis-color);
-  }  
+  }
+  
+  .sveltevis-axis-x-label {
+    fill: var(--sveltevis-color);
+    font-size: var(--sveltevis-font-size);
+  }
 </style>

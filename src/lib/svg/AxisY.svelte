@@ -88,6 +88,24 @@
    return tickLabelAnchor;
   }
 
+  function getLabelX(labelPosition, labelOffset, marginLeft, plotWidth) {
+    
+    let labelX;
+
+    switch (labelPosition) {
+      case "left":
+        labelX = marginLeft + (-1 * labelOffset);
+        break;
+      case "right":
+        labelX = marginLeft + plotWidth + labelOffset;
+        break;
+      default:
+        labelX = marginLeft + (-1 * labelOffset);
+    }
+
+   return labelX;
+  }
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
@@ -113,7 +131,12 @@
     tickLabelPosition: "left",
     tickLabelOffset: 8,
     showGridlines: true,
-    gridlineHeight: 0.5
+    gridlineHeight: 0.5,
+    showLabel: false,
+    label: "Axis Y",
+    labelPosition: "left",
+    labelOffset: 50,
+    labelRotation: 270
   };
 
   // Props --------------------------------------------------------------------
@@ -155,6 +178,12 @@
 
   const tickLabelAnchor = $derived(getTickLabelAnchor( 
     settings.tickLabelPosition));
+
+  const labelX = $derived(getLabelX( 
+    settings.labelPosition,
+    settings.labelOffset,
+    margin.left,
+    plot.width));
 
 </script>
 
@@ -207,6 +236,19 @@
       height={scale(settings.lineDomain[0]) - scale(settings.lineDomain[1])} />
   {/if}
 
+  <!--Axis label-->
+  {#if settings.showLabel === true}
+    <text
+      class="sveltevis-axis-y-label"
+      x={labelX}
+      y={margin.top + (plot.height / 2)}
+      text-anchor="middle"
+      dominant-baseline="middle"
+      transform={`rotate(${settings.labelRotation}, ${labelX}, ${margin.top + (plot.height / 2)})`}>
+        {settings.label}
+    </text>
+  {/if}
+
 </g>
 
 <style>
@@ -226,5 +268,10 @@
 
   .sveltevis-axis-y-line {
     fill: var(--sveltevis-color);
+  }
+
+  .sveltevis-axis-y-label {
+    fill: var(--sveltevis-color);
+    font-size: var(--sveltevis-font-size);
   }
 </style>
