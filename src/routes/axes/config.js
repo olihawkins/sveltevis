@@ -6,7 +6,7 @@ const config = {
     visualisation: {
       minwidth: 700,
       graphic: {
-        height: 450,
+        height: 400,
         margin: {
           top: 20, 
           right: 20, 

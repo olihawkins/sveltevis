@@ -106,6 +106,10 @@
    return labelX;
   }
 
+  function getLabelRotation(rotation, labelX, marginTop, plotHeight) {
+    return `rotate(${rotation}, ${labelX}, ${marginTop + (plotHeight / 2)})`;
+  }
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
@@ -185,6 +189,12 @@
     margin.left,
     plot.width));
 
+  const labelRotation = $derived(getLabelRotation(
+    settings.labelRotation,
+    labelX,
+    margin.top,
+    plot.height));
+
 </script>
 
 <g class="sveltevis-axis-x">
@@ -244,7 +254,7 @@
       y={margin.top + (plot.height / 2)}
       text-anchor="middle"
       dominant-baseline="middle"
-      transform={`rotate(${settings.labelRotation}, ${labelX}, ${margin.top + (plot.height / 2)})`}>
+      transform={labelRotation}>
         {settings.label}
     </text>
   {/if}

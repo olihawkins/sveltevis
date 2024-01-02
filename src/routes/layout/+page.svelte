@@ -51,7 +51,7 @@
 
   <h3>1.2. Components</h3>
 
-  <p>The Svelte components used to construct the example are shown below. The <code>Visualisation</code> component takes a single called <code>config</code>. This is a json object that contains the settings for <strong><i>all</i></strong> of the components.</p>
+  <p>The Svelte components used to construct the example are shown below. The <code>Visualisation</code> component takes a single prop called <code>config</code>. This is a json object that contains the settings for <strong><i>all</i></strong> of the visualisation's components.</p>
 
   <div class="codeblock">
   <pre>
@@ -81,7 +81,7 @@
 
   <h3>1.3. Configuration</h3>
 
-  <p>The <code>config</code> used in the visualisation is shown below. A <code>config</code> contains objects specifying the settings for each SvelteVis component used in the visualisation. Components are identified with names in <code>camelCase</code> rather than <code>PascalCase</code>. So in the example below, the <code>visualisation</code>, <code>header</code> and <code>footer</code> objects contain the user-specified settings for those components.</p>
+  <p>The <code>config</code> used in the visualisation is shown below. A <code>config</code> contains objects specifying the settings for each SvelteVis component used in the visualisation. By default, components are identified with names in <code>camelCase</code> rather than <code>PascalCase</code>. So in the example below, the <code>visualisation</code>, <code>header</code> and <code>footer</code> objects contain the user-specified settings for those components.</p>
   
   <div class="codeblock">
   <pre>
@@ -139,7 +139,7 @@
 
 <p>Each <code>visualisation</code> object contains a value called <code>minwidth</code>. This specifies the minimum width of the browser window, above which the given settings will take effect. Ideally, the <code>main</code> configuration object should contain the largest <code>minwidth</code>, while <code>alts</code> should specify smaller values, with at least one alternative configuration specifying a <code>minwidth</code> of zero. SvelteVis will do its best to interpret your config sensibly if this is not the case.</p>
 
-<p>The visualisation will automatically select the right settings to use, given the width of the browser window, and share these values with its child componenets. This selection is based on the <code>innerWidth</code> of the browser, as this is the value that is used for CSS media queries that target the width of the browser. This makes it easy to align your config with a responsive stylesheet, so that component styles and behaviour change at the same thresholds.</p>
+<p>The visualisation will automatically select the right settings to use, given the width of the browser window, and share these values with its child componenets. This selection is based on the <code>innerWidth</code> of the browser, as this is the value that is used for CSS media queries that target the available screen space. This makes it easy to align your config with a responsive stylesheet, so that component styles and behaviour change at the same thresholds.</p>
 
 <p>If you want to implement your own SvelteVis componenents, you can subscribe to the parent <code>Visualisation's</code> layout context to receive updates to the <code>settings</code> when the width of the browser window changes. This means every component can be designed responsively by opting into an integrated system that is consistent within each visualisation.</p>
 
