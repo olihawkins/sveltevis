@@ -62,7 +62,6 @@ const config = {
       showLabel: true,
       labelOffset: 85
     }
-
   },
   alts: [
     {
