@@ -9,19 +9,11 @@ const config = {
         height: 400,
         margin: {
           top: 20, 
-          right: 20, 
+          right: 90, 
           bottom: 60, 
           left: 100
         }
       }
-    },
-    header: {
-      title: "<b>Title</b>",
-      subtitle: "Subtitle"
-    },
-    footer: {
-      footnote: "Footnote",
-      source: "Source"
     },
     axisX: {
       scale: scaleTime,
@@ -43,12 +35,13 @@ const config = {
         {value: new Date("2023-12-01"), label: "Dec"},
         {value: new Date("2024-01-01"), label: "Jan"}
       ],
-      showLabel: true
+      showLabel: true,
     },
     axisY: {
       scale: scaleLog,
       domain: [1, 100000],
       linePositionMiddle: 0.4958904,
+      linePosition: "left",
       lineDomain: [1, 100000],
       lineWidth: 1,
       ticks: [
@@ -59,6 +52,8 @@ const config = {
         {value: 10000, label: "10,000"},
         {value: 100000, label: "100,000"}
       ],
+      tickPosition: "left",
+      tickLabelPosition: "left",
       showLabel: true,
       labelOffset: 85
     }
@@ -72,9 +67,9 @@ const config = {
           height: 300,
           margin: {
             top: 15, 
-            right: 15, 
+            right: 85, 
             bottom: 60, 
-            left: 90
+            left: 85
           }
         },
       },

@@ -11,6 +11,7 @@
   <ol>
     <li><a href="/layout">Layout</a></li>
     <li><a href="/axes">Axes</a></li>
+    <li><a href="/geometries">Geometries</a></li>
   </ol>
   
 </div>

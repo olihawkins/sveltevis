@@ -24,9 +24,9 @@
 <div id="column">
   
   <SiteHeader />
-  <h2>2. Axes</h2>
+  <h2>3. Geometries</h2>
 
-  <p>You can add axes to a visualisation with the <code>AxisX</code> and <code>AxisY</code> components. These are SVG components that are located in the margins of the <code>Graphic</code>, so they are placed within the <code>Svg</code> but outside the <code>Plot</code>.</p>
+  <p>Use geometries to plot data.</p>
   
   <div style="min-width: 300px">
     <Visualisation config={config}>

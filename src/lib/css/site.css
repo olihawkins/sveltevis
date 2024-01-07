@@ -92,6 +92,10 @@ ol {
   line-height: 1.5;
 }
 
+ol li {
+  padding-bottom: 0.4rem;
+}
+
 a {
   color: var(--text-color);
 }
