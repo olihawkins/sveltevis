@@ -16,6 +16,10 @@
     previous: {
       label: "Layout",
       href: "/layout"
+    },
+    next: {
+      label: "Geometries",
+      href: "/geometries"
     }
   };
   

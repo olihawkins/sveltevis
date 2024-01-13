@@ -14,8 +14,8 @@
 
   const links = {
     previous: {
-      label: "Layout",
-      href: "/layout"
+      label: "Axes",
+      href: "/axes"
     }
   };
   
