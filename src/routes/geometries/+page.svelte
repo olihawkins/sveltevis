@@ -9,8 +9,12 @@
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
   import AxisX from "$lib/svg/AxisX.svelte";
+  import Gridlines from "$lib/svg/Gridlines.svelte";
   import AxisY from "$lib/svg/AxisY.svelte";
+  import Plot from "$lib/svg/Plot.svelte";
+  import PointGeometry from "$lib/svg/geometries/PointGeometry.svelte";
   import { config } from "./config.js";
+  import data from "./uk-election-2019-yh.json";
 
   const links = {
     previous: {
@@ -18,7 +22,7 @@
       href: "/axes"
     }
   };
-  
+
 </script>
 
 <div id="column">
@@ -32,6 +36,10 @@
     <Visualisation config={config}>
       <Graphic>
         <Svg>
+          <Gridlines />
+          <Plot>
+            <PointGeometry data={data}></PointGeometry>
+          </Plot>
           <AxisX />
           <AxisY />
         </Svg>

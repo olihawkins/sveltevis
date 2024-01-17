@@ -23,8 +23,16 @@ const config = {
       footnote: "Footnote",
       source: "Source"
     },
-    axisX: {},
-    axisY: {}
+    axisX: {
+      showTicks: true,
+      tickWidth: 1,
+      lineHeight: 2,
+    },
+    axisY: {
+      showTicks: true,
+      tickHeight: 1,
+      lineWidth: 2
+    }
   },
   alts: [
     {

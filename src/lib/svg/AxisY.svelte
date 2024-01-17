@@ -120,6 +120,10 @@
     linePositionMiddle: 0.5,
     lineDomain: [-4, 4],
     lineWidth: 1,
+    linePadding: {
+      top: 0,
+      bottom: 0
+    },
     showTicks: true,
     ticks: [
       {value: -4, label: "-4"},
@@ -134,7 +138,7 @@
     showTickLabels: true,
     tickLabelPosition: "left",
     tickLabelOffset: 8,
-    showGridlines: true,
+    showGridlines: false,
     gridlineHeight: 0.5,
     showLabel: false,
     label: "Axis Y",
@@ -241,9 +245,9 @@
     <rect
       class="sveltevis-axis-y-line"
       x={(margin.left + lineX) - (settings.lineWidth / 2)}
-      y={scale(settings.lineDomain[1])}
+      y={scale(settings.lineDomain[1]) - (settings.tickHeight / 2)}
       width={settings.lineWidth}
-      height={scale(settings.lineDomain[0]) - scale(settings.lineDomain[1])} />
+      height={scale(settings.lineDomain[0]) - scale(settings.lineDomain[1]) + settings.tickHeight} />
   {/if}
 
   <!--Axis label-->
@@ -265,11 +269,11 @@
   .sveltevis-axis-y-gridline {
     fill: var(--sveltevis-color);
     fill-opacity: 0.5;
-  }   
+  }
 
   .sveltevis-axis-y-tick {
     fill: var(--sveltevis-color);
-  }  
+  }
 
   .sveltevis-axis-y-ticklabel {
     fill: var(--sveltevis-color);

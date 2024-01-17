@@ -148,7 +148,7 @@
     showTickLabels: true,
     tickLabelPosition: "bottom",
     tickLabelOffset: 8,
-    showGridlines: true,
+    showGridlines: false,
     gridlineWidth: 0.5,
     showLabel: false,
     label: "Axis X",
@@ -250,9 +250,9 @@
   {#if settings.showLine === true}
     <rect
       class="sveltevis-axis-x-line"
-      x={scale(settings.lineDomain[0])}
+      x={scale(settings.lineDomain[0]) - (settings.tickWidth / 2)}
       y={(margin.top + lineY) - (settings.lineHeight / 2)}
-      width={scale(settings.lineDomain[1]) - scale(settings.lineDomain[0])}
+      width={scale(settings.lineDomain[1]) - scale(settings.lineDomain[0]) + settings.tickWidth}
       height={settings.lineHeight} />
   {/if}
 
