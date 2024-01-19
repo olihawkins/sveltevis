@@ -120,8 +120,8 @@
     linePositionMiddle: 0.5,
     lineDomain: [-4, 4],
     lineWidth: 1,
-    linePadding: {
-      top: 0,
+    lineExtend: {
+      top: 0.5,
       bottom: 0
     },
     showTicks: true,
@@ -138,8 +138,6 @@
     showTickLabels: true,
     tickLabelPosition: "left",
     tickLabelOffset: 8,
-    showGridlines: false,
-    gridlineHeight: 0.5,
     showLabel: false,
     label: "Axis Y",
     labelPosition: "left",
@@ -206,16 +204,6 @@
   <!--Axis ticks-->
   {#each settings.ticks as tick, i (i)}
 
-    <!--Axis gridlines-->
-    {#if settings.showGridlines === true}
-      <rect
-        class="sveltevis-axis-y-gridline"
-        x={margin.left}
-        y={scale(tick.value) - (settings.gridlineHeight / 2)}
-        width={plot.width}
-        height={settings.gridlineHeight} />
-    {/if}
-
     <!--Axis ticks-->
     {#if settings.showTicks === true}
       <rect
@@ -244,10 +232,14 @@
   {#if settings.showLine === true}
     <rect
       class="sveltevis-axis-y-line"
-      x={(margin.left + lineX) - (settings.lineWidth / 2)}
-      y={scale(settings.lineDomain[1]) - (settings.tickHeight / 2)}
+      x={margin.left + lineX - (settings.lineWidth / 2)}
+      y={scale(settings.lineDomain[1]) - settings.lineExtend.top}
       width={settings.lineWidth}
-      height={scale(settings.lineDomain[0]) - scale(settings.lineDomain[1]) + settings.tickHeight} />
+      height={
+        scale(settings.lineDomain[0]) - 
+        scale(settings.lineDomain[1]) + 
+        settings.lineExtend.top + 
+        settings.lineExtend.bottom} />
   {/if}
 
   <!--Axis label-->
@@ -266,11 +258,6 @@
 </g>
 
 <style>
-  .sveltevis-axis-y-gridline {
-    fill: var(--sveltevis-color);
-    fill-opacity: 0.5;
-  }
-
   .sveltevis-axis-y-tick {
     fill: var(--sveltevis-color);
   }

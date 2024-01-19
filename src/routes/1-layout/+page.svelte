@@ -18,8 +18,8 @@
       href: "/"
     },
     next: {
-      label: "Axes",
-      href: "/axes"
+      label: "Gridlines and Axes",
+      href: "/2-gridlines-and-axes"
     }
   };
 

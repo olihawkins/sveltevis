@@ -11,28 +11,32 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    scaleX: scaleLinear,
-    domainX: [-4, 4],
-    showX: true,
-    sizeX: 0.5,
-    x: [
-      {value: -4, label: "-4"},
-      {value: -2, label: "-2"},
-      {value: 0, label: "0"},
-      {value: 2, label: "2"},
-      {value: 4, label: "-4"},
-    ],
-    scaleY: scaleLinear,
-    domainY: [-4, 4],
-    showY: true,
-    sizeY: 0.5,
-    y: [
-      {value: -4, label: "-4"},
-      {value: -2, label: "-2"},
-      {value: 0, label: "0"},
-      {value: 2, label: "2"},
-      {value: 4, label: "4"},
-    ],
+    x: {
+      show: true,
+      scale: scaleLinear,
+      domain: [-4, 4],
+      width: 0.5,
+      lines: [
+        {value: -4, label: "-4"},
+        {value: -2, label: "-2"},
+        {value: 0, label: "0"},
+        {value: 2, label: "2"},
+        {value: 4, label: "-4"},
+      ]
+    },
+    y: {
+      show: true,
+      scale: scaleLinear,
+      domain: [-4, 4],
+      height: 0.5,
+      lines: [
+        {value: -4, label: "-4"},
+        {value: -2, label: "-2"},
+        {value: 0, label: "0"},
+        {value: 2, label: "2"},
+        {value: 4, label: "4"},
+      ]
+    }
   };
 
   // Props --------------------------------------------------------------------
@@ -54,12 +58,12 @@
   const plot = $derived(layout.plot);
   const margin = $derived(graphic.margin);
   
-  const scaleX = $derived(settings.scaleX(
-    settings.domainX, 
+  const scaleX = $derived(settings.x.scale(
+    settings.x.domain, 
     [margin.left, margin.left + plot.width]));
 
-  const scaleY = $derived(settings.scaleY(
-    settings.domainY, 
+  const scaleY = $derived(settings.y.scale(
+    settings.y.domain, 
     [margin.top + plot.height, margin.top]));
 
 </script>
@@ -67,25 +71,25 @@
 <g class="sveltevis-axis-x">
 
   <!--Gridlines X-->
-  {#each settings.x as x, i (i)}
-    {#if settings.showX === true}
+  {#each settings.x.lines as line, i (i)}
+    {#if settings.x.show === true}
       <rect
         class="sveltevis-gridline-x"
-        x={scaleX(x.value) - (settings.sizeX / 2)}
+        x={scaleX(line.value) - (settings.x.width / 2)}
         y={margin.top}
-        width={settings.sizeX}
+        width={settings.x.width}
         height={plot.height} />
     {/if}
   {/each}
 
-  {#each settings.y as y, i (i)}
-    {#if settings.showY === true}
+  {#each settings.y.lines as line, i (i)}
+    {#if settings.y.show === true}
     <rect
       class="sveltevis-gridline-y"
       x={margin.left}
-      y={scaleY(y.value) - (settings.sizeY / 2)}
+      y={scaleY(line.value) - (settings.y.height / 2)}
       width={plot.width}
-      height={settings.sizeY} />
+      height={settings.y.height} />
     {/if}
   {/each}
 

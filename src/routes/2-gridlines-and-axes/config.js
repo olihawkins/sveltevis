@@ -9,10 +9,43 @@ const config = {
         height: 400,
         margin: {
           top: 20, 
-          right: 90, 
+          right: 50, 
           bottom: 60, 
           left: 100
         }
+      }
+    },
+    gridlines: {
+      x: {
+        scale: scaleTime,
+        domain: [new Date("2023-01-01"), new Date("2024-01-01")],
+        lines: [
+          {value: new Date("2023-01-01"), label: "Jan"},
+          {value: new Date("2023-02-01"), label: "Feb"},
+          {value: new Date("2023-03-01"), label: "Mar"},
+          {value: new Date("2023-04-01"), label: "Apr"},
+          {value: new Date("2023-05-01"), label: "May"},
+          {value: new Date("2023-06-01"), label: "Jun"},
+          {value: new Date("2023-07-01"), label: "Jul"},
+          {value: new Date("2023-08-01"), label: "Aug"},
+          {value: new Date("2023-09-01"), label: "Sep"},
+          {value: new Date("2023-10-01"), label: "Oct"},
+          {value: new Date("2023-11-01"), label: "Nov"},
+          {value: new Date("2023-12-01"), label: "Dec"},
+          {value: new Date("2024-01-01"), label: "Jan"}
+        ]
+      },
+      y: {
+        scale: scaleLog,
+        domain: [1, 100000],
+        lines: [
+          {value: 1, label: "1"},
+          {value: 10, label: "10"},
+          {value: 100, label: "100"},
+          {value: 1000, label: "1,000"},
+          {value: 10000, label: "10,000"},
+          {value: 100000, label: "100,000"}
+        ]
       }
     },
     axisX: {
@@ -67,7 +100,7 @@ const config = {
           height: 300,
           margin: {
             top: 15, 
-            right: 85, 
+            right: 50, 
             bottom: 60, 
             left: 85
           }

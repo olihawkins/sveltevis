@@ -25,13 +25,13 @@ const config = {
     },
     axisX: {
       showTicks: true,
-      tickWidth: 1,
-      lineHeight: 2,
+      //tickWidth: 0,
+      //lineHeight: 2,
     },
     axisY: {
       showTicks: true,
-      tickHeight: 1,
-      lineWidth: 2
+      //tickHeight: 0,
+      //lineWidth: 2
     }
   },
   alts: [
