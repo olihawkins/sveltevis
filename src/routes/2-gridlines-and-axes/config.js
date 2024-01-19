@@ -106,6 +106,21 @@ const config = {
           }
         },
       },
+      gridlines: {
+        x: {
+          scale: scaleTime,
+          domain: [new Date("2023-01-01"), new Date("2024-01-01")],
+          lines: [
+            {value: new Date("2023-01-01"), label: "Jan"},
+            {value: new Date("2023-03-01"), label: "Mar"},
+            {value: new Date("2023-05-01"), label: "May"},
+            {value: new Date("2023-07-01"), label: "Jul"},
+            {value: new Date("2023-09-01"), label: "Sep"},
+            {value: new Date("2023-11-01"), label: "Nov"},
+            {value: new Date("2024-01-01"), label: "Jan"}
+          ],
+        }
+      },
       axisX: {
         ticks: [
           {value: new Date("2023-01-01"), label: "Jan"},
