@@ -4,24 +4,71 @@
   
   // Imports ------------------------------------------------------------------
 
-  import { scaleLinear } from "d3-scale";
+  import { 
+    scaleLinear,
+    scaleSqrt } from "d3-scale";
   import { getLayout } from "../../context.svelte.js";
   import { getSettings } from "../../settings.js";
   
+  // Functions ----------------------------------------------------------------
+
+  function getValue(point, scale, settings, dimension, fallback) {
+    const name = settings.mappings[dimension].name;
+    if (name !== null) {
+      return scale(point[name]);
+    } else {
+      return fallback;
+    }
+  }
+
+  function getX(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "x", 
+      0);
+  }
+
+  function getY(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "y", 
+      0);
+  }
+
+  function getRadius(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "radius", 
+      settings.radius);
+  }
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    x: {
-      name: "x",
-      scale: scaleLinear,
-      domain: [-4, 4]
+    mappings: {
+      x: {
+        name: null,
+        scale: scaleLinear,
+        domain: [-4, 4]
+      },
+      y: {
+        name: null,
+        scale: scaleLinear,
+        domain: [-4, 4],
+      },
+      radius: {
+        name: null,
+        scale: scaleSqrt,
+        domain: [0, 4],
+      }
     },
-    y: {
-      name: "y",
-      scale: scaleLinear,
-      domain: [-4, 4],
-    },
-    radius: 8  
+    radius: 8,
   };
 
   // Props --------------------------------------------------------------------
@@ -36,18 +83,23 @@
 
   const config = $derived(layout.config);
   const settings = $derived(getSettings(defaults, config, key));
+  const mappings = $derived(settings.mappings);
 
   // Properties --------------------------------------------------------------
 
   const plot = $derived(layout.plot);
   
-  const scaleX = $derived(settings.x.scale(
-    settings.x.domain, 
+  const scaleX = $derived(mappings.x.scale(
+    mappings.x.domain, 
     [0, plot.width]));
 
-  const scaleY = $derived(settings.y.scale(
-    settings.y.domain, 
+  const scaleY = $derived(mappings.y.scale(
+    mappings.y.domain, 
     [plot.height, 0]));
+
+  const scaleRadius = $derived(mappings.radius.scale(
+    mappings.radius.domain, 
+    [0, settings.radius]));
 
 </script>
 
@@ -58,29 +110,16 @@
       on:mouseover={() => console.log(point)}
       on:focus={() => console.log(point)}
       role="log"
-      cx={scaleX(point[settings.x.name])} 
-      cy={scaleY(point[settings.y.name])} 
-      r={settings.radius}>
+      cx={getX(point, scaleX, settings)} 
+      cy={getY(point, scaleY, settings)} 
+      r={getRadius(point, scaleRadius, settings)}>
     </circle>
   {/each}
-  <!-- <circle 
-    class="sveltevis-point-geometry-circle"
-    cx={scaleX(-4)} 
-    cy={scaleY(4)}
-    r={settings.radius}>
-  </circle>
-  <circle 
-    class="sveltevis-point-geometry-circle"
-    cx={scaleX(4)} 
-    cy={scaleY(-4)}
-  r={settings.radius}>
-</circle> -->
 </g>
 
 <style>
   .sveltevis-point-geometry-circle {
-    /* fill: var(--sveltevis-color); */
     fill: #00ccff;
-    fill-opacity: 0.5;
+    fill-opacity: 0.4;
   }
 </style>

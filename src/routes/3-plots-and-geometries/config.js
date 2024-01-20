@@ -61,14 +61,21 @@ const config = {
       ]
     },
     pointGeometry: {
-      x: {
-        name: "median_age",
-        domain: [20, 60],
+      mappings: {
+        x: {
+          name: "median_age",
+          domain: [20, 60],
+        },
+        y: {
+          name: "Conservative",
+          domain: [0, 80],
+        },
+        radius: {
+          name: "turnout",
+          domain: [40, 80]
+        }
       },
-      y: {
-        name: "Conservative",
-        domain: [0, 80],
-      }
+      radius: 25
     }
   },
   alts: [
@@ -87,7 +94,7 @@ const config = {
         },
       },
       pointGeometry: {
-        radius: 6
+        radius: 15
       }
     }
   ]
