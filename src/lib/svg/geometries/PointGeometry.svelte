@@ -11,11 +11,17 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    scaleX: scaleLinear,
-    domainX: [-4, 4],
-    scaleY: scaleLinear,
-    domainY: [-4, 4],
-    radius: 20
+    x: {
+      name: "x",
+      scale: scaleLinear,
+      domain: [-4, 4]
+    },
+    y: {
+      name: "y",
+      scale: scaleLinear,
+      domain: [-4, 4],
+    },
+    radius: 8  
   };
 
   // Props --------------------------------------------------------------------
@@ -35,29 +41,40 @@
 
   const plot = $derived(layout.plot);
   
-  const scaleX = $derived(settings.scaleX(
-    settings.domainX, 
+  const scaleX = $derived(settings.x.scale(
+    settings.x.domain, 
     [0, plot.width]));
 
-  const scaleY = $derived(settings.scaleY(
-    settings.domainY, 
+  const scaleY = $derived(settings.y.scale(
+    settings.y.domain, 
     [plot.height, 0]));
 
 </script>
 
 <g class="sveltevis-point-geometry">
-  <circle 
+  {#each data as point (point.id)}
+    <circle 
+      class="sveltevis-point-geometry-circle"
+      on:mouseover={() => console.log(point)}
+      on:focus={() => console.log(point)}
+      role="log"
+      cx={scaleX(point[settings.x.name])} 
+      cy={scaleY(point[settings.y.name])} 
+      r={settings.radius}>
+    </circle>
+  {/each}
+  <!-- <circle 
     class="sveltevis-point-geometry-circle"
     cx={scaleX(-4)} 
-    cy={scaleY(0)}
+    cy={scaleY(4)}
     r={settings.radius}>
   </circle>
   <circle 
-  class="sveltevis-point-geometry-circle"
-  cx={scaleX(4)} 
-  cy={scaleY(0)}
+    class="sveltevis-point-geometry-circle"
+    cx={scaleX(4)} 
+    cy={scaleY(-4)}
   r={settings.radius}>
-</circle>
+</circle> -->
 </g>
 
 <style>

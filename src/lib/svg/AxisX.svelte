@@ -144,7 +144,7 @@
       {value: -2, label: "-2"},
       {value: 0, label: "0"},
       {value: 2, label: "2"},
-      {value: 4, label: "-4"},
+      {value: 4, label: "4"},
     ],
     tickPosition: "bottom",
     tickWidth: 1,

@@ -11,30 +11,29 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
+    linesize: 0.5,
     x: {
       show: true,
       scale: scaleLinear,
       domain: [-4, 4],
-      width: 0.5,
       lines: [
-        {value: -4, label: "-4"},
-        {value: -2, label: "-2"},
-        {value: 0, label: "0"},
-        {value: 2, label: "2"},
-        {value: 4, label: "-4"},
+        {value: -4},
+        {value: -2},
+        {value: 0},
+        {value: 2},
+        {value: 4},
       ]
     },
     y: {
       show: true,
       scale: scaleLinear,
       domain: [-4, 4],
-      height: 0.5,
       lines: [
-        {value: -4, label: "-4"},
-        {value: -2, label: "-2"},
-        {value: 0, label: "0"},
-        {value: 2, label: "2"},
-        {value: 4, label: "4"},
+        {value: -4},
+        {value: -2},
+        {value: 0},
+        {value: 2},
+        {value: 4},
       ]
     }
   };
@@ -75,10 +74,10 @@
     {#if settings.x.show === true}
       <rect
         class="sveltevis-gridline-x"
-        x={scaleX(line.value) - (settings.x.width / 2)}
-        y={margin.top}
-        width={settings.x.width}
-        height={plot.height} />
+        x={scaleX(line.value) - (settings.linesize / 2)}
+        y={margin.top - (settings.linesize / 2)}
+        width={settings.linesize}
+        height={plot.height + settings.linesize} />
     {/if}
   {/each}
 
@@ -86,10 +85,10 @@
     {#if settings.y.show === true}
     <rect
       class="sveltevis-gridline-y"
-      x={margin.left}
-      y={scaleY(line.value) - (settings.y.height / 2)}
-      width={plot.width}
-      height={settings.y.height} />
+      x={margin.left - (settings.linesize / 2)}
+      y={scaleY(line.value) - (settings.linesize / 2)}
+      width={plot.width + settings.linesize}
+      height={settings.linesize} />
     {/if}
   {/each}
 
