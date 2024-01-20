@@ -6,9 +6,10 @@ import Header from "$lib/Header.svelte";
 import Footer from "$lib/Footer.svelte";
 import Graphic from "$lib/Graphic.svelte";
 import Svg from "$lib/svg/Svg.svelte";
-import Plot from "$lib/svg/Plot.svelte";
+import Gridlines from "$lib/svg/Gridlines.svelte";
 import AxisX from "$lib/svg/AxisX.svelte";
 import AxisY from "$lib/svg/AxisY.svelte";
+import Plot from "$lib/svg/Plot.svelte";
 import LayoutReport from "$lib/svg/LayoutReport.svelte";
 
 export {
@@ -19,8 +20,9 @@ export {
     Footer,
     Graphic,
     Svg,
-    Plot,
+    Gridlines,
     AxisX,
     AxisY,
+    Plot,
     LayoutReport
 };
