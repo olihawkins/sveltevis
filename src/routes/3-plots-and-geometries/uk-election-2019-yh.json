@@ -1078,25 +1078,5 @@
         "Green": 0,
         "SNP": 0,
         "PC": 0
-    },
-    {
-        "id": "EX",
-        "constituency_name": "Dummy",
-        "region_name": "Yorkshire and The Humber",
-        "country_name": "England",
-        "constituency_type": "County",
-        "median_age": 60,
-        "first_party": "Conservative",
-        "second_party": "Labour",
-        "valid_votes": 55347,
-        "turnout": 74.1,
-        "majority": 18,
-        "Conservative": 78,
-        "Labour": 31.3,
-        "Lib Dem": 18.1,
-        "Brexit": 0,
-        "Green": 0,
-        "SNP": 0,
-        "PC": 0
     }
 ]

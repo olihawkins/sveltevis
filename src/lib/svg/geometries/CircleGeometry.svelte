@@ -6,6 +6,7 @@
 
   import { 
     scaleLinear,
+    scaleOrdinal,
     scaleSqrt } from "d3-scale";
   import { getLayout } from "../../context.svelte.js";
   import { getSettings } from "../../settings.js";
@@ -48,6 +49,51 @@
       settings.radius);
   }
 
+  function getFill(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "fill", 
+      settings.fill);
+  }
+
+  function getFillOpacity(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "fillOpacity", 
+      settings.fillOpacity);
+  }
+
+  function getStroke(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "stroke", 
+      settings.stroke);
+  }
+
+  function getStrokeOpacity(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "strokeOpacity", 
+      settings.strokeOpacity);
+  }  
+
+  function getStrokeWidth(point, scale, settings) {
+    return getValue(
+      point, 
+      scale, 
+      settings,
+      "strokeWidth", 
+      settings.strokeWidth);
+  }
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
@@ -66,9 +112,41 @@
         name: null,
         scale: scaleSqrt,
         domain: [0, 4],
+      },
+      fill: {
+        name: null,
+        scale: scaleOrdinal,
+        domain: [],
+        range: []
+      },
+      fillOpacity: {
+        name: null,
+        scale: scaleLinear,
+        domain: [],
+      },
+      stroke: {
+        name: null,
+        scale: scaleOrdinal,
+        domain: [],
+        range: []
+      },
+      strokeOpacity: {
+        name: null,
+        scale: scaleLinear,
+        domain: [],
+      },
+      strokeWidth: {
+        name: null,
+        scale: scaleLinear,
+        domain: [],
       }
     },
     radius: 8,
+    fill: "var(--sveltevis-color)",
+    fillOpacity: 1,
+    stroke: "var(--sveltevis-color)",
+    strokeOpacity: 1,
+    strokeWidth: 1
   };
 
   // Props --------------------------------------------------------------------
@@ -101,6 +179,26 @@
     mappings.radius.domain, 
     [0, settings.radius]));
 
+  const scaleFill = $derived(mappings.fill.scale(
+    mappings.fill.domain, 
+    mappings.fill.range));
+
+  const scaleFillOpacity = $derived(mappings.fillOpacity.scale(
+    mappings.fillOpacity.domain, 
+    [0, settings.fillOpacity]));
+
+  const scaleStroke = $derived(mappings.stroke.scale(
+    mappings.stroke.domain, 
+    mappings.stroke.range));
+
+  const scaleStrokeOpacity = $derived(mappings.strokeOpacity.scale(
+    mappings.strokeOpacity.domain, 
+    [0, settings.strokeOpacity]));
+
+  const scaleStrokeWidth = $derived(mappings.strokeWidth.scale(
+    mappings.strokeWidth.domain, 
+    [0, settings.strokeWidth]));
+
 </script>
 
 <g class="sveltevis-point-geometry">
@@ -112,14 +210,12 @@
       role="log"
       cx={getX(point, scaleX, settings)} 
       cy={getY(point, scaleY, settings)} 
-      r={getRadius(point, scaleRadius, settings)}>
+      r={getRadius(point, scaleRadius, settings)}
+      style:fill={getFill(point, scaleFill, settings)}
+      style:fill-opacity={getFillOpacity(point, scaleFillOpacity, settings)}
+      style:stroke={getStroke(point, scaleStroke, settings)}
+      style:stroke-opacity={getStrokeOpacity(point, scaleStrokeOpacity, settings)}
+      style:stroke-width={getStrokeWidth(point, scaleStrokeWidth, settings)}>
     </circle>
   {/each}
 </g>
-
-<style>
-  .sveltevis-point-geometry-circle {
-    fill: #00ccff;
-    fill-opacity: 0.4;
-  }
-</style>

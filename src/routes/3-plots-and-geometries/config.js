@@ -72,10 +72,27 @@ const config = {
         },
         radius: {
           name: "turnout",
-          domain: [40, 80]
+          domain: [20, 80]
+        },
+        fill: {
+          name: "first_party",
+          domain: ["Conservative", "Labour"],
+          range: ["#0087DC" , "#E4003B"]
+        },
+        fillOpacity: {
+          name: "majority",
+          domain: [0, 62]
+        },
+        stroke: {
+          name: "constituency_type",
+          domain: ["County", "Borough"],
+          range: ["#8c03fc" , "#d9a311"]
         }
       },
-      radius: 25
+      radius: 16,
+      fillOpacity: 1,
+      strokeOpacity: 1,
+      strokeWidth: 1.5
     }
   },
   alts: [
@@ -94,7 +111,8 @@ const config = {
         },
       },
       pointGeometry: {
-        radius: 15
+        radius: 10,
+        strokeWidth: 1
       }
     }
   ]

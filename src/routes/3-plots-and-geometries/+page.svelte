@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import "$lib/css/site.css";
   import "$lib/css/sveltevis.css";
   import SiteHeader from "$lib/site/SiteHeader.svelte";
@@ -12,7 +13,7 @@
   import AxisX from "$lib/svg/AxisX.svelte";
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
-  import PointGeometry from "$lib/svg/geometries/PointGeometry.svelte";
+  import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
   import { config } from "./config.js";
   import data from "./uk-election-2019-yh.json";
 
@@ -22,6 +23,13 @@
       href: "/2-gridlines-and-axes"
     }
   };
+
+  // onMount(() => {	
+  //   console.log(window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light");
+  //   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+  //     console.log(event.matches ? "dark" : "light");
+  //   });
+  // });
 
 </script>
 
@@ -38,7 +46,7 @@
         <Svg>
           <Gridlines />
           <Plot>
-            <PointGeometry data={data}></PointGeometry>
+            <CircleGeometry data={data}></CircleGeometry>
           </Plot>
           <AxisX />
           <AxisY />
