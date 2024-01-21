@@ -60,7 +60,7 @@ const config = {
         {value: 80, label: "80%"},
       ]
     },
-    pointGeometry: {
+    circleGeometry: {
       mappings: {
         x: {
           name: "median_age",
@@ -110,7 +110,7 @@ const config = {
           }
         },
       },
-      pointGeometry: {
+      circleGeometry: {
         radius: 10,
         strokeWidth: 1
       }

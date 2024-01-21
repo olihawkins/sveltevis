@@ -151,7 +151,7 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "pointGeometry", data } = $props();
+  let { key = "circleGeometry", data } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -201,10 +201,10 @@
 
 </script>
 
-<g class="sveltevis-point-geometry">
+<g class="sveltevis-circle-geometry">
   {#each data as point (point.id)}
     <circle 
-      class="sveltevis-point-geometry-circle"
+      class="sveltevis-circle-geometry-circle"
       on:mouseover={() => console.log(point)}
       on:focus={() => console.log(point)}
       role="log"
