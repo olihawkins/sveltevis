@@ -205,9 +205,6 @@
   {#each data as point (point.id)}
     <circle 
       class="sveltevis-circle-geometry-circle"
-      on:mouseover={() => console.log(point)}
-      on:focus={() => console.log(point)}
-      role="log"
       cx={getX(point, scaleX, settings)} 
       cy={getY(point, scaleY, settings)} 
       r={getRadius(point, scaleRadius, settings)}
