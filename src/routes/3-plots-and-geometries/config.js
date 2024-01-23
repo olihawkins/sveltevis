@@ -92,7 +92,7 @@ const baseConfig = {
       radius: 16,
       fillOpacity: 1,
       strokeOpacity: 1,
-      strokeWidth: 1.5
+      strokeWidth: 1.7
     }
   },
   alts: [
@@ -112,7 +112,7 @@ const baseConfig = {
       },
       circleGeometry: {
         radius: 10,
-        strokeWidth: 1
+        strokeWidth: 1.2
       }
     }
   ]
