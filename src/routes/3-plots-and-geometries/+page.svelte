@@ -14,7 +14,7 @@
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
   import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
-  import { config } from "./config.js";
+  import { baseConfig } from "./config.js";
   import data from "./uk-election-2019-yh.json";
 
   const links = {
@@ -24,12 +24,36 @@
     }
   };
 
-  // onMount(() => {	
-  //   console.log(window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light");
-  //   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-  //     console.log(event.matches ? "dark" : "light");
-  //   });
-  // });
+  const mediaTarget = "(prefers-color-scheme: dark)";
+  let config = $state(baseConfig);
+  
+  function updateConfig(isDarkMode) {
+    
+    const strokeRange = 
+      isDarkMode === true ? 
+      ["#8c03fc", "#d9a311"] : 
+      ["#ffae00", "#5d16d9"];
+    
+      config
+        .main
+        .circleGeometry
+        .mappings
+        .stroke
+        .range = strokeRange;
+  }
+
+  onMount(() => {	
+    
+    // Set initial color scheme
+    let isDarkMode = window.matchMedia(mediaTarget).matches;
+    updateConfig(isDarkMode);
+
+    // Listen for changes to color scheme
+    window.matchMedia(mediaTarget).addEventListener("change", event => {
+      let isDarkMode = event.matches;
+      updateConfig(isDarkMode);
+    });
+  });
 
 </script>
 
@@ -41,7 +65,7 @@
   <p>Use geometries to plot data.</p>
   
   <div style="min-width: 300px">
-    <Visualisation config={config}>
+    <Visualisation config={{...config}}>
       <Graphic>
         <Svg>
           <Gridlines />

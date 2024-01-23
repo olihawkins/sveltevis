@@ -1,6 +1,6 @@
 import { scaleTime, scaleLog } from "d3-scale";
 
-const config = {
+const baseConfig = {
   main: {
     name: "desktop",
     visualisation: {
@@ -119,5 +119,5 @@ const config = {
 };
 
 export {
-  config
+  baseConfig
 };
