@@ -32,7 +32,7 @@
     const strokeRange = 
       isDarkMode === true ? 
       ["#8c03fc", "#d9a311"] : 
-      ["#ffa600", "#7b16d9"];
+      ["#ffa600", "#8d34e0"];
     
       config
         .main
