@@ -86,7 +86,7 @@ const baseConfig = {
         stroke: {
           name: "constituency_type",
           domain: ["County", "Borough"],
-          range: ["#8c03fc" , "#d9a311"]
+          range: [["var(--sveltevis-color)", "var(--sveltevis-color)"]]
         }
       },
       radius: 16,
@@ -118,6 +118,26 @@ const baseConfig = {
   ]
 };
 
+const lightConfig = JSON.parse(JSON.stringify(baseConfig));
+
+lightConfig
+  .main
+  .circleGeometry
+  .mappings
+  .stroke
+  .range = ["#ffa600", "#8d34e0"];
+
+
+const darkConfig = JSON.parse(JSON.stringify(baseConfig));
+
+darkConfig
+  .main
+  .circleGeometry
+  .mappings
+  .stroke
+  .range = ["#8c03fc", "#d9a311"];
+
 export {
-  baseConfig
+  lightConfig,
+  darkConfig
 };
