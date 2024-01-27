@@ -3,7 +3,7 @@
   // Imports ------------------------------------------------------------------
 
   import { onMount } from "svelte";
-  import { createConfigs, getVisSettings } from "./settings.js";
+  import { createConfigs } from "./settings.js";
   import { createLayout } from "./context.svelte.js";
 
   // Defaults -----------------------------------------------------------------
@@ -29,12 +29,11 @@
 
   // Props --------------------------------------------------------------------
 
-  let { config = {} } = $props();
+  let { spec = {} } = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const visSettings = getVisSettings(defaults, config);
-  const configs = createConfigs(visSettings);
+  const configs = createConfigs(spec, defaults);
   const layout = createLayout(configs);
 
   // Bound elements -----------------------------------------------------------
@@ -49,7 +48,7 @@
 
   let windowWidth = $derived(layout.windowWidth);
 
-  // Observe width and update config ------------------------------------------
+  // Observe width and update layout ------------------------------------------
 
   function updateLayout() {
     layout.width = vis.clientWidth;
@@ -65,18 +64,19 @@
     // Set visible once layout properties are known
     visibility = "visible";
     
-    // Add resize listener
-    const resizeListener = () => {
+    // Create resize handler
+    const handleResize = () => {
       if (windowWidth !== window.innerWidth) {
         updateLayout();
       }
     };
 
-    window.addEventListener("resize", resizeListener);
+    // Add resize listener
+    window.addEventListener("resize", handleResize);
 
     return () => {
       // Remove resize listener
-      window.removeEventListener("resize", resizeListener);
+      window.removeEventListener("resize", handleResize);
     }
   });
 

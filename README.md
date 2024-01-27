@@ -8,22 +8,28 @@ This package is in active development and is **not yet ready for use**. The API 
 
 ## Roadmap
 
-The first objective is to develop the smallest set of fully-functional components needed to make a responsive scatterplot, using the project's approach to configuring component settings and managing state. Progress towards this milestone is set out below.
+The first objective was to develop the smallest set of fully-functional components needed to make a responsive scatterplot, using the project's approach to configuring component settings and managing state. This milestone has been reached. The list of components created to achieve this goal are listed below. 
 
 ### Components completed
 
-- Visualisation
-- Header
-- Footer
-- Graphic
-- Svg
-- Plot
-- AxisX
-- AxisY
+- `Visualisation`
+- `ColorSchemeVisualisation`
+- `Header`
+- `Footer`
+- `Graphic`
+- `Svg`
+- `Gridlines`
+- `AxisX`
+- `AxisY`
+- `Plot`
+- `CircleGeometry`
 
-### Components to be completed
+### Next steps
 
-- PointGeometry
+The next two milestones are:
+
+1. Add geometry components for column and line charts
+2. Implement a general approach to event handling to support pop-ups and other interactive components
 
 ## Trying the components
 

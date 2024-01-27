@@ -36,14 +36,17 @@ export function mergeConfigs(src, updates) {
   return dest;
 }
 
-// Expand the settings in a user config to an array of fully-specified configs
-export function createConfigs(config) {
+// Convert the settings in the spec to an array of fully-specified configs
+export function createConfigs(spec, defaults) {
 
-  // Create an array of configs and add the default config
+  // Get the main config by updating the defaults with the spec
+  const config = getMainConfig(spec, defaults);
+
+  // Create an array of configs and add the main config
   const configs = [];
   configs.push(config.main);
   
-  // Process alternative configs
+  // Create alternative configs
   if (Object.hasOwn(config, "alts")) {
 
     // Expand each alternative config by updating a copy of the default
@@ -66,28 +69,28 @@ export function createConfigs(config) {
   return configs;
 }
 
-// Update the default visualisation config with the user visualisation config
-export function getVisSettings(defaults, config) {
+// Update the default visualisation settings with the user spec
+export function getMainConfig(spec, defaults) {
 
-  let settings;
+  let config;
 
-  if (Object.hasOwn(config, "main") && 
-      Object.hasOwn(config.main, "visualisation") &&
-      isObject(config.main.visualisation)) {
+  if (Object.hasOwn(spec, "main") && 
+      Object.hasOwn(spec.main, "visualisation") &&
+      isObject(spec.main.visualisation)) {
   
     let visualisation = mergeConfigs(
       defaults.main.visualisation, 
-      config.main.visualisation);
+      spec.main.visualisation);
 
-    settings = { ...config };
-    settings.main.visualisation = visualisation;
+    config = { ...spec };
+    config.main.visualisation = visualisation;
 
   } else {
 
-    settings = defaults;
+    config = defaults;
   }
 
-  return settings;
+  return config;
 }
 
 // Update the default config for a component with a user config

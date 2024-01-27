@@ -1,10 +1,10 @@
 <script>
-  import { onMount } from "svelte";
+
   import "$lib/css/site.css";
   import "$lib/css/sveltevis.css";
   import SiteHeader from "$lib/site/SiteHeader.svelte";
   import SiteFooter from "$lib/site/SiteFooter.svelte";
-  import Visualisation from "$lib/Visualisation.svelte";
+  import ColorSchemeVisualisation from "$lib/ColorSchemeVisualisation.svelte";
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
   import Graphic from "$lib/Graphic.svelte";
@@ -14,7 +14,7 @@
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
   import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
-  import { lightConfig, darkConfig } from "./config.js";
+  import { lightSpec, darkSpec } from "./spec.js";
   import data from "./uk-election-2019-yh.json";
 
   const links = {
@@ -23,20 +23,6 @@
       href: "/2-gridlines-and-axes"
     }
   };
-
-  const mediaTarget = "(prefers-color-scheme: dark)";
-  let isDarkMode = $state(false);
-  
-  onMount(() => {	
-    
-    // Set initial color scheme
-    isDarkMode = window.matchMedia(mediaTarget).matches;
-
-    // Listen for changes to color scheme
-    window.matchMedia(mediaTarget).addEventListener("change", event => {
-      isDarkMode = event.matches;
-    });
-  });
 
 </script>
 
@@ -48,8 +34,9 @@
   <p>Use geometries to plot data.</p>
   
   <div style="min-width: 300px">
-  {#if isDarkMode}
-    <Visualisation config={darkConfig}>
+    <ColorSchemeVisualisation 
+        lightSpec={lightSpec} 
+        darkSpec={darkSpec}>
       <Graphic>
         <Svg>
           <Gridlines />
@@ -60,21 +47,8 @@
           <AxisY />
         </Svg>
       </Graphic>
-    </Visualisation>
-  {:else}
-    <Visualisation config={lightConfig}>
-      <Graphic>
-        <Svg>
-          <Gridlines />
-          <Plot>
-            <CircleGeometry data={data} />
-          </Plot>
-          <AxisX />
-          <AxisY />
-        </Svg>
-      </Graphic>
-    </Visualisation>
-  {/if}
+    </ColorSchemeVisualisation>
+
   </div>
 
 <SiteFooter {links} />

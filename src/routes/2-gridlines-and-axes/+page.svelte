@@ -11,7 +11,7 @@
   import Gridlines from "$lib/svg/Gridlines.svelte";
   import AxisX from "$lib/svg/AxisX.svelte";
   import AxisY from "$lib/svg/AxisY.svelte";
-  import { config } from "./config.js";
+  import { spec } from "./spec.js";
 
   const links = {
     previous: {
@@ -56,7 +56,7 @@
   </div>
 
   <div style="min-width: 300px">
-    <Visualisation config={config}>
+    <Visualisation spec={spec}>
       <Graphic>
         <Svg>
           <Gridlines />
