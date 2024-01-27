@@ -27,10 +27,11 @@
 </script>
 
 <div id="column">
-  
-  <SiteHeader />
-  <h2>3. Plots and Geometries</h2>
 
+  <SiteHeader />
+
+  <h2>3. Plots and Geometries</h2>
+  
   <p>Use geometries to plot data.</p>
   
   <div style="min-width: 300px">
@@ -48,8 +49,8 @@
         </Svg>
       </Graphic>
     </ColorSchemeVisualisation>
-
   </div>
 
-<SiteFooter {links} />
+  <SiteFooter {links} />
+
 </div>

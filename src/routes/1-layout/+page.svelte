@@ -26,7 +26,9 @@
 </script>
 
 <div id="column">
+
   <SiteHeader />
+  
   <h2>1. Layout</h2>
 
   <p>The root component for a SvelteVis visualisation is called <code>Visualisation</code>. It is a general purpose container with a simple structure and a built-in system for handling responsiveness. The <code>Visualisation</code> component manages the size of the graphic and the plotting area for each visualisation, and makes this data available to its child components through a shared context.</p>

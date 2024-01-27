@@ -29,6 +29,7 @@
 <div id="column">
   
   <SiteHeader />
+  
   <h2>2. Gridlines and Axes</h2>
 
   <p>You can add axes to a visualisation with the <code>AxisX</code> and <code>AxisY</code> components. These are SVG components that are located in the margins of the <code>Graphic</code>, so they are placed within the <code>Svg</code> but outside the <code>Plot</code>.</p>
@@ -68,4 +69,5 @@
   </div>
 
 <SiteFooter {links} />
+
 </div>
