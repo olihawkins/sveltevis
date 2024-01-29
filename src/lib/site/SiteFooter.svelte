@@ -1,6 +1,4 @@
 <script>
-    import { backIn } from "svelte/easing";
-
 
   // Props --------------------------------------------------------------------
 
@@ -10,7 +8,7 @@
   
   let hasPrevious = $derived(Object.hasOwn(links, "previous"));
   let hasNext = $derived(Object.hasOwn(links, "next"));
-
+  
 </script>
 
 

@@ -88,7 +88,7 @@
 
 <style>
   .sveltevis-visualisation {
-    margin: 2rem 0 2rem 0;
+    margin: 0;
     padding: 0;
   }
 </style>
