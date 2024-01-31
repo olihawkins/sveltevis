@@ -28,6 +28,11 @@
     specIndex = specIndex == 0 ? 1 : 0;
   }
 
+  let axisXKey = $state("axisX");
+  function updateKey() {
+    axisXKey = axisXKey == "axisX" ? "axisXAlt" : "axisX";
+  } 
+
 </script>
 
 <div id="column">
@@ -54,7 +59,9 @@
 
   <p>The solution to this is to wrap both the <code>Visualisation</code> and its <code>&lbrace;&#35;key&rbrace;</code> block inside a <code>div</code> that has the same responsive properties as the visualisation itself. So for example, if the visualisation is set to have a height of 500 pixels when the page is wider than 600 pixels, and a height of 300 pixels when it is narrower than that, give the enclosing <code>div</code> the same responsive properties in CSS. Because the <code>div</code> is outside the <code>&lbrace;&#35;key&rbrace;</code> block it is never re-rendered, so it preserves the space that the visualisation needs, and the viewport doesn't move.</p>
 
-  <button on:click={updateSpec}>Update</button>
+  <button on:click={updateSpec}>Update Spec</button>
+  <button on:click={updateKey}>Update Key</button>
+  {axisXKey}
   <div class="viscontainer" style="min-width: 300px">
     {#key specIndex}
     <Visualisation spec={specs[specIndex]}>
@@ -64,7 +71,7 @@
           <Plot>
             <CircleGeometry data={data} />
           </Plot>
-          <AxisX />
+          <AxisX key={axisXKey} />
           <AxisY />
         </Svg>
       </Graphic>

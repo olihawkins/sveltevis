@@ -51,6 +51,16 @@ function getSpec(specName, strokeRange) {
           {value: 60, label: "60"},
         ]
       },
+      axisXAlt: {
+        domain: [20, 60],
+        lineDomain: [20, 60],
+        ticks: [
+          {value: 20, label: "20"},
+          {value: 30, label: "30"},
+          {value: 50, label: "50"},
+          {value: 60, label: "60"},
+        ]
+      },
       axisY: {
         domain: [0, 80],
         lineDomain: [0, 80],
