@@ -4,6 +4,7 @@
   import "$lib/css/sveltevis.css";
   import SiteHeader from "$lib/site/SiteHeader.svelte";
   import SiteFooter from "$lib/site/SiteFooter.svelte";
+  import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";
   import Visualisation from "$lib/Visualisation.svelte";
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
@@ -21,6 +22,9 @@
       href: "/3-plots-and-geometries"
     }
   };
+
+
+  let isDarkMode = $state(false);
 
   let specIndex = $state(0);
   const specs = [lightSpec, darkSpec];
@@ -59,9 +63,11 @@
 
   <p>The solution to this is to wrap both the <code>Visualisation</code> and its <code>&lbrace;&#35;key&rbrace;</code> block inside a <code>div</code> that has the same responsive properties as the visualisation itself. So for example, if the visualisation is set to have a height of 500 pixels when the page is wider than 600 pixels, and a height of 300 pixels when it is narrower than that, give the enclosing <code>div</code> the same responsive properties in CSS. Because the <code>div</code> is outside the <code>&lbrace;&#35;key&rbrace;</code> block it is never re-rendered, so it preserves the space that the visualisation needs, and the viewport doesn't move.</p>
 
+  <ColorSchemeObserver bind:isDarkMode={isDarkMode} />
   <button on:click={updateSpec}>Update Spec</button>
   <button on:click={updateKey}>Update Key</button>
-  {axisXKey}
+  <p>{axisXKey}</p>
+  <p>{isDarkMode}</p>
   <div class="viscontainer" style="min-width: 300px">
     {#key specIndex}
     <Visualisation spec={specs[specIndex]}>
