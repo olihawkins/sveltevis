@@ -37,7 +37,7 @@
 
   <h2>4. Updating a Visualisation</h2>
 
-  <p>Sometimes, you may want to make an interactive visualisation where you change what it shows by dynamically updating the settings in the <code>spec</code>. This approach is fully supported, but there are some things to bear in mind in order to make it work well. The most important thing to remember is this: if you update a visualisation's <code>spec</code>, you need to re-render the component for the changes to take effect. In most cases <b><i>you don't need to do this</i></b>. But there are ways you can do it neatly if necessary.</p>
+  <p>Sometimes, you may want to make an interactive visualisation where you change the way the data is presented by dynamically updating the settings in the <code>spec</code>. This approach is fully supported, but there are some things to bear in mind in order to make it work well. The most important thing to remember is this: if you update a visualisation's <code>spec</code>, you need to re-render the component for the changes to take effect. In most cases <b><i>you don't need to do this</i></b>. But there are ways you can do it neatly if necessary.</p>
   
   <h3>4.1. Updating component keys</h3>
 
