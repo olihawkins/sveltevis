@@ -61,7 +61,7 @@
     </Visualisation>
   </div>
 
-  <p>This visualisation maps data to multiple dimensions of visual representation, including x and y position, circle radius, fill colour, fill opacity, and stroke colour.</p>
+  <p>This scatterplot is made using a <code>CircleGeometry</code> component, which allows variables to be mapped to multiple dimensions of the points' visual representation, including their x and y position, circle radius, fill colour, fill opacity, and stroke colour.</p>
 
   <SiteFooter {links} />
 

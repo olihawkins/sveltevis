@@ -6,9 +6,9 @@ const spec = {
     visualisation: {
       minwidth: 700,
       graphic: {
-        height: 400,
+        height: 440,
         margin: {
-          top: 20, 
+          top: 50, 
           right: 50, 
           bottom: 60, 
           left: 100
@@ -97,9 +97,9 @@ const spec = {
       visualisation: {
         minwidth: 0,
         graphic: {
-          height: 300,
+          height: 330,
           margin: {
-            top: 15, 
+            top: 40, 
             right: 50, 
             bottom: 60, 
             left: 85
