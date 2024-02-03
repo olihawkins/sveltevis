@@ -37,19 +37,19 @@
 
   <h2>4. Updating a Visualisation</h2>
 
-  <p>Sometimes, you may want to make an interactive visualisation where you change the way the data is presented by dynamically updating the settings in the <code>spec</code>. This approach is fully supported, but there are some things to bear in mind in order to make it work well. The most important thing to remember is this: if you update a visualisation's <code>spec</code>, you need to re-render the component for the changes to take effect. In most cases <b><i>you don't need to do this</i></b>. But there are ways you can do it neatly if necessary.</p>
+  <p>You may want to make an interactive visualisation where you change the way the data is presented by dynamically updating the settings in the <code>spec</code>. This approach is fully supported, but there are some things to bear in mind in order to make it work well. The most important thing to remember is this: if you directly update a visualisation's <code>spec</code>, you need to re-render the component for the changes to take effect. In most cases <b><i>you don't actually need to do this</i></b>. But there are ways you can do it neatly if necessary.</p>
   
   <h3>4.1. Updating component keys</h3>
 
-  <p>Instead of recreating the entire visualisation with a new <code>spec</code> whenever you want to update its settings, you can provide alternative settings for the components that you want to update within the <code>spec</code>, using different keys.</p>
+  <p>When you want to update a visualisation's settings dynamically, instead of recreating the entire visualisation with a new <code>spec</code>, you can provide alternative settings for a component that you want to update within the <code>spec</code>, using different keys for the alternative settings.</p>
   
-  <p>You can then dynamically change the <code>key</code> that a component uses to find its settings within the <code>spec</code>. In this way you can conditionally update a component's settings without re-rendering the whole visualisation. This is generally the best way to dynamically update a visualisation's settings.</p>
+  <p>You can then dynamically change the <code>key</code> that the component uses to select its settings from within the <code>spec</code>. In this way you can conditionally update the component's settings without re-rendering the whole visualisation. This is the recommended way to dynamically update a visualisation's settings.</p>
 
   <h3>4.2. Updating the Visualisation with a new spec</h3>
 
-  <p>It is possible to re-render a visualiation with a new <code>spec</code>. This section contains guidance on how to do it well. But first it's worth understanding why a <code>Visualisation</code> component needs to be re-rendered, when its child components do not.</p>
+  <p>It is possible to re-render a visualisation with a new <code>spec</code> if necessary. This section contains guidance on how to do it well. But it helps to understand why a <code>Visualisation</code> component needs to be re-rendered, while its child components do not.</p>
 
-  <p>When a <code>Visualisation</code> component is created, it sets up a system of reactive relationships with its child components, which it uses to report changes in the amount of  available space. This system allows all of the visualisation's components to respond simultaneously to changes in the width of the browser. When you update a visualisation with a completely new <code>spec</code>, the visualisation need to recreate the reactive relationships to reflect the new <code>spec</code>.</p>
+  <p>When a <code>Visualisation</code> component is created, it sets up a system of reactive relationships with its child components, which it uses to communicate changes in the amount of  available space. This system allows all of the visualisation's components to respond simultaneously to changes in the width of the browser. When you update a visualisation with a completely new <code>spec</code>, the visualisation need to recreate the reactive relationships to reflect the new <code>spec</code>.</p>
 
   <p>In Svelte you can conditionally re-render a component using a <code>&lbrace;&#35;key&rbrace;</code> block. A <code>&lbrace;&#35;key&rbrace;</code> block is a logic block that monitors a stateful variable and re-renders a component based on that variable's value. You will need to wrap a <code>Visualisation</code> component inside a <code>&lbrace;&#35;key&rbrace;</code> block in order to dynamically update its <code>spec</code>.</p>
 
