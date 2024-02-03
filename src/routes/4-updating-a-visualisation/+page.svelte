@@ -47,7 +47,7 @@
 
   <h3>4.2. Updating the Visualisation with a new spec</h3>
 
-  <p>It is possible to re-render a visualiation with a new <code>spec</code>. This section contains guidance on how to do it well. But first it's worth understanding why a <code>Visualisation</code> component needs to be re-rendered, when its child components don't.</p>
+  <p>It is possible to re-render a visualiation with a new <code>spec</code>. This section contains guidance on how to do it well. But first it's worth understanding why a <code>Visualisation</code> component needs to be re-rendered, when its child components do not.</p>
 
   <p>When a <code>Visualisation</code> component is created, it sets up a system of reactive relationships with its child components, which it uses to report changes in the amount of  available space. This system allows all of the visualisation's components to respond simultaneously to changes in the width of the browser. When you update a visualisation with a completely new <code>spec</code>, the visualisation need to recreate the reactive relationships to reflect the new <code>spec</code>.</p>
 
