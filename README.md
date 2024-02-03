@@ -12,8 +12,8 @@ The first objective was to develop the smallest set of fully-functional componen
 
 ### Components completed
 
+- `ColorSchemeObserver`
 - `Visualisation`
-- `ColorSchemeVisualisation`
 - `Header`
 - `Footer`
 - `Graphic`

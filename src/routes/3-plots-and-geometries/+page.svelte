@@ -4,7 +4,8 @@
   import "$lib/css/sveltevis.css";
   import SiteHeader from "$lib/site/SiteHeader.svelte";
   import SiteFooter from "$lib/site/SiteFooter.svelte";
-  import ColorSchemeVisualisation from "$lib/ColorSchemeVisualisation.svelte";
+  import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";
+  import Visualisation from "$lib/Visualisation.svelte";
   import Header from "$lib/Header.svelte";
   import Footer from "$lib/Footer.svelte";
   import Graphic from "$lib/Graphic.svelte";
@@ -14,7 +15,7 @@
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
   import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
-  import { lightSpec, darkSpec } from "./spec.js";
+  import { spec } from "./spec.js";
   import data from "./uk-election-2019-yh.json";
 
   const links = {
@@ -28,6 +29,12 @@
     }
   };
 
+  let isDarkMode = $state(false);
+  let circleGeometryKey = $derived(
+    isDarkMode ? 
+    "circleGeometryDark" : 
+    "circleGeometryLight");
+
 </script>
 
 <div id="column">
@@ -36,24 +43,25 @@
 
   <h2>3. Plots and Geometries</h2>
   
-  <p>Use geometries to plot data.</p>
+  <p>Geometries are components that map data to visual elements of a plot. They are placed inside a <code>Plot</code> component, which defines the drawing area for data and handles things like clipping. The <code>Plot</code> is located between the gridlines and the axes in the component order.</p>
   
   <div style="min-width: 300px">
-    <ColorSchemeVisualisation 
-        lightSpec={lightSpec} 
-        darkSpec={darkSpec}>
+    <ColorSchemeObserver bind:isDarkMode={isDarkMode} />
+    <Visualisation spec={spec}>
       <Graphic>
         <Svg>
           <Gridlines />
           <Plot>
-            <CircleGeometry data={data} />
+            <CircleGeometry key={circleGeometryKey} data={data} />
           </Plot>
           <AxisX />
           <AxisY />
         </Svg>
       </Graphic>
-    </ColorSchemeVisualisation>
+    </Visualisation>
   </div>
+
+  <p>This visualisation maps data to multiple dimensions of visual representation, including x and y position, circle radius, fill colour, fill opacity, and stroke colour.</p>
 
   <SiteFooter {links} />
 

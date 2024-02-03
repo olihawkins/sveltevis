@@ -2,7 +2,7 @@
 import { getLayout } from "$lib/context.svelte.js";
 import { getSettings } from "$lib/settings.js";
 import Visualisation from "$lib/Visualisation.svelte";
-import ColorSchemeVisualisation from "$lib/ColorSchemeVisualisation.svelte";
+import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";
 import Header from "$lib/Header.svelte";
 import Footer from "$lib/Footer.svelte";
 import Graphic from "$lib/Graphic.svelte";
@@ -17,8 +17,8 @@ import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
 export {
     getLayout,
     getSettings,
+    ColorSchemeObserver,
     Visualisation,
-    ColorSchemeVisualisation,
     Header,
     Footer,
     Graphic,
