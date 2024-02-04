@@ -62,7 +62,7 @@ export function createLayout(configs) {
     set windowWidth(w) {
       windowWidth = w;
     }
-  }
+  };
 
   // Store and return
   setContext(LAYOUT_CONTEXT, layout);
@@ -72,7 +72,5 @@ export function createLayout(configs) {
 // Get layout object --------------------------------------------------------------------
 
 export function getLayout() {
-  if (hasContext(LAYOUT_CONTEXT)) {
-    return getContext(LAYOUT_CONTEXT);
-  }
+  return getContext(LAYOUT_CONTEXT);
 }

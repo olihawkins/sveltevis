@@ -1,7 +1,7 @@
 const strokeRangeLight = ["#ffa600", "#8d34e0"];
 const strokeRangeDark = ["#8c03fc", "#d9a311"];
 
-function getCircleGeometry(strokeRange) {
+function getCircleGeometryMain(strokeRange) {
   return {
     mappings: {
       x: {
@@ -35,6 +35,13 @@ function getCircleGeometry(strokeRange) {
     fillOpacity: 1,
     strokeOpacity: 1,
     strokeWidth: 1.7
+  };
+}
+
+function getCircleGeometryMobile() {
+  return {
+    radius: 10,
+    strokeWidth: 1.2
   };
 }
 
@@ -98,8 +105,8 @@ const spec = {
         {value: 80, label: "80%"},
       ]
     },
-    circleGeometryLight: getCircleGeometry(strokeRangeLight),
-    circleGeometryDark: getCircleGeometry(strokeRangeDark),
+    circleGeometryLight: getCircleGeometryMain(strokeRangeLight),
+    circleGeometryDark: getCircleGeometryMain(strokeRangeDark),
   },
   alts: [
     {
@@ -116,10 +123,8 @@ const spec = {
           }
         },
       },
-      circleGeometry: {
-        radius: 10,
-        strokeWidth: 1.2
-      }
+      circleGeometryLight: getCircleGeometryMobile(),
+      circleGeometryDark: getCircleGeometryMobile()
     }
   ]
 };

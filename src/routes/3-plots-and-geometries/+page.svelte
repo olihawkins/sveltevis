@@ -52,7 +52,9 @@
         <Svg>
           <Gridlines />
           <Plot>
-            <CircleGeometry key={circleGeometryKey} data={data} />
+            <CircleGeometry 
+              key={circleGeometryKey} 
+              data={data} />
           </Plot>
           <AxisX />
           <AxisY />
