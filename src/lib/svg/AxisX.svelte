@@ -212,7 +212,7 @@
 <g class="sveltevis-axis-x">
 
   <!--Axis ticks-->
-  {#each settings.ticks as tick, i (i)}
+  {#each settings.ticks as tick (tick.value)}
 
     <!--Axis ticks-->
     {#if settings.showTicks === true}

@@ -1,6 +1,6 @@
 // Imports --------------------------------------------------------------------
 
-import { getContext, hasContext, setContext } from "svelte";
+import { getContext, setContext } from "svelte";
 
 // Constants ------------------------------------------------------------------
 
@@ -19,11 +19,12 @@ function getNextConfig(configs, width) {
 
 // Create layout object -------------------------------------------------------
 
-export function createLayout(configs) {
+export function createLayout(confs) {
 
   // State
-  let windowWidth = $state(0);
-  let width = $state(0);
+  let configs = $state(confs);
+  let windowWidth = $state(800);
+  let width = $state(800);
 
   // Derived values
   let config = $derived(getNextConfig(configs, windowWidth));
@@ -44,6 +45,9 @@ export function createLayout(configs) {
     get config() {
       return config;
     },
+    get configs() {
+      return configs;
+    },
     get graphic() {
       return graphic;
     },
@@ -53,11 +57,14 @@ export function createLayout(configs) {
     get width() {
       return width;
     },
-    set width(w) {
-      width = w;
-    },
     get windowWidth() {
       return windowWidth;
+    },
+    set configs(c) {
+      configs = c;
+    },
+    set width(w) {
+      width = w;
     },
     set windowWidth(w) {
       windowWidth = w;

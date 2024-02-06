@@ -70,7 +70,7 @@
 <g class="sveltevis-axis-x">
 
   <!--Gridlines X-->
-  {#each settings.x.lines as line, i (i)}
+  {#each settings.x.lines as line (line.value)}
     {#if settings.x.show === true}
       <rect
         class="sveltevis-gridline-x"
@@ -81,7 +81,7 @@
     {/if}
   {/each}
 
-  {#each settings.y.lines as line, i (i)}
+  {#each settings.y.lines as line (line.value)}
     {#if settings.y.show === true}
     <rect
       class="sveltevis-gridline-y"

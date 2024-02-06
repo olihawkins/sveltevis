@@ -1,16 +1,12 @@
 <script>
 
-  // Imports ------------------------------------------------------------------
-
-  import { onMount } from "svelte";
-
   // Props --------------------------------------------------------------------
 
   let { isDarkMode } = $props();
 
   // Observe and update dark mode ---------------------------------------------
 
-  onMount(() => {	
+  $effect(() => {	
     
     // Set initial color scheme
     const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");

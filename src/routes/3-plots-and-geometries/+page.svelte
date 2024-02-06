@@ -22,10 +22,6 @@
     previous: {
       label: "Gridlines and Axes",
       href: "/2-gridlines-and-axes"
-    },
-    next: {
-      label: "Updating a Visualisation",
-      href: "/4-updating-a-visualisation"
     }
   };
 

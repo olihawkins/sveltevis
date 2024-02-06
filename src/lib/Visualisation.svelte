@@ -2,7 +2,6 @@
 
   // Imports ------------------------------------------------------------------
 
-  import { onMount } from "svelte";
   import { createConfigs } from "./settings.js";
   import { createLayout } from "./context.svelte.js";
 
@@ -33,8 +32,9 @@
 
   // Layout -------------------------------------------------------------------
 
-  const configs = createConfigs(spec, defaults);
-  const layout = createLayout(configs);
+  const layout = createLayout(createConfigs(spec, defaults));
+  const configs = $derived(createConfigs(spec, defaults));
+  $effect(() => layout.configs = configs);
 
   // Bound elements -----------------------------------------------------------
   
@@ -56,7 +56,7 @@
   }
 
   // Set up resize handling 
-  onMount(() => {		
+  $effect(() => {		
 
     // Update width and downstream layout properties
     updateLayout();
