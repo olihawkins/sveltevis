@@ -15,7 +15,7 @@
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
   import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
-  import { spec } from "./spec.js";
+  import { lightSpec, darkSpec } from "./spec.js";
   import data from "./uk-election-2019-yh.json";
 
   const links = {
@@ -26,10 +26,7 @@
   };
 
   let isDarkMode = $state(false);
-  let circleGeometryKey = $derived(
-    isDarkMode ? 
-    "circleGeometryDark" : 
-    "circleGeometryLight");
+  let spec = $derived(isDarkMode ? darkSpec : lightSpec);
 
 </script>
 
@@ -48,9 +45,7 @@
         <Svg>
           <Gridlines />
           <Plot>
-            <CircleGeometry 
-              key={circleGeometryKey} 
-              data={data} />
+            <CircleGeometry data={data} />
           </Plot>
           <AxisX />
           <AxisY />

@@ -55,7 +55,10 @@ It is also possible to install the package from NPM into a Vite Svelte template,
 Note that you will need to edit `main.js` in the Vite project to replace the old method of instantiating the app with the new method.
 
 ```javascript
-// Comment out old method
+// Add import for createRoot function
+import { createRoot } from 'svelte';
+
+// Comment out old method of instantiation
 // const app = new App({
 //   target: document.getElementById('app'),
 // })
