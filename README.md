@@ -29,8 +29,8 @@ The initial project goal was to develop the smallest set of fully-functional com
 The priorities for future work are:
 
 1. Create more geometry components
-2. Develop a general approach to event handling to support pop-ups and other interactive components
-3. Develop a general approach to implementing animation
+2. Develop an approach to event handling to support pop-ups and other interactive components
+3. Develop an approach to implementing animation
 
 ## Trying the components
 
