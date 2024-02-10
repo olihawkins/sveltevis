@@ -4,11 +4,11 @@ A Svelte component library for composing responsive interactive data visualisati
 
 ## Status
 
-This package is in active development and is **not yet ready for use**. The API should be regarded as unstable until version 1.0.0. The project is targetting <a href="https://svelte.dev/blog/whats-new-in-svelte-december-2023">Svelte 5</a> and uses <a href="https://svelte-5-preview.vercel.app/docs/runes">runes</a>.
+This package is in active but early development. The API should be regarded as unstable until version 1.0.0. The project is targetting <a href="https://svelte.dev/blog/whats-new-in-svelte-december-2023">Svelte 5</a> and uses <a href="https://svelte-5-preview.vercel.app/docs/runes">runes</a>.
 
 ## Roadmap
 
-The first objective was to develop the smallest set of fully-functional components needed to make a responsive scatterplot, using the project's approach to configuring component settings and managing state. This milestone has been reached. The list of components created to achieve this goal are listed below. 
+The initial project goal was to develop the smallest set of fully-functional components needed to make a responsive scatterplot, using the project's approach to configuring component settings and managing state. This milestone has been reached. The list of components created to achieve this goal are listed below. 
 
 ### Components completed
 
@@ -26,10 +26,11 @@ The first objective was to develop the smallest set of fully-functional componen
 
 ### Next steps
 
-The next two milestones are:
+The priorities for future work are:
 
-1. Add geometry components for column and line charts
-2. Implement a general approach to event handling to support pop-ups and other interactive components
+1. Create more geometry components
+2. Develop a general approach to event handling to support pop-ups and other interactive components
+3. Develop a general approach to implementing animation
 
 ## Trying the components
 
