@@ -6,8 +6,7 @@
   import SiteFooter from "$lib/site/SiteFooter.svelte";
   import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";
   import Visualisation from "$lib/Visualisation.svelte";
-  import Header from "$lib/Header.svelte";
-  import Footer from "$lib/Footer.svelte";
+  import Popup from "$lib/Popup.svelte";
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
   import Gridlines from "$lib/svg/Gridlines.svelte";
@@ -41,6 +40,7 @@
   <div style="min-width: 300px">
     <ColorSchemeObserver bind:isDarkMode={isDarkMode} />
     <Visualisation spec={spec}>
+      <Popup />
       <Graphic>
         <Svg>
           <Gridlines />

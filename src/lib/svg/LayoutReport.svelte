@@ -34,6 +34,7 @@
   // Properties -----------------------------------------------------------
 
   const windowWidth = $derived(layout.windowWidth);
+  const windowHeight = $derived(layout.windowHeight);
   const graphic = $derived(layout.graphic);
   const plot = $derived(layout.plot);
   const margin = $derived(graphic.margin);
@@ -139,11 +140,12 @@
 
     <!-- Layout properties -->
     <text x=20 y=30>window.innerWidth: {windowWidth}</text>
-    <text x=20 y=50>config.name: {config.name}</text>
-    <text x=20 y=70>graphic.width: {graphic.width}</text>
-    <text x=20 y=90>graphic.height: {graphic.height}</text>
-    <text x=20 y=110>plot.width: {plot.width}</text>
-    <text x=20 y=130>plot.height: {plot.height}</text>
+    <text x=20 y=50>window.innerHeight: {windowHeight}</text>
+    <text x=20 y=70>config.name: {config.name}</text>
+    <text x=20 y=90>graphic.width: {graphic.width}</text>
+    <text x=20 y=110>graphic.height: {graphic.height}</text>
+    <text x=20 y=130>plot.width: {plot.width}</text>
+    <text x=20 y=150>plot.height: {plot.height}</text>
 </g>
 
 <style>

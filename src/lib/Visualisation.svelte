@@ -53,6 +53,7 @@
   function updateLayout() {
     layout.width = vis.clientWidth;
     layout.windowWidth = window.innerWidth;
+    layout.windowHeight = window.innerHeight;
   }
 
   // Set up resize handling 

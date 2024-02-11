@@ -18,6 +18,11 @@ function getSpec(strokeRange) {
           }
         }
       },
+      popup: {
+        formatters: {
+          circleGeometry: (event) => event.msg.constituency_name
+        }
+      },
       gridlines: {
         x: {
           domain: [20, 60],

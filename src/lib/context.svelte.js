@@ -24,7 +24,9 @@ export function createLayout(confs) {
   // State
   let configs = $state(confs);
   let windowWidth = $state(800);
+  let windowHeight = $state(800);
   let width = $state(800);
+  let event = $state({});
 
   // Derived values
   let config = $derived(getNextConfig(configs, windowWidth));
@@ -48,6 +50,9 @@ export function createLayout(confs) {
     get configs() {
       return configs;
     },
+    get event() {
+      return event;
+    },
     get graphic() {
       return graphic;
     },
@@ -57,14 +62,23 @@ export function createLayout(confs) {
     get width() {
       return width;
     },
+    get windowHeight() {
+      return windowHeight;
+    },
     get windowWidth() {
       return windowWidth;
     },
     set configs(c) {
       configs = c;
     },
+    set event(e) {
+      event = e;
+    },
     set width(w) {
       width = w;
+    },
+    set windowHeight(h) {
+      windowHeight = h;
     },
     set windowWidth(w) {
       windowWidth = w;
