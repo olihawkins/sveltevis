@@ -209,10 +209,10 @@
       cy={getY(point, scaleY, settings)} 
       r={getRadius(point, scaleRadius, settings)}
       role="graphics-symbol"
-      on:mouseover={e => layout.event = {source: key, msg: point}}
-      on:mouseout={e => layout.event = {source: key, msg: null}}
-      on:focus={e => console.log(e)}
-      on:blur={e => console.log(e)}
+      onmouseover={e => layout.event = {source: key, msg: point}}
+      onmouseout={e => layout.event = {source: key, msg: null}}
+      onfocus={e => console.log(e)}
+      onblur={e => console.log(e)}
       style:fill={getFill(point, scaleFill, settings)}
       style:fill-opacity={getFillOpacity(point, scaleFillOpacity, settings)}
       style:stroke={getStroke(point, scaleStroke, settings)}

@@ -13,7 +13,7 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "footer" } = $props();
+  let { key = "footer", children = null } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -26,7 +26,9 @@
 </script>
 
 <div class="sveltevis-footer">
-  <slot />
+  {#if children !== null}
+    {@render children()}
+  {/if}
   {#if settings.footnote !== null}
     <p class="sveltevis-footer-footnote">
       {@html settings.footnote}

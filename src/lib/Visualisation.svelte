@@ -28,7 +28,7 @@
 
   // Props --------------------------------------------------------------------
 
-  let { spec = {} } = $props();
+  let { spec = {}, children = null } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -84,7 +84,9 @@
 </script>
 
 <div class="sveltevis-visualisation" style:visibility={visibility} bind:this={vis}>
-  <slot />
+  {#if children !== null}
+    {@render children()}
+  {/if}
 </div>
 
 <style>

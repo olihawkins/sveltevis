@@ -15,7 +15,7 @@
 
  // Props --------------------------------------------------------------------
 
-  let { key = "plot" } = $props();
+  let { key = "plot", children = null } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -43,11 +43,15 @@
   </clipPath>
   <g clip-path="url(#sveltevis-plot-clip-path)">
     <g class="sveltevis-plot" transform={`translate(${margin.left} ${margin.top})`}>
-      <slot />
+      {#if children !== null}
+        {@render children()}
+      {/if}
     </g>
   </g>
 {:else}
   <g class="sveltevis-plot" transform={`translate(${margin.left} ${margin.top})`}>
-    <slot />
+    {#if children !== null}
+      {@render children()}
+    {/if}
   </g>
 {/if}

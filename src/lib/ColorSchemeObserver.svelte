@@ -2,7 +2,7 @@
 
   // Props --------------------------------------------------------------------
 
-  let { isDarkMode } = $props();
+  let { isDarkMode = $bindable() } = $props();
 
   // Observe and update dark mode ---------------------------------------------
 

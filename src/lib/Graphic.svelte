@@ -3,6 +3,10 @@
 
   import { getLayout } from "./context.svelte.js";
   
+  // Props --------------------------------------------------------------------
+
+  let { children = null } = $props();
+
   // Layout -------------------------------------------------------------------
 
   const layout = getLayout();
@@ -14,7 +18,9 @@
 </script>
 
 <div class="sveltevis-graphic" style:height={`${height}px`}>
-  <slot />
+  {#if children !== null}
+    {@render children()}
+  {/if}
 </div>
 
 <style>
