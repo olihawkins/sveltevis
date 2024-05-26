@@ -2,7 +2,7 @@
 
 ## 0.0.5
 
-* Fixed an issue with `dist` files
+* Fixed issues with `dist` files
 
 ## 0.0.4
 
