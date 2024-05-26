@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.4
+
+* Updates to achieve compatibility with the latest Svelte 5 beta (Svelte 5.0.0-next.141)
+    * Replaces slots with `{@render children()}`
+    * Replaces event handler directives with new event properties
+    * Adds `$bindable()` rune to `ColorSchemeObserver`
+
 ## 0.0.3
 
 * First milestone reached: implements components needed to make a responsive scatterplot
