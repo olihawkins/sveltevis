@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.5
+
+* Fixed an issue with `dist` files
+
 ## 0.0.4
 
 * Updates to achieve compatibility with the latest Svelte 5 beta (Svelte 5.0.0-next.141)
