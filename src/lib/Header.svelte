@@ -13,7 +13,7 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "header", children = null } = $props();
+  let { key = "header", children } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -36,10 +36,9 @@
       {@html settings.subtitle}
     </p>
   {/if}
-  {#if children !== null}
+  {#if children}
     {@render children()}
   {/if}
-
 </div>
 
 <style>

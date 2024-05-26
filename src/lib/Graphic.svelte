@@ -5,7 +5,7 @@
   
   // Props --------------------------------------------------------------------
 
-  let { children = null } = $props();
+  let { children } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -18,7 +18,7 @@
 </script>
 
 <div class="sveltevis-graphic" style:height={`${height}px`}>
-  {#if children !== null}
+  {#if children}
     {@render children()}
   {/if}
 </div>
