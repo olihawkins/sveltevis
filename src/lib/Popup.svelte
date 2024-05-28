@@ -56,7 +56,6 @@
   function getLeft(event) {
     let left = null;
     if (Object.hasOwn(event, "e") && event.e !== null) {
-      console.log(event.e.target.getBoundingClientRect());
       if (event.e.clientX <= layout.windowWidth / 2) {
         left = `${event.e.pageX + settings.pad}px`;
       }
