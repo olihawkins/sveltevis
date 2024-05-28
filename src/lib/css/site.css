@@ -1,3 +1,4 @@
+/* Global root element styles */
 :root {
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -8,6 +9,8 @@
   -webkit-text-size-adjust: 100%;
 }
 
+
+/* Light and dark modes */
 :root {
   --background-color: #ffffff;
   --text-color: #404040;
@@ -17,23 +20,26 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    background-color: #ffffff;
+    --background-color: #ffffff;
     --code-background-color: #e0e0e0;
     --text-color: #404040;
     --code-color: #303030;
+    background-color: var(--background-color);
     
   }
 }
   
 @media (prefers-color-scheme: dark) {
   :root {
-    background-color: #202020;
+    --background-color: #202020;
     --text-color: #c0c0c0;
     --code-background-color: #404040;
     --code-color: #e0e0e0;
+    background-color: var(--background-color);
   }
 }
 
+/* Page elements */
 #column {
   min-width: 300px;
   max-width: 900px;
@@ -105,6 +111,8 @@ a:hover {
   text-decoration: none;
 }
 
+/* Site component styles */
+
 .sveltevis-site-footer-nav {
   display: flex; 
   flex-direction: row;
@@ -133,6 +141,7 @@ a:hover {
   text-align: center;
 }
 
+/* Media queries */
 @media all and (max-width: 700px) {
 
   h1 {
@@ -162,4 +171,12 @@ a:hover {
   .sveltevis-site-footer-copyright {
     font-size: 9pt;
   }
+}
+
+/* Sveltevis component customisation */
+.sveltevis-popup {
+  padding: 4px 6px 3px 6px;
+  background-color: var(--background-color);
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
 }

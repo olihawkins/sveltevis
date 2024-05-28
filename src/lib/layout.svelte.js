@@ -26,7 +26,7 @@ export function createLayout(confs) {
   let windowWidth = $state(800);
   let windowHeight = $state(800);
   let width = $state(800);
-  let event = $state({});
+  let event = $state({source: "layout", msg: null});
 
   // Derived values
   let config = $derived(getNextConfig(configs, windowWidth));

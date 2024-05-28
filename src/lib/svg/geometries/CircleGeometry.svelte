@@ -8,9 +8,10 @@
     scaleLinear,
     scaleOrdinal,
     scaleSqrt } from "d3-scale";
-  import { getLayout } from "../../context.svelte.js";
+  import { getLayout } from "../../layout.svelte.js";
   import { getSettings } from "../../settings.js";
-  
+  import { noop } from "../../events.js";
+
   // Functions ----------------------------------------------------------------
 
   function getValue(point, scale, settings, dimension, fallback) {
@@ -46,52 +47,72 @@
       scale, 
       settings,
       "radius", 
-      settings.radius);
+      settings.circle.radius);
   }
 
-  function getFill(point, scale, settings) {
-    return getValue(
-      point, 
-      scale, 
-      settings,
-      "fill", 
-      settings.fill);
+  function getFill(point, selectedPoint, scale, settings) {
+    let fill = settings.highlight.fill;
+    if (point.id !== selectedPoint.id) {
+      fill = getValue(
+        point, 
+        scale, 
+        settings,
+        "fill", 
+        settings.circle.fill);
+    }
+    return fill;
   }
 
-  function getFillOpacity(point, scale, settings) {
-    return getValue(
-      point, 
-      scale, 
-      settings,
-      "fillOpacity", 
-      settings.fillOpacity);
+  function getFillOpacity(point, selectedPoint, scale, settings) {
+    let fillOpacity = settings.highlight.fillOpacity;
+    if (point.id !== selectedPoint.id) {
+      fillOpacity = getValue(
+        point, 
+        scale, 
+        settings,
+        "fillOpacity", 
+        settings.circle.fillOpacity);
+    }
+    return fillOpacity;
   }
 
-  function getStroke(point, scale, settings) {
-    return getValue(
-      point, 
-      scale, 
-      settings,
-      "stroke", 
-      settings.stroke);
+  function getStroke(point, selectedPoint, scale, settings) {
+    let stroke = settings.highlight.stroke;
+    if (point.id !== selectedPoint.id) {
+      stroke = getValue(
+        point, 
+        scale, 
+        settings,
+        "stroke", 
+        settings.circle.stroke);
+    }
+    return stroke;
   }
 
-  function getStrokeOpacity(point, scale, settings) {
-    return getValue(
-      point, 
-      scale, 
-      settings,
-      "strokeOpacity", 
-      settings.strokeOpacity);
+  function getStrokeOpacity(point, selectedPoint, scale, settings) {
+    let strokeOpacity = settings.highlight.strokeOpacity;
+    if (point.id !== selectedPoint.id) {
+      strokeOpacity = getValue(
+        point, 
+        scale, 
+        settings,
+        "strokeOpacity", 
+        settings.circle.strokeOpacity);
+    }
+    return strokeOpacity;
   }  
 
-  function getStrokeWidth(point, scale, settings) {
-    return getValue(
-      point, 
-      scale, 
-      settings,
-      "strokeWidth", 
-      settings.strokeWidth);
+  function getStrokeWidth(point, selectedPoint, scale, settings) {
+    let strokeWidth = settings.highlight.strokeWidth;
+    if (point.id !== selectedPoint.id) {
+      strokeWidth = getValue(
+        point, 
+        scale, 
+        settings,
+        "strokeWidth", 
+        settings.circle.strokeWidth);
+      }
+    return strokeWidth;
   }
 
   // Defaults -----------------------------------------------------------------
@@ -139,14 +160,27 @@
         name: null,
         scale: scaleLinear,
         domain: [],
+      },
+      ariaLabel: {
+        name: null,
       }
     },
-    radius: 8,
-    fill: "var(--sveltevis-color)",
-    fillOpacity: 1,
-    stroke: "var(--sveltevis-color)",
-    strokeOpacity: 1,
-    strokeWidth: 1
+    circle: {
+      radius: 8,
+      fill: "var(--sveltevis-color)",
+      fillOpacity: 1,
+      stroke: "var(--sveltevis-color)",
+      strokeOpacity: 1,
+      strokeWidth: 1
+    },
+    highlight: {
+      fill: "var(--sveltevis-color)",
+      fillOpacity: 1,
+      stroke: "var(--sveltevis-color)",
+      strokeOpacity: 1,
+      strokeWidth: 1
+    },
+    sendEvents: false
   };
 
   // Props --------------------------------------------------------------------
@@ -163,7 +197,11 @@
   const settings = $derived(getSettings(defaults, config, key));
   const mappings = $derived(settings.mappings);
 
-  // Properties --------------------------------------------------------------
+  // State --------------------------------------------------------------------
+
+  let selectedPoint = $state({id: ""});
+
+  // Properties ---------------------------------------------------------------
 
   const plot = $derived(layout.plot);
   
@@ -177,7 +215,7 @@
 
   const scaleRadius = $derived(mappings.radius.scale(
     mappings.radius.domain, 
-    [0, settings.radius]));
+    [0, settings.circle.radius]));
 
   const scaleFill = $derived(mappings.fill.scale(
     mappings.fill.domain, 
@@ -185,7 +223,7 @@
 
   const scaleFillOpacity = $derived(mappings.fillOpacity.scale(
     mappings.fillOpacity.domain, 
-    [0, settings.fillOpacity]));
+    [0, settings.circle.fillOpacity]));
 
   const scaleStroke = $derived(mappings.stroke.scale(
     mappings.stroke.domain, 
@@ -193,11 +231,46 @@
 
   const scaleStrokeOpacity = $derived(mappings.strokeOpacity.scale(
     mappings.strokeOpacity.domain, 
-    [0, settings.strokeOpacity]));
+    [0, settings.circle.strokeOpacity]));
 
   const scaleStrokeWidth = $derived(mappings.strokeWidth.scale(
     mappings.strokeWidth.domain, 
-    [0, settings.strokeWidth]));
+    [0, settings.circle.strokeWidth]));
+
+// Events ---------------------------------------------------------------------
+
+function getActivateHandler(key, settings, layout, point) {
+  if (settings.sendEvents === true) {
+    return (e) => {
+      e.stopPropagation();
+      selectedPoint = point;
+      layout.event = {
+        e: e, 
+        key: key, 
+        msg: point
+      };
+    };
+  } else {
+    noop;
+  }
+}
+
+// Standard handler for deactivation
+function getDeactivateHandler(source, settings, layout) {
+  if (settings.sendEvents === true) {
+    return (e) => {
+      e.stopPropagation();
+      selectedPoint = {id: ""};
+      layout.event = {
+        e: e, 
+        key: key, 
+        msg: null
+      };
+    };
+  } else {
+    noop;
+  }
+}
 
 </script>
 
@@ -208,16 +281,17 @@
       cx={getX(point, scaleX, settings)} 
       cy={getY(point, scaleY, settings)} 
       r={getRadius(point, scaleRadius, settings)}
-      role="graphics-symbol"
-      onmouseover={e => layout.event = {source: key, msg: point}}
-      onmouseout={e => layout.event = {source: key, msg: null}}
-      onfocus={e => console.log(e)}
-      onblur={e => console.log(e)}
-      style:fill={getFill(point, scaleFill, settings)}
-      style:fill-opacity={getFillOpacity(point, scaleFillOpacity, settings)}
-      style:stroke={getStroke(point, scaleStroke, settings)}
-      style:stroke-opacity={getStrokeOpacity(point, scaleStrokeOpacity, settings)}
-      style:stroke-width={getStrokeWidth(point, scaleStrokeWidth, settings)}>
+      role="img"
+      aria-roledescription="data point"
+      aria-label={point[mappings.ariaLabel.name]}
+      onclick={getActivateHandler(key, settings, layout, point)}
+      onmouseover={getActivateHandler(key, settings, layout, point)}
+      onmouseout={getDeactivateHandler(key, settings, layout, point)}
+      style:fill={getFill(point, selectedPoint, scaleFill, settings)}
+      style:fill-opacity={getFillOpacity(point, selectedPoint, scaleFillOpacity, settings)}
+      style:stroke={getStroke(point, selectedPoint, scaleStroke, settings)}
+      style:stroke-opacity={getStrokeOpacity(point, selectedPoint, scaleStrokeOpacity, settings)}
+      style:stroke-width={getStrokeWidth(point, selectedPoint, scaleStrokeWidth, settings)}>
     </circle>
   {/each}
 </g>

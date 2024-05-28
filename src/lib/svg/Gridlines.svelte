@@ -5,7 +5,7 @@
   // Imports ------------------------------------------------------------------
 
   import { scaleLinear } from "d3-scale";
-  import { getLayout } from "../context.svelte.js";
+  import { getLayout } from "../layout.svelte.js";
   import { getSettings } from "../settings.js";
 
   // Defaults -----------------------------------------------------------------

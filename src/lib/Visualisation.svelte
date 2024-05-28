@@ -3,7 +3,7 @@
   // Imports ------------------------------------------------------------------
 
   import { createConfigs } from "./settings.js";
-  import { createLayout } from "./context.svelte.js";
+  import { createLayout } from "./layout.svelte.js";
 
   // Defaults -----------------------------------------------------------------
 

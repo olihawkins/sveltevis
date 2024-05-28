@@ -18,6 +18,17 @@ function getSpec(strokeRange) {
           }
         }
       },
+      svg: {
+        sendEvents: true
+      },
+      popup: {
+        pad: 8,
+        formatters: {
+          circleGeometry: (event) => {
+            return event.msg.constituency_name;
+          }
+        }
+      },
       gridlines: {
         x: {
           domain: [20, 60],
@@ -90,12 +101,21 @@ function getSpec(strokeRange) {
             name: "constituency_type",
             domain: ["County", "Borough"],
             range: strokeRange
+          },
+          ariaLabel: {
+            name: "constituency_name",
           }
         },
         circle: {
           radius: 16,
-          strokeWidth: 1.4
+          strokeWidth: 1.5
         },
+        highlight: {
+          fill: "#75edff",
+          stroke: "#1274ff",
+          strokeWidth: 2.2
+        },
+        sendEvents: true
       }
     },
     alts: [
@@ -113,11 +133,19 @@ function getSpec(strokeRange) {
             }
           },
         },
+        popup: {
+          pad: 6
+        },
         circleGeometry: {
           circle: {
             radius: 10,
             strokeWidth: 1
-          }
+          },
+          highlight: {
+            fill: "#75edff",
+            stroke: "#1274ff",
+            strokeWidth: 1.6
+          },
         }
       }
     ]

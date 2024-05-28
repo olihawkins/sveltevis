@@ -12,6 +12,7 @@
     <li><a href="/1-layout">Layout</a></li>
     <li><a href="/2-gridlines-and-axes">Gridlines and Axes</a></li>
     <li><a href="/3-plots-and-geometries">Plots and Geometries</a></li>
+    <li><a href="/4-events">Events</a></li>
   </ol>
   
 </div>

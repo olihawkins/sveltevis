@@ -6,6 +6,7 @@
   import SiteFooter from "$lib/site/SiteFooter.svelte";
   import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";
   import Visualisation from "$lib/Visualisation.svelte";
+  import Popup from "$lib/Popup.svelte";
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
   import Gridlines from "$lib/svg/Gridlines.svelte";
@@ -18,12 +19,8 @@
 
   const links = {
     previous: {
-      label: "Gridlines and Axes",
-      href: "/2-gridlines-and-axes"
-    },
-    next: {
-      label: "Events",
-      href: "/4-events"
+      label: "Plots and Geometries",
+      href: "/3-plots-and-geometries"
     }
   };
 
@@ -36,13 +33,14 @@
 
   <SiteHeader />
 
-  <h2>3. Plots and Geometries</h2>
+  <h2>4. Events</h2>
   
-  <p>Geometries are components that map data to visual elements of a plot. They are placed inside a <code>Plot</code> component, which defines the drawing area for data and handles things like clipping. The <code>Plot</code> is located between the gridlines and the axes in the component order.</p>
+  <p>Here is the scatterplot we looked at previously, only now it has a <code>Popup</code> component that responds to events.</p>
   
   <div style="min-width: 300px">
     <ColorSchemeObserver bind:isDarkMode={isDarkMode} />
     <Visualisation spec={spec}>
+      <Popup />
       <Graphic>
         <Svg>
           <Gridlines />
@@ -56,7 +54,23 @@
     </Visualisation>
   </div>
 
-  <p>This scatterplot is made using a <code>CircleGeometry</code> component, which allows variables to be mapped to multiple dimensions of the points' visual representation, including their x and y position, circle radius, fill colour, fill opacity, and stroke colour.</p>
+  <p>How does this work?</p>
+
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
 
   <SiteFooter {links} />
 

@@ -1,5 +1,5 @@
 // Reexport your entry components here
-import { getLayout } from "$lib/context.svelte.js";
+import { getLayout } from "$lib/layout.svelte.js";
 import { getSettings } from "$lib/settings.js";
 import Visualisation from "$lib/Visualisation.svelte";
 import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";

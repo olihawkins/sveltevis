@@ -1,7 +1,7 @@
 <script>
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./context.svelte.js";
+  import { getLayout } from "./layout.svelte.js";
   
   // Props --------------------------------------------------------------------
 
