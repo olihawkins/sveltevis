@@ -48,8 +48,8 @@
 }
 
 h1 {
-  margin: 2rem 0 2rem 0;
-  padding: 1rem;
+  margin: 0;
+  padding: 2rem 1rem 2rem 1rem;
   font-size: 28pt;
   text-align: center;
 }

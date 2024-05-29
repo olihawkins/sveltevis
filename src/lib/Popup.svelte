@@ -5,10 +5,13 @@
   import { getLayout } from "./layout.svelte.js";
   import { getSettings } from "./settings.js";
   
+  // Constants ----------------------------------------------------------------
+
+  const SCROLLBAR_OFFSET = 10;
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    pad: 10,
     formatters: {},
   };
 
@@ -19,6 +22,10 @@
   // Layout -------------------------------------------------------------------
 
   const layout = getLayout();
+
+  // Bound elements -----------------------------------------------------------
+  
+  let popup = $state();
 
   // Settings -----------------------------------------------------------------
 
@@ -54,40 +61,58 @@
   }
 
   function getLeft(event) {
-    let left = null;
+    let left = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
-      if (event.e.clientX <= layout.windowWidth / 2) {
-        left = `${event.e.pageX + settings.pad}px`;
+      const innerRect = event.e.target.getBoundingClientRect();
+      const targetLeft = window.scrollX + innerRect.right;
+      if (event.e.clientX <= window.innerWidth / 2) {
+        left = `${targetLeft}px`;
       }
     }
     return left;
   }
 
   function getRight(event) {
-    let right = null;
+    let right = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
-      if (event.e.clientX > layout.windowWidth / 2) {
-        right = `${layout.windowWidth - (event.e.pageX - settings.pad)}px`;
+      const doc = document.documentElement;
+      const innerRect = event.e.target.getBoundingClientRect();
+      const targetRight = window.innerWidth - (window.scrollX + innerRect.left);
+      if (event.e.clientX > window.innerWidth / 2) {
+        if (doc.scrollHeight > doc.clientHeight) {
+          right = `${targetRight - SCROLLBAR_OFFSET}px`;
+        } else {
+          right = `${targetRight}px`;
+        }
       }
     }
     return right;
   }
 
   function getTop(event) {
-    let top = null;
+    let top = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
-      if (event.e.clientY <= layout.windowHeight / 2) {
-        top = `${event.e.pageY + settings.pad}px`;
+      const innerRect = event.e.target.getBoundingClientRect();
+      const targetTop = window.scrollY + innerRect.bottom;
+      if (event.e.clientY <= window.innerHeight / 2) {
+        top = `${targetTop}px`;
       }
     }
     return top;
   }
 
   function getBottom(event) {
-    let bottom = null;
+    let bottom = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
-      if (event.e.clientY > layout.windowHeight / 2) {
-        bottom = `${layout.windowHeight - (event.e.pageY - settings.pad)}px`;
+      const doc = document.documentElement;
+      const innerRect = event.e.target.getBoundingClientRect();
+      const targetBottom = window.innerHeight - (window.scrollY + innerRect.top);
+      if (event.e.clientY > window.innerHeight / 2) {
+        if (doc.scrollWidth > doc.clientWidth) {
+          bottom = `${targetBottom - SCROLLBAR_OFFSET}px`;
+        } else {
+          bottom = `${targetBottom}px`;
+        }
       }
     }
     return bottom;
@@ -101,7 +126,8 @@
   style:left={getLeft(event)} 
   style:right={getRight(event)} 
   style:top={getTop(event)}
-  style:bottom={getBottom(event)} >
+  style:bottom={getBottom(event)} 
+  bind:this={popup} >
     {getContent(event)}
 </div>
 

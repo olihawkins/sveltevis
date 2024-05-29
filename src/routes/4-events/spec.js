@@ -22,7 +22,6 @@ function getSpec(strokeRange) {
         sendEvents: true
       },
       popup: {
-        pad: 8,
         formatters: {
           circleGeometry: (event) => {
             return event.msg.constituency_name;
@@ -132,9 +131,6 @@ function getSpec(strokeRange) {
               left: 40
             }
           },
-        },
-        popup: {
-          pad: 6
         },
         circleGeometry: {
           circle: {
