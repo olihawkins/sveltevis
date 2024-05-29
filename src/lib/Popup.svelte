@@ -7,7 +7,7 @@
   
   // Constants ----------------------------------------------------------------
 
-  const SCROLLBAR_OFFSET = 10;
+  const SCROLLBAR_OFFSET = 14;
 
   // Defaults -----------------------------------------------------------------
 
@@ -15,7 +15,7 @@
     formatters: {},
   };
 
- // Props --------------------------------------------------------------------
+ // Props ---------------------------------------------------------------------
 
   let { key = "popup" } = $props();
 
@@ -33,7 +33,7 @@
   const settings = $derived(getSettings(defaults, config, key));
   const event = $derived(layout.event);
 
-  // Functions ----------------------------------------------------------------
+  // Display settings ---------------------------------------------------------
   
   function showPopup(event) {
     let show = false;
