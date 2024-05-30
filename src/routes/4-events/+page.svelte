@@ -54,8 +54,6 @@
     </Visualisation>
   </div>
 
-  <p>How does this work?</p>
-
   <p>&nbsp;</p>
   <p>&nbsp;</p>
   <p>&nbsp;</p>

@@ -179,4 +179,12 @@ a:hover {
   background-color: var(--background-color);
   border: 1px solid var(--text-color);
   border-radius: 4px;
+  font-size: 13pt;
+}
+
+/* Sveltevis component customisation: Media queries */
+@media all and (max-width: 700px) {
+  .sveltevis-popup {
+    font-size: 11pt;
+  }
 }

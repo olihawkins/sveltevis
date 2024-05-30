@@ -12,16 +12,48 @@
   import { getSettings } from "../../settings.js";
   import { noop } from "../../events.js";
 
-  // Functions ----------------------------------------------------------------
+  // Generic functions --------------------------------------------------------
 
-  function getValue(point, scale, settings, dimension, fallback) {
+  function getValue(
+      point, 
+      scale, 
+      settings, 
+      dimension, 
+      fallback) {
+    
     const name = settings.mappings[dimension].name;
+
     if (name !== null) {
       return scale(point[name]);
     } else {
       return fallback;
     }
   }
+
+  function getHighlightValue(
+      point, 
+      selectedPoint,
+      scale, 
+      settings, 
+      dimension, 
+      fallback) {
+
+    if (settings.highlight.enabled === true) {
+      if (point.id === selectedPoint.id) {
+        return settings.highlight[dimension];
+      }
+    }
+
+    const name = settings.mappings[dimension].name;
+
+    if (name !== null) {
+      return scale(point[name]);
+    } else {
+      return fallback;
+    }
+  }
+
+  // Functions ----------------------------------------------------------------
 
   function getX(point, scale, settings) {
     return getValue(
@@ -51,68 +83,53 @@
   }
 
   function getFill(point, selectedPoint, scale, settings) {
-    let fill = settings.highlight.fill;
-    if (point.id !== selectedPoint.id) {
-      fill = getValue(
-        point, 
-        scale, 
-        settings,
-        "fill", 
-        settings.circle.fill);
-    }
-    return fill;
+    return getHighlightValue(
+      point, 
+      selectedPoint,
+      scale, 
+      settings,
+      "fill", 
+      settings.circle.fill);
   }
 
   function getFillOpacity(point, selectedPoint, scale, settings) {
-    let fillOpacity = settings.highlight.fillOpacity;
-    if (point.id !== selectedPoint.id) {
-      fillOpacity = getValue(
-        point, 
-        scale, 
-        settings,
-        "fillOpacity", 
-        settings.circle.fillOpacity);
-    }
-    return fillOpacity;
+    return getHighlightValue(
+      point, 
+      selectedPoint,
+      scale, 
+      settings,
+      "fillOpacity", 
+      settings.circle.fillOpacity);
   }
 
   function getStroke(point, selectedPoint, scale, settings) {
-    let stroke = settings.highlight.stroke;
-    if (point.id !== selectedPoint.id) {
-      stroke = getValue(
-        point, 
-        scale, 
-        settings,
-        "stroke", 
-        settings.circle.stroke);
-    }
-    return stroke;
+    return getHighlightValue(
+      point, 
+      selectedPoint,
+      scale, 
+      settings,
+      "stroke", 
+      settings.circle.stroke);
   }
 
   function getStrokeOpacity(point, selectedPoint, scale, settings) {
-    let strokeOpacity = settings.highlight.strokeOpacity;
-    if (point.id !== selectedPoint.id) {
-      strokeOpacity = getValue(
-        point, 
-        scale, 
-        settings,
-        "strokeOpacity", 
-        settings.circle.strokeOpacity);
-    }
-    return strokeOpacity;
+    return getHighlightValue(
+      point, 
+      selectedPoint,
+      scale, 
+      settings,
+      "strokeOpacity", 
+      settings.circle.strokeOpacity);
   }  
 
   function getStrokeWidth(point, selectedPoint, scale, settings) {
-    let strokeWidth = settings.highlight.strokeWidth;
-    if (point.id !== selectedPoint.id) {
-      strokeWidth = getValue(
-        point, 
-        scale, 
-        settings,
-        "strokeWidth", 
-        settings.circle.strokeWidth);
-      }
-    return strokeWidth;
+    return getHighlightValue(
+      point, 
+      selectedPoint,
+      scale, 
+      settings,
+      "strokeWidth", 
+      settings.circle.strokeWidth);
   }
 
   // Defaults -----------------------------------------------------------------
@@ -174,9 +191,10 @@
       strokeWidth: 1
     },
     highlight: {
+      enabled: true,
       fill: "var(--sveltevis-color)",
       fillOpacity: 1,
-      stroke: "var(--sveltevis-color)",
+      stroke: "var(--sveltevis-highlight-color)",
       strokeOpacity: 1,
       strokeWidth: 1
     },
