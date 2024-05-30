@@ -111,8 +111,6 @@ function getSpec(strokeRange) {
         },
         highlight: {
           enabled: true,
-          fill: "#75edff",
-          stroke: "#1274ff",
           strokeWidth: 2.2
         },
         sendEvents: true

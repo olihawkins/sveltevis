@@ -4,15 +4,12 @@
 
   import { getLayout } from "./layout.svelte.js";
   import { getSettings } from "./settings.js";
-  
-  // Constants ----------------------------------------------------------------
-
-  const SCROLLBAR_OFFSET = 14;
 
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
     formatters: {},
+    scrollbarOffset: 14
   };
 
  // Props ---------------------------------------------------------------------
@@ -80,7 +77,7 @@
       const targetRight = window.innerWidth - (window.scrollX + innerRect.left);
       if (event.e.clientX > window.innerWidth / 2) {
         if (doc.scrollHeight > doc.clientHeight) {
-          right = `${targetRight - SCROLLBAR_OFFSET}px`;
+          right = `${targetRight - settings.scrollbarOffset}px`;
         } else {
           right = `${targetRight}px`;
         }
@@ -109,7 +106,7 @@
       const targetBottom = window.innerHeight - (window.scrollY + innerRect.top);
       if (event.e.clientY > window.innerHeight / 2) {
         if (doc.scrollWidth > doc.clientWidth) {
-          bottom = `${targetBottom - SCROLLBAR_OFFSET}px`;
+          bottom = `${targetBottom - settings.scrollbarOffset}px`;
         } else {
           bottom = `${targetBottom}px`;
         }

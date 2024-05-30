@@ -1,6 +1,7 @@
 :root {
   --sveltevis-color: #404040;
-  --sveltevis-highlight-color: #ff00cc;
+  --sveltevis-highlight-fill: #75edff;
+  --sveltevis-highlight-stroke: #1274ff;
   --sveltevis-font-size: 12pt;
   --sveltevis-heading-font-size: 16pt;
   --sveltevis-line-height: 1.5;

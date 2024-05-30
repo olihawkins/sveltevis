@@ -191,10 +191,10 @@
       strokeWidth: 1
     },
     highlight: {
-      enabled: true,
-      fill: "var(--sveltevis-color)",
+      enabled: false,
+      fill: "var(--sveltevis-highlight-fill)",
       fillOpacity: 1,
-      stroke: "var(--sveltevis-highlight-color)",
+      stroke: "var(--sveltevis-highlight-stroke)",
       strokeOpacity: 1,
       strokeWidth: 1
     },
