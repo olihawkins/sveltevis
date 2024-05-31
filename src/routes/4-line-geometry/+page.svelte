@@ -6,7 +6,6 @@
   import SiteFooter from "$lib/site/SiteFooter.svelte";
   import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";
   import Visualisation from "$lib/Visualisation.svelte";
-  import Popup from "$lib/Popup.svelte";
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
   import Gridlines from "$lib/svg/Gridlines.svelte";
@@ -19,8 +18,12 @@
 
   const links = {
     previous: {
-      label: "Plots and Geometries",
-      href: "/3-plots-and-geometries"
+      label: "Circle Geometry",
+      href: "/3-circle-geometry"
+    },
+    next: {
+      label: "Events",
+      href: "/5-events"
     }
   };
 
@@ -33,19 +36,18 @@
 
   <SiteHeader />
 
-  <h2>4. Events</h2>
+  <h2>4. Line Geometry</h2>
   
-  <p>Here is the scatterplot we looked at previously, only now it has a <code>Popup</code> component that responds to events.</p>
+  <p>This line chart is made using a <code>LineGeometry</code> component.</p>
   
   <div style="min-width: 300px">
     <ColorSchemeObserver bind:isDarkMode={isDarkMode} />
     <Visualisation spec={spec}>
-      <Popup />
       <Graphic>
         <Svg>
           <Gridlines />
           <Plot>
-            <CircleGeometry data={data} />
+
           </Plot>
           <AxisX />
           <AxisY />
@@ -53,22 +55,6 @@
       </Graphic>
     </Visualisation>
   </div>
-
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
 
   <SiteFooter {links} />
 

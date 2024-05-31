@@ -20,7 +20,7 @@
     },
     next: {
       label: "Plots and Geometries",
-      href: "/3-plots-and-geometries"
+      href: "/3-circle-geometry"
     }
   };
   

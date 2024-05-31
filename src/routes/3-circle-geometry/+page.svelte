@@ -22,8 +22,8 @@
       href: "/2-gridlines-and-axes"
     },
     next: {
-      label: "Events",
-      href: "/4-events"
+      label: "Line Geometry",
+      href: "/4-line-geometry"
     }
   };
 
@@ -36,7 +36,7 @@
 
   <SiteHeader />
 
-  <h2>3. Plots and Geometries</h2>
+  <h2>3. Circle Geometry</h2>
   
   <p>Geometries are components that map data to visual elements of a plot. They are placed inside a <code>Plot</code> component, which defines the drawing area for data and handles things like clipping. The <code>Plot</code> is located between the gridlines and the axes in the component order.</p>
   

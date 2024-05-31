@@ -88,7 +88,7 @@ const spec = {
       tickPosition: "left",
       tickLabelPosition: "left",
       showLabel: true,
-      labelOffset: 85
+      labelOffset: 90
     }
   },
   alts: [
