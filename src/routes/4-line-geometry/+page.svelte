@@ -12,9 +12,9 @@
   import AxisX from "$lib/svg/AxisX.svelte";
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
-  import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
+  import LineGeometry from "$lib/svg/geometries/LineGeometry.svelte";
   import { lightSpec, darkSpec } from "./spec.js";
-  import data from "./uk-election-2019-yh.json";
+  import data from "./visnet-training.json";
 
   const links = {
     previous: {
@@ -47,7 +47,7 @@
         <Svg>
           <Gridlines />
           <Plot>
-
+            <LineGeometry data={data} />
           </Plot>
           <AxisX />
           <AxisY />

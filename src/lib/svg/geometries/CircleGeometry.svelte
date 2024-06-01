@@ -53,7 +53,7 @@
     }
   }
 
-  // Functions ----------------------------------------------------------------
+  // Attribute functions ------------------------------------------------------
 
   function getX(point, scale, settings) {
     return getValue(
@@ -219,7 +219,7 @@
 
   let selectedPoint = $state({id: ""});
 
-  // Properties ---------------------------------------------------------------
+  // Scales -------------------------------------------------------------------
 
   const plot = $derived(layout.plot);
   

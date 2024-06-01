@@ -124,7 +124,6 @@ function getSpec(strokeRange) {
   };
 
   return spec;
-
 }
 
 const lightSpec = getSpec(strokeRangeLight);

@@ -1,7 +1,7 @@
 const strokeRangeLight = ["#ffa600", "#8d34e0"];
 const strokeRangeDark = ["#8c03fc", "#d9a311"];
 
-function getSpec(strokeRange) {
+function getSpec() {
 
   const spec = {
     main: {
@@ -78,11 +78,12 @@ function getSpec(strokeRange) {
             domain: [0, 0.4],
           },
           group: {
-            name: "group",
+            name: "type",
             series: [
               {
                 name: "train",
-                label: "Train"
+                label: "Train",
+                stroke: "#ffcc00"
               },
               {
                 name: "eval",
@@ -107,23 +108,16 @@ function getSpec(strokeRange) {
               left: 40
             }
           },
-        },
-        circleGeometry: {
-          circle: {
-            radius: 10,
-            strokeWidth: 1
-          }
         }
       }
     ]
   };
 
   return spec;
-
 }
 
-const lightSpec = getSpec(strokeRangeLight);
-const darkSpec = getSpec(strokeRangeDark);
+const lightSpec = getSpec();
+const darkSpec = getSpec();
 
 export {
   lightSpec,
