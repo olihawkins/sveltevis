@@ -90,12 +90,16 @@ function getSpec(strokeRange) {
             name: "constituency_type",
             domain: ["County", "Borough"],
             range: strokeRange
+          },
+          ariaLabel: {
+            name: "constituency_name",
           }
         },
         circle: {
           radius: 16,
           strokeWidth: 1.4
         },
+        id: "id",
       }
     },
     alts: [

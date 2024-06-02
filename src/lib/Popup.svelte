@@ -5,10 +5,30 @@
   import { getLayout } from "./layout.svelte.js";
   import { getSettings } from "./settings.js";
 
+  // Events -------------------------------------------------------------------
+
+  function processEvent(event) {
+
+    // No handlers exist for events with this key
+    if (! Object.hasOwn(settings.handlers, event.key)) {
+      return { ...event, type: "none" };
+    }
+
+    // Evvent type is listed in activate handlers for this key
+    if (settings.handlers[event.key].activate.includes(event.e.type)) {
+      return { ...event, type: "activate" };
+    }
+
+    // Event type is listed in deactivate handlers for this key
+    if (settings.handlers[event.key].deactivate.includes(event.e.type)) {
+      return { ...event, type: "deactivate" };
+    }
+  }
+
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    formatters: {},
+    handlers: {},
     scrollbarOffset: 14
   };
 
@@ -28,33 +48,20 @@
 
   const config = $derived(layout.config);
   const settings = $derived(getSettings(defaults, config, key));
-  const event = $derived(layout.event);
+  const event = $derived(processEvent(layout.event));
 
   // Display settings ---------------------------------------------------------
   
-  function showPopup(event) {
-    let show = false;
-    if (Object.hasOwn(settings.formatters, event.key) &&
-        Object.hasOwn(event, "msg") && event.msg !== null) {
-      show = true;
-    }
-    return show;
+  function getVisibility(event) {
+    return (event.type == "activate") ? "visible" : "hidden";
   }
 
   function getContent(event) {
-    let content = "";
-    if (showPopup(event)) {
-      content = settings.formatters[event.key](event);
+    if (event.type == "activate") {
+      return settings.handlers[event.key].content(event);
+    } else {
+      return "";
     }
-    return content;
-  }
-
-  function getVisibility(event) {
-    let visibility = "hidden";
-    if (showPopup(event)) {
-      visibility = "visible";
-    }
-    return visibility;
   }
 
   function getLeft(event) {

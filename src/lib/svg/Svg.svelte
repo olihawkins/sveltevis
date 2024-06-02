@@ -11,7 +11,8 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    sendEvents: false
+    sendClickEvents: false,
+    sendMouseEvents: false
   };
 
  // Props --------------------------------------------------------------------
@@ -29,20 +30,27 @@
 
   // Events -------------------------------------------------------------------
 
-  function getDeactivateHandler(key, settings, layout) {
-  if (settings.sendEvents === true) {
-    return (e) => {
-      e.stopPropagation();
-      layout.event = {
-        e: e, 
-        key: key, 
-        msg: null
+  function getClickEventsHandler(key, settings, layout) {
+    if (settings.sendClickEvents === true) {
+      return (e) => {
+        e.stopPropagation();
+        layout.event = { e: e, key: key, data: "" };
       };
-    };
-  } else {
-    noop;
+    } else {
+      return noop;
+    }
   }
-}
+
+  function getMouseEventsHandler(key, settings, layout) {
+    if (settings.sendMouseEvents === true) {
+      return (e) => {
+        e.stopPropagation();
+        layout.event = { e: e, key: key, data: "" };
+      };
+    } else {
+      return noop;
+    }
+  }
 
 </script>
 
@@ -50,7 +58,9 @@
   width="100%" 
   height="100%" 
   role="graphics-document",
-  onclick={getDeactivateHandler(key, settings, layout)}>
+  onclick={getClickEventsHandler(key, settings, layout)}
+  onmouseover={getMouseEventsHandler(key, settings, layout)}
+  onmouseout={getMouseEventsHandler(key, settings, layout)}>
   
     <g class="sveltevis-svg">
       {@render children()}

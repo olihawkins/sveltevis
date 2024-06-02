@@ -39,7 +39,7 @@
       fallback) {
 
     if (settings.highlight.enabled === true) {
-      if (point.id === selectedPoint.id) {
+      if (point[id] === selectedPoint[id]) {
         return settings.highlight[dimension];
       }
     }
@@ -198,7 +198,9 @@
       strokeOpacity: 1,
       strokeWidth: 1
     },
-    sendEvents: false
+    id: "id",
+    sendClickEvents: false,
+    sendMouseEvents: false
   };
 
   // Props --------------------------------------------------------------------
@@ -214,10 +216,11 @@
   const config = $derived(layout.config);
   const settings = $derived(getSettings(defaults, config, key));
   const mappings = $derived(settings.mappings);
+  const id = $derived(settings.id);
 
   // State --------------------------------------------------------------------
 
-  let selectedPoint = $state({id: ""});
+  let selectedPoint = $state({});
 
   // Scales -------------------------------------------------------------------
 
@@ -255,45 +258,37 @@
     mappings.strokeWidth.domain, 
     [0, settings.circle.strokeWidth]));
 
-// Events ---------------------------------------------------------------------
+  // Events -------------------------------------------------------------------
 
-function getActivateHandler(key, settings, layout, point) {
-  if (settings.sendEvents === true) {
-    return (e) => {
-      e.stopPropagation();
-      selectedPoint = point;
-      layout.event = {
-        e: e, 
-        key: key, 
-        msg: point
+  function getClickEventsHandler(key, settings, layout, point) {
+    if (settings.sendClickEvents === true) {
+      return (e) => {
+        e.stopPropagation();
+        selectedPoint = point;
+        layout.event = { e: e, key: key, data: point };
       };
-    };
-  } else {
-    noop;
+    } else {
+      return noop;
+    }
   }
-}
 
-// Standard handler for deactivation
-function getDeactivateHandler(source, settings, layout) {
-  if (settings.sendEvents === true) {
-    return (e) => {
-      e.stopPropagation();
-      selectedPoint = {id: ""};
-      layout.event = {
-        e: e, 
-        key: key, 
-        msg: null
+  function getMouseEventsHandler(key, settings, layout, point) {
+    if (settings.sendMouseEvents === true) {
+      return (e) => {
+        e.stopPropagation();
+        selectedPoint = point;
+        layout.event = { e: e, key: key, data: point };
       };
-    };
-  } else {
-    noop;
+    } else {
+      return noop;
+    }
   }
-}
+
 
 </script>
 
 <g class="sveltevis-circle-geometry">
-  {#each data as point (point.id)}
+  {#each data as point (point[id])}
     <circle 
       class="sveltevis-circle-geometry-circle"
       cx={getX(point, scaleX, settings)} 
@@ -302,9 +297,9 @@ function getDeactivateHandler(source, settings, layout) {
       role="img"
       aria-roledescription="data point"
       aria-label={point[mappings.ariaLabel.name]}
-      onclick={getActivateHandler(key, settings, layout, point)}
-      onmouseover={getActivateHandler(key, settings, layout, point)}
-      onmouseout={getDeactivateHandler(key, settings, layout, point)}
+      onclick={getClickEventsHandler(key, settings, layout, point)}
+      onmouseover={getMouseEventsHandler(key, settings, layout, point)}
+      onmouseout={getMouseEventsHandler(key, settings, layout, {[id]: ""})}
       style:fill={getFill(point, selectedPoint, scaleFill, settings)}
       style:fill-opacity={getFillOpacity(point, selectedPoint, scaleFillOpacity, settings)}
       style:stroke={getStroke(point, selectedPoint, scaleStroke, settings)}

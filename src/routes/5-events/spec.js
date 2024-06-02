@@ -19,12 +19,14 @@ function getSpec(strokeRange) {
         }
       },
       svg: {
-        sendEvents: true
+        sendClickEvents: true
       },
       popup: {
-        formatters: {
-          circleGeometry: (event) => {
-            return event.msg.constituency_name;
+        handlers: {
+          circleGeometry: {
+            activate: ["mouseover", "click"],
+            deactivate: ["mouseout"],
+            content: (event) => event.data.constituency_name
           }
         }
       },
@@ -113,7 +115,9 @@ function getSpec(strokeRange) {
           enabled: true,
           strokeWidth: 2.2
         },
-        sendEvents: true
+        id: "id",
+        sendClickEvents: true,
+        sendMouseEvents: true,
       }
     },
     alts: [
