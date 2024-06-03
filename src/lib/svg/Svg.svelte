@@ -11,8 +11,7 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    sendClickEvents: false,
-    sendMouseEvents: false
+    events: []
   };
 
  // Props --------------------------------------------------------------------
@@ -28,23 +27,13 @@
   const config = $derived(layout.config);
   const settings = $derived(getSettings(defaults, config, key));
 
-  // Events -------------------------------------------------------------------
+  // Handlers -----------------------------------------------------------------
 
-  function getClickEventsHandler(key, settings, layout) {
-    if (settings.sendClickEvents === true) {
+  function getSvgHandler(type, key, settings, layout) {
+    if (settings.events.includes(type)) {
       return (e) => {
         e.stopPropagation();
-        layout.event = { e: e, key: key, data: "" };
-      };
-    } else {
-      return noop;
-    }
-  }
-
-  function getMouseEventsHandler(key, settings, layout) {
-    if (settings.sendMouseEvents === true) {
-      return (e) => {
-        e.stopPropagation();
+        selectedPoint = point;
         layout.event = { e: e, key: key, data: "" };
       };
     } else {
@@ -58,9 +47,10 @@
   width="100%" 
   height="100%" 
   role="graphics-document",
-  onclick={getClickEventsHandler(key, settings, layout)}
-  onmouseover={getMouseEventsHandler(key, settings, layout)}
-  onmouseout={getMouseEventsHandler(key, settings, layout)}>
+  onclick={getSvgHandler("click", key, settings, layout)}
+  onmousemove={getSvgHandler("mousemove", key, settings, layout)}
+  onmouseover={getSvgHandler("mouseover", key, settings, layout)}
+  onmouseout={getSvgHandler("mouseout", key, settings, layout)}>
   
     <g class="sveltevis-svg">
       {@render children()}

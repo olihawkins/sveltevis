@@ -19,7 +19,7 @@ function getSpec(strokeRange) {
         }
       },
       svg: {
-        sendClickEvents: true
+        events: ["click"]
       },
       popup: {
         handlers: {
@@ -116,8 +116,10 @@ function getSpec(strokeRange) {
           strokeWidth: 2.2
         },
         id: "id",
-        sendClickEvents: true,
-        sendMouseEvents: true,
+        events: [
+          "click", 
+          "mouseover", 
+          "mouseout"]
       }
     },
     alts: [

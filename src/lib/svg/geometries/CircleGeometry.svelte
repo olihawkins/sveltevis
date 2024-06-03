@@ -199,8 +199,7 @@
       strokeWidth: 1
     },
     id: "id",
-    sendClickEvents: false,
-    sendMouseEvents: false
+    events: []
   };
 
   // Props --------------------------------------------------------------------
@@ -258,10 +257,10 @@
     mappings.strokeWidth.domain, 
     [0, settings.circle.strokeWidth]));
 
-  // Events -------------------------------------------------------------------
+  // Handlers -----------------------------------------------------------------
 
-  function getClickEventsHandler(key, settings, layout, point) {
-    if (settings.sendClickEvents === true) {
+  function getPointHandler(type, key, settings, layout, point) {
+    if (settings.events.includes(type)) {
       return (e) => {
         e.stopPropagation();
         selectedPoint = point;
@@ -271,19 +270,6 @@
       return noop;
     }
   }
-
-  function getMouseEventsHandler(key, settings, layout, point) {
-    if (settings.sendMouseEvents === true) {
-      return (e) => {
-        e.stopPropagation();
-        selectedPoint = point;
-        layout.event = { e: e, key: key, data: point };
-      };
-    } else {
-      return noop;
-    }
-  }
-
 
 </script>
 
@@ -297,9 +283,10 @@
       role="img"
       aria-roledescription="data point"
       aria-label={point[mappings.ariaLabel.name]}
-      onclick={getClickEventsHandler(key, settings, layout, point)}
-      onmouseover={getMouseEventsHandler(key, settings, layout, point)}
-      onmouseout={getMouseEventsHandler(key, settings, layout, {[id]: ""})}
+      onclick={getPointHandler("click",key, settings, layout, point)}
+      onmousemove={getPointHandler("mousemove", key, settings, layout, point)}
+      onmouseover={getPointHandler("mouseover", key, settings, layout, point)}
+      onmouseout={getPointHandler("mouseout", key, settings, layout, {[id]: ""})}
       style:fill={getFill(point, selectedPoint, scaleFill, settings)}
       style:fill-opacity={getFillOpacity(point, selectedPoint, scaleFillOpacity, settings)}
       style:stroke={getStroke(point, selectedPoint, scaleStroke, settings)}
