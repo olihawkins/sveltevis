@@ -33,7 +33,6 @@
     if (settings.events.includes(type)) {
       return (e) => {
         e.stopPropagation();
-        selectedPoint = point;
         layout.event = { e: e, key: key, data: "" };
       };
     } else {

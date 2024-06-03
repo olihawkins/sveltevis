@@ -11,7 +11,7 @@
 
     // No handlers exist for events with this key
     if (! Object.hasOwn(settings.handlers, event.key)) {
-      return { ...event, type: "none" };
+      return { ...event, type: "" };
     }
 
     // Evvent type is listed in activate handlers for this key
@@ -23,6 +23,8 @@
     if (settings.handlers[event.key].deactivate.includes(event.e.type)) {
       return { ...event, type: "deactivate" };
     }
+
+    return { ...event, type: "" };
   }
 
   // Defaults -----------------------------------------------------------------
@@ -53,11 +55,11 @@
   // Display settings ---------------------------------------------------------
   
   function getVisibility(event) {
-    return (event.type == "activate") ? "visible" : "hidden";
+    return (event.type === "activate") ? "visible" : "hidden";
   }
 
   function getContent(event) {
-    if (event.type == "activate") {
+    if (event.type === "activate") {
       return settings.handlers[event.key].content(event);
     } else {
       return "";
