@@ -260,15 +260,28 @@
   // Handlers -----------------------------------------------------------------
 
   function getPointHandler(type, key, settings, layout, point) {
-    if (settings.events.includes(type)) {
+    if (settings.events.includes("activity")) {
       return (e) => {
         e.stopPropagation();
         selectedPoint = point;
-        layout.event = { e: e, key: key, data: point };
+        layout.event = { 
+          e: e, 
+          key: key, 
+          type: type,
+          data: point 
+        };
       };
     } else {
       return noop;
     }
+  }
+
+  function getActiveHandler(key, settings, layout, point) {
+    return getPointHandler("active", key, settings, layout, point);
+  }
+
+  function getInactiveHandler(key, settings, layout) {
+    return getPointHandler("inactive", key, settings, layout, {[id]: ""});
   }
 
 </script>
@@ -283,10 +296,9 @@
       role="img"
       aria-roledescription="data point"
       aria-label={point[mappings.ariaLabel.name]}
-      onclick={getPointHandler("click",key, settings, layout, point)}
-      onmousemove={getPointHandler("mousemove", key, settings, layout, point)}
-      onmouseover={getPointHandler("mouseover", key, settings, layout, point)}
-      onmouseout={getPointHandler("mouseout", key, settings, layout, {[id]: ""})}
+      onmousemove={getActiveHandler(key, settings, layout, point)}
+      onmouseover={getActiveHandler(key, settings, layout, point)}
+      onmouseout={getInactiveHandler(key, settings, layout)}
       style:fill={getFill(point, selectedPoint, scaleFill, settings)}
       style:fill-opacity={getFillOpacity(point, selectedPoint, scaleFillOpacity, settings)}
       style:stroke={getStroke(point, selectedPoint, scaleStroke, settings)}

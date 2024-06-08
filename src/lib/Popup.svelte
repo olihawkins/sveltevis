@@ -9,29 +9,28 @@
 
   function processEvent(event) {
 
-    // No handlers exist for events with this key
-    if (! Object.hasOwn(settings.handlers, event.key)) {
-      return { ...event, type: "" };
+    // No actions exist for events with this key
+    if (! Object.hasOwn(settings.actions, event.key)) {
+      return { ...event, action: "" };
     }
 
-    // Evvent type is listed in activate handlers for this key
-    if (settings.handlers[event.key].activate.includes(event.e.type)) {
-      return { ...event, type: "activate" };
+    // Event type is listed in activate action for this key
+    if (settings.actions[event.key].activate.includes(event.type)) {
+      return { ...event, action: "activate" };
     }
 
-    // Event type is listed in deactivate handlers for this key
-    if (settings.handlers[event.key].deactivate.includes(event.e.type)) {
-      return { ...event, type: "deactivate" };
+    // Event type is listed in deactivate action for this key
+    if (settings.actions[event.key].deactivate.includes(event.type)) {
+      return { ...event, action: "deactivate" };
     }
 
-    return { ...event, type: "" };
+    return { ...event, action: "" };
   }
 
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    handlers: {},
-    scrollbarOffset: 14
+    actions: {}
   };
 
  // Props ---------------------------------------------------------------------
@@ -52,54 +51,29 @@
   const settings = $derived(getSettings(defaults, config, key));
   const event = $derived(processEvent(layout.event));
 
-  // Display settings ---------------------------------------------------------
+  // State --------------------------------------------------------------------
+
+  let scrollbarWidth = $state(0);
+
+  // Display ------------------------------------------------------------------
   
   function getVisibility(event) {
-    return (event.type === "activate") ? "visible" : "hidden";
+    return (event.action === "activate") ? "visible" : "hidden";
   }
 
   function getContent(event) {
-    if (event.type === "activate") {
-      return settings.handlers[event.key].content(event);
+    if (event.action === "activate") {
+      return settings.actions[event.key].content(event);
     } else {
       return "";
     }
-  }
-
-  function getLeft(event) {
-    let left = "auto";
-    if (Object.hasOwn(event, "e") && event.e !== null) {
-      const innerRect = event.e.target.getBoundingClientRect();
-      const targetLeft = window.scrollX + innerRect.right;
-      if (event.e.clientX <= window.innerWidth / 2) {
-        left = `${targetLeft}px`;
-      }
-    }
-    return left;
-  }
-
-  function getRight(event) {
-    let right = "auto";
-    if (Object.hasOwn(event, "e") && event.e !== null) {
-      const doc = document.documentElement;
-      const innerRect = event.e.target.getBoundingClientRect();
-      const targetRight = window.innerWidth - (window.scrollX + innerRect.left);
-      if (event.e.clientX > window.innerWidth / 2) {
-        if (doc.scrollHeight > doc.clientHeight) {
-          right = `${targetRight - settings.scrollbarOffset}px`;
-        } else {
-          right = `${targetRight}px`;
-        }
-      }
-    }
-    return right;
   }
 
   function getTop(event) {
     let top = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
       const innerRect = event.e.target.getBoundingClientRect();
-      const targetTop = window.scrollY + innerRect.bottom;
+      const targetTop = window.scrollY + event.e.clientY;
       if (event.e.clientY <= window.innerHeight / 2) {
         top = `${targetTop}px`;
       }
@@ -111,17 +85,35 @@
     let bottom = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
       const doc = document.documentElement;
-      const innerRect = event.e.target.getBoundingClientRect();
-      const targetBottom = window.innerHeight - (window.scrollY + innerRect.top);
+      const targetBottom = doc.clientHeight - (window.scrollY + event.e.clientY);
       if (event.e.clientY > window.innerHeight / 2) {
-        if (doc.scrollWidth > doc.clientWidth) {
-          bottom = `${targetBottom - settings.scrollbarOffset}px`;
-        } else {
-          bottom = `${targetBottom}px`;
-        }
+        bottom = `${targetBottom}px`;
       }
     }
     return bottom;
+  }
+
+  function getLeft(event) {
+    let left = "auto";
+    if (Object.hasOwn(event, "e") && event.e !== null) {
+      const targetLeft = window.scrollX + event.e.clientX;
+      if (event.e.clientX <= window.innerWidth / 2) {
+        left = `${targetLeft}px`;
+      }
+    }
+    return left;
+  }
+
+  function getRight(event) {
+    let right = "auto";
+    if (Object.hasOwn(event, "e") && event.e !== null) {
+      const doc = document.documentElement;
+      const targetRight = doc.clientWidth - (window.scrollX + event.e.clientX);
+      if (event.e.clientX > window.innerWidth / 2) {
+        right = `${targetRight}px`;
+      }
+    }
+    return right;
   }
 
 </script>
@@ -129,10 +121,10 @@
 <div 
   class="sveltevis-popup" 
   style:visibility={getVisibility(event)}
+  style:top={getTop(event)}
+  style:bottom={getBottom(event)}
   style:left={getLeft(event)} 
   style:right={getRight(event)} 
-  style:top={getTop(event)}
-  style:bottom={getBottom(event)} 
   bind:this={popup} >
     {getContent(event)}
 </div>

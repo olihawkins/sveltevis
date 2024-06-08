@@ -19,10 +19,10 @@ function getSpec(strokeRange) {
         }
       },
       popup: {
-        handlers: {
+        actions: {
           circleGeometry: {
-            activate: ["mouseover"],
-            deactivate: ["mouseout"],
+            activate: ["active"],
+            deactivate: ["inactive"],
             content: (event) => event.data.constituency_name
           }
         }
@@ -113,9 +113,7 @@ function getSpec(strokeRange) {
           strokeWidth: 2.2
         },
         id: "id",
-        events: [ 
-          "mouseover", 
-          "mouseout"]
+        events: ["activity"]
       }
     },
     alts: [
