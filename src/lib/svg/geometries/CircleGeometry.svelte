@@ -283,14 +283,14 @@
           e.stopPropagation();
         }
         
+        // Set the selected point to the current point
+        activePoint = point;
+
         // Bring point to front
         if (settings.events.raiseTarget === true) {
           data = data.filter(d => d.id !== point.id);
           data.push(point);
         }
-        
-        // Set the selected point to the current point
-        activePoint = point;
         
         // Broadcast the event
         layout.event = { 
