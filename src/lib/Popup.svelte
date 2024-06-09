@@ -30,7 +30,8 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    actions: {}
+    actions: {},
+    offset: 10
   };
 
  // Props ---------------------------------------------------------------------
@@ -51,10 +52,6 @@
   const settings = $derived(getSettings(defaults, config, key));
   const event = $derived(processEvent(layout.event));
 
-  // State --------------------------------------------------------------------
-
-  let scrollbarWidth = $state(0);
-
   // Display ------------------------------------------------------------------
   
   function getVisibility(event) {
@@ -73,7 +70,7 @@
     let top = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
       const innerRect = event.e.target.getBoundingClientRect();
-      const targetTop = window.scrollY + event.e.clientY;
+      const targetTop = window.scrollY + event.e.clientY + settings.offset;
       if (event.e.clientY <= window.innerHeight / 2) {
         top = `${targetTop}px`;
       }
@@ -85,7 +82,7 @@
     let bottom = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
       const doc = document.documentElement;
-      const targetBottom = doc.clientHeight - (window.scrollY + event.e.clientY);
+      const targetBottom = doc.clientHeight - (window.scrollY + event.e.clientY) + settings.offset;
       if (event.e.clientY > window.innerHeight / 2) {
         bottom = `${targetBottom}px`;
       }
@@ -96,7 +93,7 @@
   function getLeft(event) {
     let left = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
-      const targetLeft = window.scrollX + event.e.clientX;
+      const targetLeft = window.scrollX + event.e.clientX + settings.offset;
       if (event.e.clientX <= window.innerWidth / 2) {
         left = `${targetLeft}px`;
       }
@@ -108,7 +105,7 @@
     let right = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
       const doc = document.documentElement;
-      const targetRight = doc.clientWidth - (window.scrollX + event.e.clientX);
+      const targetRight = doc.clientWidth - (window.scrollX + event.e.clientX) + settings.offset;
       if (event.e.clientX > window.innerWidth / 2) {
         right = `${targetRight}px`;
       }

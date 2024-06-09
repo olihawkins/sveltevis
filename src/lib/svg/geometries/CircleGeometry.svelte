@@ -12,6 +12,11 @@
   import { getSettings } from "../../settings.js";
   import { noop } from "../../events.js";
 
+  // Constants ----------------------------------------------------------------
+
+  const EVENT_KEY_ACTIVATED = "activated" 
+  const EVENT_KEY_DEACTIVATED = "deactivated"
+
   // Generic functions --------------------------------------------------------
 
   function getValue(
@@ -30,17 +35,17 @@
     }
   }
 
-  function getHighlightValue(
+  function getActiveValue(
       point, 
-      selectedPoint,
+      activePoint,
       scale, 
       settings, 
       dimension, 
       fallback) {
 
-    if (settings.highlight.enabled === true) {
-      if (point[id] === selectedPoint[id]) {
-        return settings.highlight[dimension];
+    if (settings.active.enabled === true) {
+      if (point[id] === activePoint[id]) {
+        return settings.active[dimension];
       }
     }
 
@@ -82,50 +87,50 @@
       settings.circle.radius);
   }
 
-  function getFill(point, selectedPoint, scale, settings) {
-    return getHighlightValue(
+  function getFill(point, activePoint, scale, settings) {
+    return getActiveValue(
       point, 
-      selectedPoint,
+      activePoint,
       scale, 
       settings,
       "fill", 
       settings.circle.fill);
   }
 
-  function getFillOpacity(point, selectedPoint, scale, settings) {
-    return getHighlightValue(
+  function getFillOpacity(point, activePoint, scale, settings) {
+    return getActiveValue(
       point, 
-      selectedPoint,
+      activePoint,
       scale, 
       settings,
       "fillOpacity", 
       settings.circle.fillOpacity);
   }
 
-  function getStroke(point, selectedPoint, scale, settings) {
-    return getHighlightValue(
+  function getStroke(point, activePoint, scale, settings) {
+    return getActiveValue(
       point, 
-      selectedPoint,
+      activePoint,
       scale, 
       settings,
       "stroke", 
       settings.circle.stroke);
   }
 
-  function getStrokeOpacity(point, selectedPoint, scale, settings) {
-    return getHighlightValue(
+  function getStrokeOpacity(point, activePoint, scale, settings) {
+    return getActiveValue(
       point, 
-      selectedPoint,
+      activePoint,
       scale, 
       settings,
       "strokeOpacity", 
       settings.circle.strokeOpacity);
   }  
 
-  function getStrokeWidth(point, selectedPoint, scale, settings) {
-    return getHighlightValue(
+  function getStrokeWidth(point, activePoint, scale, settings) {
+    return getActiveValue(
       point, 
-      selectedPoint,
+      activePoint,
       scale, 
       settings,
       "strokeWidth", 
@@ -190,16 +195,20 @@
       strokeOpacity: 1,
       strokeWidth: 1
     },
-    highlight: {
+    active: {
       enabled: false,
-      fill: "var(--sveltevis-highlight-fill)",
+      fill: "var(--sveltevis-active-fill)",
       fillOpacity: 1,
-      stroke: "var(--sveltevis-highlight-stroke)",
+      stroke: "var(--sveltevis-active-stroke)",
       strokeOpacity: 1,
       strokeWidth: 1
     },
     id: "id",
-    events: []
+    events: {
+      broadcast: false,
+      propagate: false,
+      raiseTarget: false
+    }
   };
 
   // Props --------------------------------------------------------------------
@@ -219,7 +228,7 @@
 
   // State --------------------------------------------------------------------
 
-  let selectedPoint = $state({});
+  let activePoint = $state({});
 
   // Scales -------------------------------------------------------------------
 
@@ -259,11 +268,31 @@
 
   // Handlers -----------------------------------------------------------------
 
-  function getPointHandler(type, key, settings, layout, point) {
-    if (settings.events.includes("activity")) {
+  function getPointHandler(
+      type, 
+      key, 
+      settings, 
+      layout, 
+      point) {
+    
+    if (settings.events.broadcast === true) {
       return (e) => {
-        e.stopPropagation();
-        selectedPoint = point;
+        
+        // Stop propagation
+        if (settings.events.propagate === false) {
+          e.stopPropagation();
+        }
+        
+        // Bring point to front
+        if (settings.events.raiseTarget === true) {
+          data = data.filter(d => d.id !== point.id);
+          data.push(point);
+        }
+        
+        // Set the selected point to the current point
+        activePoint = point;
+        
+        // Broadcast the event
         layout.event = { 
           e: e, 
           key: key, 
@@ -276,12 +305,21 @@
     }
   }
 
-  function getActiveHandler(key, settings, layout, point) {
-    return getPointHandler("active", key, settings, layout, point);
+  function getActivatedHandler(key, settings, layout, point) {
+    return getPointHandler(
+      EVENT_KEY_ACTIVATED, 
+      key, 
+      settings, 
+      layout, 
+      point);
   }
 
-  function getInactiveHandler(key, settings, layout) {
-    return getPointHandler("inactive", key, settings, layout, {[id]: ""});
+  function getDeactivatedHandler(key, settings, layout) {
+    return getPointHandler(
+      EVENT_KEY_DEACTIVATED, 
+      key, 
+      settings, 
+      layout, {[id]: ""});
   }
 
 </script>
@@ -296,14 +334,14 @@
       role="img"
       aria-roledescription="data point"
       aria-label={point[mappings.ariaLabel.name]}
-      onmousemove={getActiveHandler(key, settings, layout, point)}
-      onmouseover={getActiveHandler(key, settings, layout, point)}
-      onmouseout={getInactiveHandler(key, settings, layout)}
-      style:fill={getFill(point, selectedPoint, scaleFill, settings)}
-      style:fill-opacity={getFillOpacity(point, selectedPoint, scaleFillOpacity, settings)}
-      style:stroke={getStroke(point, selectedPoint, scaleStroke, settings)}
-      style:stroke-opacity={getStrokeOpacity(point, selectedPoint, scaleStrokeOpacity, settings)}
-      style:stroke-width={getStrokeWidth(point, selectedPoint, scaleStrokeWidth, settings)}>
+      onmousemove={getActivatedHandler(key, settings, layout, point)}
+      onmouseover={getActivatedHandler(key, settings, layout, point)}
+      onmouseout={getDeactivatedHandler(key, settings, layout)}
+      style:fill={getFill(point, activePoint, scaleFill, settings)}
+      style:fill-opacity={getFillOpacity(point, activePoint, scaleFillOpacity, settings)}
+      style:stroke={getStroke(point, activePoint, scaleStroke, settings)}
+      style:stroke-opacity={getStrokeOpacity(point, activePoint, scaleStrokeOpacity, settings)}
+      style:stroke-width={getStrokeWidth(point, activePoint, scaleStrokeWidth, settings)}>
     </circle>
   {/each}
 </g>

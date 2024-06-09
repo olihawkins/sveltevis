@@ -21,8 +21,8 @@ function getSpec(strokeRange) {
       popup: {
         actions: {
           circleGeometry: {
-            activate: ["active"],
-            deactivate: ["inactive"],
+            activate: ["activated"],
+            deactivate: ["deactivated"],
             content: (event) => event.data.constituency_name
           }
         }
@@ -108,12 +108,15 @@ function getSpec(strokeRange) {
           radius: 16,
           strokeWidth: 1.5
         },
-        highlight: {
+        active: {
           enabled: true,
           strokeWidth: 2.2
         },
         id: "id",
-        events: ["activity"]
+        events: {
+          broadcast: true,
+          raiseTarget: false
+        }
       }
     },
     alts: [
@@ -136,7 +139,7 @@ function getSpec(strokeRange) {
             radius: 10,
             strokeWidth: 1
           },
-          highlight: {
+          active: {
             fill: "#75edff",
             stroke: "#1274ff",
             strokeWidth: 1.6
