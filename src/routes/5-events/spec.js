@@ -114,7 +114,7 @@ function getSpec(strokeRange) {
         },
         id: "id",
         events: {
-          broadcast: true,
+          broadcast: true
         }
       }
     },
