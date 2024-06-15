@@ -22,8 +22,7 @@ function getSpec(strokeRange) {
         actions: {
           circleGeometry: {
             activate: ["activated"],
-            deactivate: ["deactivated"],
-            content: (event) => event.data.constituency_name
+            deactivate: ["deactivated"]
           }
         }
       },

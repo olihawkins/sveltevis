@@ -40,7 +40,13 @@
   <div style="min-width: 300px">
     <ColorSchemeObserver bind:isDarkMode={isDarkMode} />
     <Visualisation spec={spec}>
-      <Popup />
+      <Popup>
+        {#snippet children(key, data)}
+          {#if key === "circleGeometry"}
+            {data.constituency_name}
+          {/if}
+        {/snippet}
+      </Popup>
       <Graphic>
         <Svg>
           <Gridlines />

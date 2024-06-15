@@ -36,7 +36,7 @@
 
  // Props ---------------------------------------------------------------------
 
-  let { key = "popup" } = $props();
+  let { key = "popup", children } = $props();
 
   // Layout -------------------------------------------------------------------
 
@@ -56,14 +56,6 @@
   
   function getVisibility(event) {
     return (event.action === "activate") ? "visible" : "hidden";
-  }
-
-  function getContent(event) {
-    if (event.action === "activate") {
-      return settings.actions[event.key].content(event);
-    } else {
-      return "";
-    }
   }
 
   function getTop(event) {
@@ -123,7 +115,9 @@
   style:left={getLeft(event)} 
   style:right={getRight(event)} 
   bind:this={popup} >
-    {getContent(event)}
+    {#if event.action === "activate"}
+      {@render children(event.key, event.data)}
+    {/if}
 </div>
 
 <style>
