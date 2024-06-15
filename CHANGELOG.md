@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.6
+
+* Adds a system for sending messages about events between components
+* Adds a `Popup` component for displaying data on mouse events
+* Adds a `LineGeometry` component for line charts
+
 ## 0.0.5
 
 * Fixed issues with `dist` files

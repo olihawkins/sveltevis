@@ -2,17 +2,20 @@
 
 A Svelte component library for composing responsive interactive data visualisations.
 
+https://github.com/olihawkins/sveltevis
+
 ## Status
 
 This package is in active but early development. The API should be regarded as unstable until version 1.0.0. The project is targetting <a href="https://svelte.dev/blog/svelte-5-release-candidate">Svelte 5</a> and uses <a href="https://svelte.dev/blog/runes">runes</a>.
 
 ## Roadmap
 
-The initial project goal was to develop the smallest set of fully-functional components needed to make a responsive scatterplot, using the project's approach to configuring component settings and managing state. This milestone has been reached. The list of components created to achieve this goal are listed below. 
+The goal of the project is to provide a Svelte component library that allows you to quickly compose a responsive interactive visualisation from a set of components and a JSON object that specifies their behaviour. The components include standard chart elements like axes and gridlines, along with *geometries* that map input data to a specfific visual representation (e.g. points, lines, bars, areas). The library is extensible, so if you want to implement a new kind of visualisation you only need to implement a new geometry for the kind of data represention you want to create. All of the infrastructure for handling responsiveness and interactivity is available via the parent `Visualisation` component's shared context.
+
+The project currently contains the components needed to make responsive scatterplots and line charts. It also includes a system for sending messages between components about events, which is used to implement a `Popup` component. 
 
 ### Components completed
 
-- `ColorSchemeObserver`
 - `Visualisation`
 - `Header`
 - `Footer`
@@ -23,14 +26,16 @@ The initial project goal was to develop the smallest set of fully-functional com
 - `AxisY`
 - `Plot`
 - `CircleGeometry`
+- `LineGeometry`
+- `Popup`
+- `ColorSchemeObserver`
 
 ### Next steps
 
 The priorities for future work are:
 
-1. Create more geometry components
-2. Develop an approach to event handling to support pop-ups and other interactive components
-3. Develop an approach to implementing animation
+- Create more geometry components
+- Develop an approach to animation
 
 ## Trying the components
 
