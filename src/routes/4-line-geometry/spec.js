@@ -1,3 +1,5 @@
+import { curveMonotoneX } from "d3-shape";
+
 const strokeRangeLight = ["#ffa600", "#8d34e0"];
 const strokeRangeDark = ["#8c03fc", "#d9a311"];
 
@@ -83,15 +85,18 @@ function getSpec() {
               {
                 name: "train",
                 label: "Train",
-                stroke: "#ffcc00"
+                stroke: "#2090ff",
               },
               {
                 name: "eval",
-                label: "Evaluation"
+                label: "Evaluation",
+                curve: curveMonotoneX,
+                stroke: "#ffa000"
               },
             ]
           }
-        }
+        },
+        strokeWidth: 2.6
       }
     },
     alts: [
@@ -108,6 +113,9 @@ function getSpec() {
               left: 40
             }
           },
+        },
+        lineGeometry: {
+          strokeWidth: 1.8
         }
       }
     ]

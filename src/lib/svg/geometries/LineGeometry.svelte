@@ -4,7 +4,7 @@
   
   // Imports ------------------------------------------------------------------
 
-  import { line } from "d3-shape";
+  import { line, curveLinear } from "d3-shape";
   import { scaleLinear } from "d3-scale";
   import { getLayout } from "../../layout.svelte.js";
   import { getSettings } from "../../settings.js";
@@ -33,9 +33,16 @@
     // Determine properties for each line from mappings and settings
     mappings.group.series.forEach(s => {
       paths[s.name] = {
+        curve: getPathProperty(s, settings, "curve"),
         stroke: getPathProperty(s, settings, "stroke"),
-        strokeOpacity: getPathProperty(s, settings, "strokeOpacity"),
         strokeWidth: getPathProperty(s, settings, "strokeWidth"),
+        strokeOpacity: getPathProperty(s, settings, "strokeOpacity"),
+        strokeOpacity: getPathProperty(s, settings, "strokeOpacity"),
+        strokeDashArray: getPathProperty(s, settings, "strokeDashArray"),
+        strokeDashOffset: getPathProperty(s, settings, "strokeDashOffset"),
+        strokeLineCap: getPathProperty(s, settings, "strokeLineCap"),
+        strokeLineJoin: getPathProperty(s, settings, "strokeLineJoin"),
+        strokeMiterLimit: getPathProperty(s, settings, "strokeMiterLimit"),
         data: [],
       };
     });
@@ -52,7 +59,8 @@
     for (const [name, path] of Object.entries(paths)) {
       const pathGenerator = line()
         .x(d => scaleX(d.x))
-        .y(d => scaleY(d.y));
+        .y(d => scaleY(d.y))
+        .curve(path.curve);
       path.d = pathGenerator(path.data);
     };
 
@@ -78,9 +86,15 @@
         series: []
       }
     },
+    curve: curveLinear,
     stroke: "var(--sveltevis-color)",
+    strokeWidth: 1,
     strokeOpacity: 1,
-    strokeWidth: 1
+    strokeDashArray: "none",
+    strokeDashOffset: 0,
+    strokeLineCap: "butt",
+    strokeLineJoin: "miter",
+    strokeMiterLimit: 4
   }
 
   // Props --------------------------------------------------------------------
@@ -118,7 +132,13 @@
 {#each Object.entries(paths) as [name, path] (name)}
   <path 
     d={path.d} 
-    stroke={path.stroke}
-    fill="none"  />
+    style:stroke={path.stroke}
+    style:stroke-width={path.strokeWidth}
+    style:stroke-opacity={path.strokeOpacity}
+    style:stroke-dasharray={path.strokeDashArray}
+    style:stroke-dashoffset={path.strokeDashOffset}
+    style:stroke-linecap={path.strokeLineCap}
+    style:stroke-linejoin={path.strokeLineJoin}
+    style:stroke-miterlimit={path.strokeMiterLimit}
+    fill="none" />
 {/each}
-
