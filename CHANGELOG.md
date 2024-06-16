@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.9
+
+* Fixed an issue with missing exports
+
 ## 0.0.8
 
 * Resolved conflict between .npmignore and package.json

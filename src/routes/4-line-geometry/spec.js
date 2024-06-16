@@ -1,8 +1,5 @@
 import { curveMonotoneX } from "d3-shape";
 
-const strokeRangeLight = ["#ffa600", "#8d34e0"];
-const strokeRangeDark = ["#8c03fc", "#d9a311"];
-
 function getSpec() {
 
   const spec = {
@@ -124,10 +121,8 @@ function getSpec() {
   return spec;
 }
 
-const lightSpec = getSpec();
-const darkSpec = getSpec();
+const spec = getSpec();
 
 export {
-  lightSpec,
-  darkSpec
+  spec
 };

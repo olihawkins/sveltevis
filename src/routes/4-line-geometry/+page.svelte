@@ -4,7 +4,6 @@
   import "$lib/css/sveltevis.css";
   import SiteHeader from "$lib/site/SiteHeader.svelte";
   import SiteFooter from "$lib/site/SiteFooter.svelte";
-  import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";
   import Visualisation from "$lib/Visualisation.svelte";
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
@@ -13,7 +12,7 @@
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
   import LineGeometry from "$lib/svg/geometries/LineGeometry.svelte";
-  import { lightSpec, darkSpec } from "./spec.js";
+  import { spec } from "./spec.js";
   import data from "./visnet-training.json";
 
   const links = {
@@ -27,9 +26,6 @@
     }
   };
 
-  let isDarkMode = $state(false);
-  let spec = $derived(isDarkMode ? darkSpec : lightSpec);
-
 </script>
 
 <div id="column">
@@ -41,7 +37,6 @@
   <p>This line chart is made using a <code>LineGeometry</code> component.</p>
   
   <div style="min-width: 300px">
-    <ColorSchemeObserver bind:isDarkMode={isDarkMode} />
     <Visualisation spec={spec}>
       <Graphic>
         <Svg>
