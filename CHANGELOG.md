@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.7
+
+* Fixed a bug in `LayoutReport` component
+* Added .npmignore to remove site files from `dist`
+
 ## 0.0.6
 
 * Adds a system for sending messages about events between components

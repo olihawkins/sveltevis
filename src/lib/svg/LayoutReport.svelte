@@ -45,12 +45,12 @@
 
   <!-- Graphic Border -->
   <rect 
-    x=0
-    y=0
-    width={graphic.width}
-    height={graphic.height}
-    fill-opacity=0
-    stroke-width=1 />
+    x=1
+    y=1
+    width={graphic.width - 2}
+    height={graphic.height - 2}
+    style:fill-opacity=0
+    style:stroke-width=1 />
 
   <!-- Plot Border -->
     <rect 
@@ -58,59 +58,59 @@
     y={graphic.margin.top}
     width={plot.width}
     height={plot.height}
-    fill-opacity=0
-    stroke-width=1
-    stroke-dasharray="2, 2" />
+    style:fill-opacity=0
+    style:stroke-width=1
+    style:stroke-dasharray="2, 2" />
 
   <!-- Top left -->
   <rect 
-    x=0 
-    y=0 
+    x=1 
+    y=1 
     width={rectLong} 
     height={rectShort} />
 
   <rect 
-    x=0 
-    y=0 
+    x=1
+    y=1 
     width={rectShort} 
     height={rectLong}  />
 
   <!-- Top right -->
   <rect 
-    x={graphic.width - rectLong} 
-    y=0 
+    x={graphic.width - rectLong - 1} 
+    y=1 
     width={rectLong} 
     height={rectShort} />
 
   <rect 
-    x={graphic.width - rectShort} 
-    y=0 
+    x={graphic.width - rectShort - 1} 
+    y=1 
     width={rectShort}  
     height={rectLong} />
 
   <!-- Bottom right -->
   <rect 
-    x={graphic.width - rectLong} 
-    y={graphic.height - rectShort} 
+    x={graphic.width - rectLong - 1} 
+    y={graphic.height - rectShort - 1} 
     width={rectLong} 
     height={rectShort} />
 
   <rect 
-    x={graphic.width - rectShort} 
-    y={graphic.height - rectLong} 
+    x={graphic.width - rectShort - 1} 
+    y={graphic.height - rectLong - 1} 
     width={rectShort} 
     height={rectLong} />
 
   <!-- Bottom left -->
   <rect 
-    x=0 
-    y={graphic.height - rectShort} 
+    x=1 
+    y={graphic.height - rectShort - 1} 
     width={rectLong} 
     height={rectShort} />
 
   <rect 
     x=0 
-    y={graphic.height - rectLong} 
+    y={graphic.height - rectLong - 1} 
     width={rectShort} 
     height={rectLong} />
 
@@ -153,6 +153,7 @@
   fill: var(--sveltevis-color);
   stroke: var(--sveltevis-color);
 }
+
 .sveltevis-layout-report-content {
   fill: var(--sveltevis-color);
   font-size: var(--sveltevis-font-size);
