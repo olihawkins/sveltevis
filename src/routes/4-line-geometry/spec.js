@@ -39,7 +39,6 @@ function getSpec() {
             {value: 0.4},
           ]
         }
-  
       },
       axisX: {
         domain: [0, 50],
