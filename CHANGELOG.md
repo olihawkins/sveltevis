@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.8
+
+* Resolved conflict between .npmignore and package.json
+
 ## 0.0.7
 
 * Fixed a bug in `LayoutReport` component
