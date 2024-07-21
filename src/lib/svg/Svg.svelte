@@ -10,7 +10,7 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    title: null
+    desc: null
   };
 
  // Props --------------------------------------------------------------------
@@ -34,7 +34,7 @@
   role="graphics-document">
 
     {#if settings.title !== null}
-      <title>{settings.title}</title>
+      <desc>{settings.desc}</desc>
     {/if}
   
     <g class="sveltevis-svg">
