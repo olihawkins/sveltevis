@@ -10,6 +10,7 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
+    title: null,
     desc: null
   };
 
@@ -32,13 +33,17 @@
   width="100%" 
   height="100%" 
   role="graphics-document">
-
-    {#if settings.title !== null}
-      <desc>{settings.desc}</desc>
-    {/if}
   
-    <g class="sveltevis-svg">
-      {@render children()}
-    </g>
+  {#if settings.title !== null}
+    <title>{settings.title}</title>
+  {/if}
+
+  {#if settings.desc !== null}
+    <desc>{settings.desc}</desc>
+  {/if}
+  
+  <g class="sveltevis-svg">
+    {@render children()}
+  </g>
 </svg>
 

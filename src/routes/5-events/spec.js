@@ -18,6 +18,10 @@ function getSpec(strokeRange) {
           }
         }
       },
+      svg: {
+        title: "Testing title",
+        desc: "Testing description"
+      },
       popup: {
         actions: {
           circleGeometry: {
