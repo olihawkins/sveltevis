@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.10
+
+* Moved all non-functional styles into the global `sveltevis.css` stylesheet for easier customisation by package consumers
+* Added `title` and `desc` settings to `Svg` component for accessible descriptions of visualisation content
+
 ## 0.0.9
 
 * Fixed an issue with missing exports

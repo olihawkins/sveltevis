@@ -13,7 +13,7 @@ const config = {
 		if (warning.code.includes("a11y_no_noninteractive_element_interactions")) return;
 		if (warning.code.includes("a11y_mouse_events_have_key_events")) return;
 		handler(warning);
-	},
+	}
 };
 
 export default config;
