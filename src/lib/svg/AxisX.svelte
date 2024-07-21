@@ -135,7 +135,7 @@
     lineDomain: [-4, 4],
     lineHeight: 1,
     lineExtend: {
-      left: 0,
+      left: 0.5,
       right: 0.5
     },
     showTicks: true,
@@ -265,23 +265,3 @@
   {/if}
 
 </g>
-
-<style>
-  .sveltevis-axis-x-tick {
-    fill: var(--sveltevis-color);
-  }
-
-  .sveltevis-axis-x-ticklabel {
-    fill: var(--sveltevis-color);
-    font-size: var(--sveltevis-font-size);
-  }
-
-  .sveltevis-axis-x-line {
-    fill: var(--sveltevis-color);
-  }
-  
-  .sveltevis-axis-x-label {
-    fill: var(--sveltevis-color);
-    font-size: var(--sveltevis-font-size);
-  }
-</style>

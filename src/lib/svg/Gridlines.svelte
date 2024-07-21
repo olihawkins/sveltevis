@@ -93,15 +93,3 @@
   {/each}
 
 </g>
-
-<style>
-  .sveltevis-gridline-x {
-    fill: var(--sveltevis-color);
-    fill-opacity: 0.5;
-  }
-
-  .sveltevis-gridline-y {
-    fill: var(--sveltevis-color);
-    fill-opacity: 0.5;
-  }
-</style>

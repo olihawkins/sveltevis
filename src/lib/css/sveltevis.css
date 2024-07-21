@@ -1,16 +1,22 @@
+/* SvelteVis styles */
+
+/* CSS variables ----------------------------------------------------------- */
+
 :root {
   --sveltevis-color: #404040;
   --sveltevis-active-fill: #75edff;
   --sveltevis-active-stroke: #1274ff;
   --sveltevis-font-size: 12pt;
-  --sveltevis-heading-font-size: 16pt;
   --sveltevis-line-height: 1.5;
+  --sveltevis-title-font-size: 16pt;
+  --sveltevis-subtitle-font-size: 12pt;
 }
 
 @media all and (max-width: 700px) {
   :root {
     --sveltevis-font-size: 10pt;
-    --sveltevis-heading-font-size: 14pt;
+    --sveltevis-title-font-size: 14pt;
+    --sveltevis-subtitle-font-size: 10pt;
   } 
 }
 
@@ -24,4 +30,133 @@
   :root {
     --sveltevis-color: #c0c0c0;
   }
+}
+
+/* Visualisation ----------------------------------------------------------- */
+
+.sveltevis-visualisation {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.sveltevis-header {
+  margin: 0 0 2rem 0;
+  padding: 0;
+}
+
+.sveltevis-header-title {
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+  line-height: var(--sveltevis-line-height);
+  font-size: var(--sveltevis-title-font-size);
+  color: var(--sveltevis-color);
+}
+
+.sveltevis-header-subtitle {
+  margin: 0;
+  padding: 0;
+  line-height: var(--sveltevis-line-height);
+  font-size: var(--sveltevis-subtitle-font-size);
+  color: var(--sveltevis-color);
+}
+
+/* Graphic ----------------------------------------------------------------- */
+
+.sveltevis-graphic {
+  margin: 0;
+  padding: 0;
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+.sveltevis-footer {
+  margin: 2rem 0 0 0;
+  padding: 0;
+}
+
+.sveltevis-footer-footnote {
+  margin: 0 0 0.5rem 0;
+  line-height: var(--sveltevis-line-height);
+  font-size: var(--sveltevis-font-size);
+  color: var(--sveltevis-color); 
+}
+
+.sveltevis-footer-source {
+  margin: 0;
+  padding: 0;
+  line-height: var(--sveltevis-line-height);
+  font-size: var(--sveltevis-font-size);
+  color: var(--sveltevis-color);
+}
+
+/* Gridlines --------------------------------------------------------------- */
+
+.sveltevis-gridline-x {
+  fill: var(--sveltevis-color);
+  fill-opacity: 0.5;
+}
+
+.sveltevis-gridline-y {
+  fill: var(--sveltevis-color);
+  fill-opacity: 0.5;
+}
+
+/* AxisX ------------------------------------------------------------------- */
+
+.sveltevis-axis-x-tick {
+  fill: var(--sveltevis-color);
+}
+
+.sveltevis-axis-x-ticklabel {
+  fill: var(--sveltevis-color);
+  font-size: var(--sveltevis-font-size);
+}
+
+.sveltevis-axis-x-line {
+  fill: var(--sveltevis-color);
+}
+
+.sveltevis-axis-x-label {
+  fill: var(--sveltevis-color);
+  font-size: var(--sveltevis-font-size);
+}
+
+/* AxisY ------------------------------------------------------------------- */
+
+.sveltevis-axis-y-tick {
+  fill: var(--sveltevis-color);
+}
+
+.sveltevis-axis-y-ticklabel {
+  fill: var(--sveltevis-color);
+  font-size: var(--sveltevis-font-size);
+}
+
+.sveltevis-axis-y-line {
+  fill: var(--sveltevis-color);
+}
+
+.sveltevis-axis-y-label {
+  fill: var(--sveltevis-color);
+  font-size: var(--sveltevis-font-size);
+}
+
+/* LayoutReport ------------------------------------------------------------ */
+
+.sveltevis-layout-report-margin {
+  fill: var(--sveltevis-color);
+  stroke: var(--sveltevis-color);
+}
+
+.sveltevis-layout-report-content {
+  fill: var(--sveltevis-color);
+  font-size: var(--sveltevis-font-size);
+}
+
+.sveltevis-layout-report-label {
+  fill: var(--sveltevis-color);
+  stroke: "none";
+  font-size: var(--sveltevis-font-size);
 }

@@ -122,7 +122,7 @@
     lineWidth: 1,
     lineExtend: {
       top: 0.5,
-      bottom: 0
+      bottom: 0.5
     },
     showTicks: true,
     ticks: [
@@ -256,23 +256,3 @@
   {/if}
 
 </g>
-
-<style>
-  .sveltevis-axis-y-tick {
-    fill: var(--sveltevis-color);
-  }
-
-  .sveltevis-axis-y-ticklabel {
-    fill: var(--sveltevis-color);
-    font-size: var(--sveltevis-font-size);
-  }
-
-  .sveltevis-axis-y-line {
-    fill: var(--sveltevis-color);
-  }
-
-  .sveltevis-axis-y-label {
-    fill: var(--sveltevis-color);
-    font-size: var(--sveltevis-font-size);
-  }
-</style>

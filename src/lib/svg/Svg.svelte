@@ -10,7 +10,7 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
-    events: []
+    title: null
   };
 
  // Props --------------------------------------------------------------------
@@ -32,6 +32,10 @@
   width="100%" 
   height="100%" 
   role="graphics-document">
+
+    {#if settings.title !== null}
+      <title>{settings.title}</title>
+    {/if}
   
     <g class="sveltevis-svg">
       {@render children()}

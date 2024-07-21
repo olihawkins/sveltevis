@@ -88,10 +88,3 @@
     {@render children()}
   {/if}
 </div>
-
-<style>
-  .sveltevis-visualisation {
-    margin: 0;
-    padding: 0;
-  }
-</style>

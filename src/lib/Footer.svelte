@@ -40,25 +40,3 @@
     </p>
   {/if}
 </div>
-
-<style>
-  .sveltevis-footer {
-    margin: 2rem 0 0 0;
-    padding: 0;
-  }
-
-  .sveltevis-footer-footnote {
-    margin: 0 0 0.5rem 0;
-    line-height: var(--sveltevis-line-height);
-    font-size: var(--sveltevis-font-size);
-    color: var(--sveltevis-color); 
-  }
-
-  .sveltevis-footer-source {
-    margin: 0;
-    padding: 0;
-    line-height: var(--sveltevis-line-height);
-    font-size: var(--sveltevis-font-size);
-    color: var(--sveltevis-color);
-  }
-</style>

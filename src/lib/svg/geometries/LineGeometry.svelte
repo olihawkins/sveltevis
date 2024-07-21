@@ -129,16 +129,18 @@
 
 </script>
 
-{#each Object.entries(paths) as [name, path] (name)}
-  <path 
-    d={path.d} 
-    style:stroke={path.stroke}
-    style:stroke-width={path.strokeWidth}
-    style:stroke-opacity={path.strokeOpacity}
-    style:stroke-dasharray={path.strokeDashArray}
-    style:stroke-dashoffset={path.strokeDashOffset}
-    style:stroke-linecap={path.strokeLineCap}
-    style:stroke-linejoin={path.strokeLineJoin}
-    style:stroke-miterlimit={path.strokeMiterLimit}
-    fill="none" />
-{/each}
+<g class="sveltevis-circle-geometry">
+  {#each Object.entries(paths) as [name, path] (name)}
+    <path 
+      d={path.d} 
+      style:stroke={path.stroke}
+      style:stroke-width={path.strokeWidth}
+      style:stroke-opacity={path.strokeOpacity}
+      style:stroke-dasharray={path.strokeDashArray}
+      style:stroke-dashoffset={path.strokeDashOffset}
+      style:stroke-linecap={path.strokeLineCap}
+      style:stroke-linejoin={path.strokeLineJoin}
+      style:stroke-miterlimit={path.strokeMiterLimit}
+      fill="none" />
+  {/each}
+</g>

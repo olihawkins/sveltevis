@@ -147,21 +147,3 @@
     <text x=20 y=130>plot.width: {plot.width}</text>
     <text x=20 y=150>plot.height: {plot.height}</text>
 </g>
-
-<style>
-.sveltevis-layout-report-margin {
-  fill: var(--sveltevis-color);
-  stroke: var(--sveltevis-color);
-}
-
-.sveltevis-layout-report-content {
-  fill: var(--sveltevis-color);
-  font-size: var(--sveltevis-font-size);
-}
-
-.sveltevis-layout-report-label {
-  fill: var(--sveltevis-color);
-  stroke: "none";
-  font-size: var(--sveltevis-font-size);
-}
-</style>
