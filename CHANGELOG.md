@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.11 and 0.0.12
+
+* Internal changes to upgrade to Svelte 5.0.0
+
 ## 0.0.10
 
 * Moved all non-functional styles into the global `sveltevis.css` stylesheet for easier customisation by package consumers
