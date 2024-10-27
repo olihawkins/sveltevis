@@ -1,8 +1,12 @@
 # Changelog
 
-## 0.0.11 and 0.0.12
+## 0.0.12
 
-* Internal changes to upgrade to Svelte 5.0.0
+* Internal changes to upgrade to official Svelte 5.0.0 release
+
+## 0.0.11
+
+* Internal changes to upgrade to Svelte 5.0.0-next.257
 
 ## 0.0.10
 
