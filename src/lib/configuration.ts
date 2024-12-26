@@ -1,13 +1,30 @@
+// ESLint overrides ---------------------------------------------------------
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+// Types ----------------------------------------------------------------------
+
+type ObjectWithStringKeys<T> = T extends object
+  ? { [key: string]: ObjectWithStringKeys<any> }
+  : T;
+
+export type Configuration = {
+  [key: string]: ObjectWithStringKeys<any>;
+};
+
+// Functions ------------------------------------------------------------------
 
 // Check if a variable is an object
-function isObject(o) {
-  return o && 
+function isObject(o: unknown): o is Record<string, unknown> {
+  return o !== null && 
     typeof o === 'object' && 
     o.constructor === Object;
 }
 
 // Update the values in one config object with the values in another
-export function mergeConfigs(src, updates) {
+export function mergeConfigs(
+  src: Configuration, 
+  updates: Configuration): Configuration {
  
   const { ...dest } = src;
   const keys = Object.keys(updates);
@@ -37,7 +54,9 @@ export function mergeConfigs(src, updates) {
 }
 
 // Convert the settings in the spec to an array of fully-specified configs
-export function createConfigs(spec, defaults) {
+export function createConfigs(
+  spec: Configuration, 
+  defaults: Configuration): Array<Configuration> {
 
   // Get the main config by updating the defaults with the spec
   const config = getMainConfig(spec, defaults);
@@ -70,7 +89,9 @@ export function createConfigs(spec, defaults) {
 }
 
 // Update the default visualisation settings with the user spec
-export function getMainConfig(spec, defaults) {
+export function getMainConfig(
+  spec: Configuration, 
+  defaults: Configuration): Configuration {
 
   let config;
 
@@ -78,7 +99,7 @@ export function getMainConfig(spec, defaults) {
       Object.hasOwn(spec.main, "visualisation") &&
       isObject(spec.main.visualisation)) {
   
-    let visualisation = mergeConfigs(
+    const visualisation = mergeConfigs(
       defaults.main.visualisation, 
       spec.main.visualisation);
 
@@ -94,8 +115,12 @@ export function getMainConfig(spec, defaults) {
 }
 
 // Update the default config for a component with a user config
-export function getSettings(defaults, config, key) {
-  let settings;
+export function getSettings(
+  defaults: Configuration, 
+  config: Configuration, 
+  key: string): Configuration {
+  
+      let settings;
   if (Object.hasOwn(config, key)) {
     settings = mergeConfigs(defaults, config[key])
   } else {

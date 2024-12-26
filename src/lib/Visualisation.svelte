@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 
   // Imports ------------------------------------------------------------------
 
-  import { createConfigs } from "./settings.js";
-  import { createLayout } from "./layout.svelte.js";
+  import { createConfigs } from "./configuration.ts";
+  import { createLayout } from "./layout.svelte.ts";
 
   // Defaults -----------------------------------------------------------------
 
@@ -34,7 +34,11 @@
 
   const layout = createLayout(createConfigs(spec, defaults));
   const configs = $derived(createConfigs(spec, defaults));
-  $effect(() => layout.configs = configs);
+
+  $effect(() => {
+    layout.configs = [];
+    layout.configs = configs;
+  });
 
   // Bound elements -----------------------------------------------------------
   

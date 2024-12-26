@@ -1,11 +1,11 @@
 <svelte:options namespace="svg" />
 
-<script>
+<script lang="ts">
   
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "../layout.svelte.js";
-  import { getSettings } from "../settings.js";
+  import { getLayout } from "../layout.svelte.ts";
+  import { getSettings } from "../configuration.ts";
   
   // Defaults -----------------------------------------------------------------
 

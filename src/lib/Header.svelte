@@ -1,8 +1,13 @@
-<script>
+<script lang="ts">
+
+  // ESLint overrides ---------------------------------------------------------
+  
+  /* eslint-disable svelte/no-at-html-tags */
+
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./layout.svelte.js";
-  import { getSettings } from "./settings.js";
+  import { getLayout } from "./layout.svelte.ts";
+  import { getSettings } from "./configuration.ts";
 
   // Defaults -----------------------------------------------------------------
 

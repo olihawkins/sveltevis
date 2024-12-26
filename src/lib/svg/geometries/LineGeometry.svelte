@@ -1,13 +1,13 @@
 <svelte:options namespace="svg" />
 
-<script>
+<script lang="ts">
   
   // Imports ------------------------------------------------------------------
 
   import { line, curveLinear } from "d3-shape";
   import { scaleLinear } from "d3-scale";
-  import { getLayout } from "../../layout.svelte.js";
-  import { getSettings } from "../../settings.js";
+  import { getLayout } from "../../layout.svelte.ts";
+  import { getSettings } from "../../configuration.ts";
 
   // Functions ----------------------------------------------------------------
   
@@ -37,7 +37,6 @@
         stroke: getPathProperty(s, settings, "stroke"),
         strokeWidth: getPathProperty(s, settings, "strokeWidth"),
         strokeOpacity: getPathProperty(s, settings, "strokeOpacity"),
-        strokeOpacity: getPathProperty(s, settings, "strokeOpacity"),
         strokeDashArray: getPathProperty(s, settings, "strokeDashArray"),
         strokeDashOffset: getPathProperty(s, settings, "strokeDashOffset"),
         strokeLineCap: getPathProperty(s, settings, "strokeLineCap"),
@@ -56,7 +55,7 @@
     });
 
     // Create path for each line
-    for (const [name, path] of Object.entries(paths)) {
+    for (const [, path] of Object.entries(paths)) {
       const pathGenerator = line()
         .x(d => scaleX(d.x))
         .y(d => scaleY(d.y))

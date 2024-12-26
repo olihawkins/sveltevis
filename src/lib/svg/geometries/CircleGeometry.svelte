@@ -1,6 +1,6 @@
 <svelte:options namespace="svg" />
 
-<script>
+<script lang="ts">
   
   // Imports ------------------------------------------------------------------
 
@@ -8,9 +8,9 @@
     scaleLinear,
     scaleOrdinal,
     scaleSqrt } from "d3-scale";
-  import { getLayout } from "../../layout.svelte.js";
-  import { getSettings } from "../../settings.js";
-  import { noop } from "../../events.js";
+  import { getLayout } from "../../layout.svelte.ts";
+  import { getSettings } from "../../configuration.ts";
+  import { noop } from "../../events.ts";
 
   // Constants ----------------------------------------------------------------
 
@@ -326,6 +326,7 @@
 
 <g class="sveltevis-circle-geometry">
   {#each data as point (point[id])}
+    <!--svelte-ignore a11y_mouse_events_have_key_events-->
     <circle 
       class="sveltevis-circle-geometry-circle"
       cx={getX(point, scaleX, settings)} 

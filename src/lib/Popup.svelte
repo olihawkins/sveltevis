@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./layout.svelte.js";
-  import { getSettings } from "./settings.js";
+  import { getLayout } from "./layout.svelte.ts";
+  import { getSettings } from "./configuration.ts";
 
   // Events -------------------------------------------------------------------
 
@@ -61,7 +61,6 @@
   function getTop(event) {
     let top = "auto";
     if (Object.hasOwn(event, "e") && event.e !== null) {
-      const innerRect = event.e.target.getBoundingClientRect();
       const targetTop = window.scrollY + event.e.clientY + settings.offset;
       if (event.e.clientY <= window.innerHeight / 2) {
         top = `${targetTop}px`;

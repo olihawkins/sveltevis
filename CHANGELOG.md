@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.13
+
+* Fixed stale state warning in `Visualisation` component.
+
 ## 0.0.12
 
 * Internal changes to upgrade to official Svelte 5.0.0 release

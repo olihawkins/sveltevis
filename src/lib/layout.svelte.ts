@@ -1,14 +1,21 @@
 // Imports --------------------------------------------------------------------
 
 import { getContext, setContext } from "svelte";
+import { type Configuration } from "./configuration.ts";
 
 // Constants ------------------------------------------------------------------
 
 const LAYOUT_CONTEXT = "layout";
 
+// Interfaces -----------------------------------------------------------------
+
+
 // Choose config based on width -----------------------------------------------
 
-function getNextConfig(configs, width) {
+function getNextConfig(
+  configs: Array<Configuration>, 
+  width: number): Configuration {
+  
   for (let i = 0; i < configs.length; i++) {
     if (width > configs[i].visualisation.minwidth) {
       return configs[i];
@@ -19,35 +26,35 @@ function getNextConfig(configs, width) {
 
 // Create layout object -------------------------------------------------------
 
-export function createLayout(confs) {
+export function createLayout(c: Array<Configuration>): object {
 
   // State
-  let configs = $state(confs);
+  let configs = $state(c);
   let windowWidth = $state(800);
   let windowHeight = $state(800);
   let width = $state(800);
   let event = $state({source: "layout", msg: null});
 
   // Derived values
-  let config = $derived(getNextConfig(configs, windowWidth));
+  const config = $derived(getNextConfig(configs, windowWidth));
 
-  let graphic = $derived({ 
+  const graphic = $derived({ 
     width: width, 
     height: config.visualisation.graphic.height,
     margin: config.visualisation.graphic.margin
   });
 
-  let plot = $derived({ 
+  const plot = $derived({ 
     width: graphic.width - graphic.margin.left - graphic.margin.right, 
     height: graphic.height - graphic.margin.top - graphic.margin.bottom
   });
 
   // Public interface
   const layout = {
-    get config() {
+    get config(): Configuration {
       return config;
     },
-    get configs() {
+    get configs(): Array<Configuration> {
       return configs;
     },
     get event() {
@@ -92,6 +99,6 @@ export function createLayout(confs) {
 
 // Get layout object --------------------------------------------------------------------
 
-export function getLayout() {
+export function getLayout(): unknown {
   return getContext(LAYOUT_CONTEXT);
 }

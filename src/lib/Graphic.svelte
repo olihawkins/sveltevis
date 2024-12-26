@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./layout.svelte.js";
+  import { getLayout } from "./layout.svelte.ts";
   
   // Props --------------------------------------------------------------------
 
