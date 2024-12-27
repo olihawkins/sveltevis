@@ -6,28 +6,37 @@
 
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./layout.svelte.ts";
+  import type { Snippet } from "svelte";
+  import type { Configuration } from "./configuration.ts";
+  import type { Layout } from "./layout.svelte.ts";
+
   import { getSettings } from "./configuration.ts";
+  import { getLayout } from "./layout.svelte.ts";
 
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     title: null,
     subtitle: null
   };
 
   // Props --------------------------------------------------------------------
 
-  let { key = "header", children } = $props();
+	interface Props {
+		key?: string;
+		children?: Snippet;
+	}
+
+  let { key = "header", children }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
 </script>
 
 <div class="sveltevis-header">

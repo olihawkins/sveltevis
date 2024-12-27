@@ -2,12 +2,16 @@
 
   // Imports ------------------------------------------------------------------
 
+  import type { Snippet } from "svelte";
+  import type { Configuration } from "./configuration.ts";
+  import type { Layout } from "./layout.svelte.ts";
+
   import { createConfigs } from "./configuration.ts";
   import { createLayout } from "./layout.svelte.ts";
 
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     main: {
       name: "main",
       visualisation: {
@@ -28,12 +32,17 @@
 
   // Props --------------------------------------------------------------------
 
-  let { spec = {}, children } = $props();
+	interface Props {
+		spec?: Configuration;
+		children?: Snippet;
+	}
+
+  let { spec = {}, children }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = createLayout(createConfigs(spec, defaults));
-  const configs = $derived(createConfigs(spec, defaults));
+  const layout: Layout = createLayout(createConfigs(spec, defaults));
+  const configs: Configuration[] = $derived(createConfigs(spec, defaults));
 
   $effect(() => {
     layout.configs = [];
@@ -42,22 +51,25 @@
 
   // Bound elements -----------------------------------------------------------
   
-  let vis = $state();
+  let vis: HTMLDivElement | undefined = $state();
 
   // State --------------------------------------------------------------------
 
-  let visibility = $state("hidden");
+  let visibility: string = $state("hidden");
 
   // Derived values -----------------------------------------------------------
 
-  let windowWidth = $derived(layout.windowWidth);
+  let windowWidth: number = $derived(layout.windowWidth);
+  let windowHeight: number = $derived(layout.windowHeight);
 
   // Observe width and update layout ------------------------------------------
 
-  function updateLayout() {
-    layout.width = vis.clientWidth;
-    layout.windowWidth = window.innerWidth;
-    layout.windowHeight = window.innerHeight;
+  function updateLayout(): void {
+    if (vis instanceof HTMLDivElement) {
+      layout.width = vis.clientWidth;
+      layout.windowWidth = window.innerWidth;
+      layout.windowHeight = window.innerHeight;
+    }
   }
 
   // Set up resize handling 
@@ -70,8 +82,9 @@
     visibility = "visible";
     
     // Create resize handler
-    const handleResize = () => {
-      if (windowWidth !== window.innerWidth) {
+    const handleResize = (): void => {
+      if (windowWidth !== window.innerWidth || 
+          windowHeight !== window.innerHeight) {
         updateLayout();
       }
     };

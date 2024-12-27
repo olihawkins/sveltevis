@@ -4,8 +4,6 @@
   import SiteHeader from "$lib/site/SiteHeader.svelte";
   import SiteFooter from "$lib/site/SiteFooter.svelte";
   import Visualisation from "$lib/Visualisation.svelte";
-  import Header from "$lib/Header.svelte";
-  import Footer from "$lib/Footer.svelte";
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
   import Gridlines from "$lib/svg/Gridlines.svelte";

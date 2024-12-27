@@ -6,23 +6,32 @@
 
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "./layout.svelte.ts";
+  import type { Snippet } from "svelte";
+  import type { Configuration } from "./configuration.ts";
+  import type { Layout } from "./layout.svelte.ts";
+
   import { getSettings } from "./configuration.ts";
+  import { getLayout } from "./layout.svelte.ts";
   
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     footnote: null,
     source: null
   };
 
   // Props --------------------------------------------------------------------
 
-  let { key = "footer", children } = $props();
+	interface Props {
+		key?: string;
+		children?: Snippet;
+	}
+
+  let { key = "footer", children }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 

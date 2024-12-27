@@ -1,8 +1,14 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-  
+
   // Imports ------------------------------------------------------------------
+
+  import type { Configuration } from "../configuration.ts";
+  import type { Layout } from "../layout.svelte.ts";
+  import type { LayoutGraphic } from "../layout.svelte.ts";
+  import type { LayoutPlot } from "../layout.svelte.ts";
+  import type { LayoutMargin } from "../layout.svelte.ts";
 
   import { scaleLinear } from "d3-scale";
   import { getLayout } from "../layout.svelte.ts";
@@ -10,7 +16,11 @@
   
   // Functions ----------------------------------------------------------------
 
-  function getLineX(linePosition, linePositionMiddle, plotWidth) {
+  function getLineX(
+    linePosition: string, 
+    linePositionMiddle: number, 
+    plotWidth: number
+  ): number {
     
     let lineX;
     
@@ -31,7 +41,10 @@
     return lineX;
   }
 
-  function getTickX(tickPosition, tickWidth) {
+  function getTickX(
+    tickPosition: string, 
+    tickWidth: number
+  ): number {
     
     let tickX;
 
@@ -52,7 +65,11 @@
    return tickX;
   }
 
-  function getTickLabelX(tickLabelPosition, tickWidth, tickLabelOffset) {
+  function getTickLabelX(
+    tickLabelPosition: string, 
+    tickWidth: number, 
+    tickLabelOffset: number
+  ): number {
     
     let tickLabelX;
 
@@ -70,7 +87,9 @@
    return tickLabelX;
   }
 
-  function getTickLabelAnchor(tickLabelPosition) {
+  function getTickLabelAnchor(
+    tickLabelPosition: string
+  ): string {
     
     let tickLabelAnchor;
 
@@ -88,7 +107,12 @@
    return tickLabelAnchor;
   }
 
-  function getLabelX(labelPosition, labelOffset, marginLeft, plotWidth) {
+  function getLabelX(
+    labelPosition: string, 
+    labelOffset: number, 
+    marginLeft: number, 
+    plotWidth: number
+  ): number {
     
     let labelX;
 
@@ -106,7 +130,12 @@
    return labelX;
   }
 
-  function getLabelRotation(rotation, labelX, marginTop, plotHeight) {
+  function getLabelRotation(
+    rotation: string, 
+    labelX: string, 
+    marginTop: number, 
+    plotHeight: number
+  ): string {
     return `rotate(${rotation}, ${labelX}, ${marginTop + (plotHeight / 2)})`;
   }
 
@@ -151,18 +180,18 @@
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
 
   // Properties --------------------------------------------------------------
 
-  const graphic = $derived(layout.graphic);
-  const plot = $derived(layout.plot);
-  const margin = $derived(graphic.margin);
+  const graphic: LayoutGraphic = $derived(layout.graphic);
+  const plot: LayoutPlot = $derived(layout.plot);
+  const margin: LayoutMargin = $derived(graphic.margin);
 
   const scale = $derived(settings.scale(
     settings.domain, 
@@ -199,7 +228,7 @@
 
 </script>
 
-<g class="sveltevis-axis-x">
+<g class="sveltevis-axis-y">
 
   <!--Axis ticks-->
   {#each settings.ticks as tick (tick.value)}

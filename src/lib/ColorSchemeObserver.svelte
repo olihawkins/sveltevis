@@ -13,7 +13,7 @@
     isDarkMode = prefersDarkMode.matches;
 
     // Create color scheme handler
-    const handleColorSchemeChange = (event) => {
+    const handleColorSchemeChange = (event: MediaQueryListEvent): void => {
       isDarkMode = event.matches;
     };
 
@@ -21,7 +21,7 @@
     prefersDarkMode.addEventListener("change", handleColorSchemeChange);
 
     // Remove color scheme listener
-    return () => {
+    return (): void => {
       prefersDarkMode.removeEventListener("change", handleColorSchemeChange);
     }
   });

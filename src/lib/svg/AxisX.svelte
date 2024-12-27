@@ -4,13 +4,23 @@
   
   // Imports ------------------------------------------------------------------
 
+  import type { Configuration } from "../configuration.ts";
+  import type { Layout } from "../layout.svelte.ts";
+  import type { LayoutGraphic } from "../layout.svelte.ts";
+  import type { LayoutPlot } from "../layout.svelte.ts";
+  import type { LayoutMargin } from "../layout.svelte.ts";
+
   import { scaleLinear } from "d3-scale";
   import { getLayout } from "../layout.svelte.ts";
   import { getSettings } from "../configuration.ts";
   
   // Functions ----------------------------------------------------------------
 
-  function getLineY(linePosition, linePositionMiddle, plotHeight) {
+  function getLineY(
+    linePosition: string, 
+    linePositionMiddle: number, 
+    plotHeight: number
+  ): number {
     
     let lineY;
     
@@ -31,7 +41,10 @@
     return lineY;
   }
 
-  function getTickY(tickPosition, tickHeight) {
+  function getTickY(
+    tickPosition: string, 
+    tickHeight: number
+  ): number {
     
     let tickY;
 
@@ -52,7 +65,11 @@
    return tickY;
   }
 
-  function getTickLabelY(tickLabelPosition, tickHeight, tickLabelOffset) {
+  function getTickLabelY(
+    tickLabelPosition: string, 
+    tickHeight: number, 
+    tickLabelOffset: number
+  ): number {
     
     let tickLabelY;
 
@@ -70,7 +87,9 @@
    return tickLabelY;
   }
 
-  function getTickLabelBaseline(tickLabelPosition) {
+  function getTickLabelBaseline(
+    tickLabelPosition: string
+  ): string {
     
     let tickLabelBaseline;
 
@@ -88,7 +107,12 @@
    return tickLabelBaseline;
   }
 
-  function getLabelY(labelPosition, labelOffset, marginTop, plotHeight) {
+  function getLabelY(
+    labelPosition: string, 
+    labelOffset: number, 
+    marginTop: number, 
+    plotHeight: number
+  ): number {
     
     let labelY;
 
@@ -106,7 +130,9 @@
    return labelY;
   }
 
-  function getLabelBaseline(labelPosition) {
+  function getLabelBaseline(
+    labelPosition: string
+  ): string {
     
     let labelBaseline;
 
@@ -160,22 +186,26 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "axisX" } = $props();
+  interface Props {
+    key?: string;
+  }
+
+  let { key = "axisX" }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
 
   // Properties --------------------------------------------------------------
 
-  const graphic = $derived(layout.graphic);
-  const plot = $derived(layout.plot);
-  const margin = $derived(graphic.margin);
+  const graphic: LayoutGraphic = $derived(layout.graphic);
+  const plot: LayoutPlot = $derived(layout.plot);
+  const margin: LayoutMargin = $derived(graphic.margin);
   
   const scale = $derived(settings.scale(
     settings.domain, 

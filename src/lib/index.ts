@@ -1,5 +1,8 @@
-// Reexport your entry components here
-import { getLayout } from "$lib/layout.svelte.js";
+// Disable linter to silence SvelteKit linting bug in VSCode for this file
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+import { getLayout } from "$lib/layout.svelte.ts";
 import { getSettings } from "$lib/configuration.ts";
 import Visualisation from "$lib/Visualisation.svelte";
 import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";

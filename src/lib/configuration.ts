@@ -24,7 +24,8 @@ function isObject(o: unknown): o is Record<string, unknown> {
 // Update the values in one config object with the values in another
 export function mergeConfigs(
   src: Configuration, 
-  updates: Configuration): Configuration {
+  updates: Configuration
+): Configuration {
  
   const { ...dest } = src;
   const keys = Object.keys(updates);
@@ -56,7 +57,8 @@ export function mergeConfigs(
 // Convert the settings in the spec to an array of fully-specified configs
 export function createConfigs(
   spec: Configuration, 
-  defaults: Configuration): Array<Configuration> {
+  defaults: Configuration
+): Configuration[] {
 
   // Get the main config by updating the defaults with the spec
   const config = getMainConfig(spec, defaults);
@@ -91,7 +93,8 @@ export function createConfigs(
 // Update the default visualisation settings with the user spec
 export function getMainConfig(
   spec: Configuration, 
-  defaults: Configuration): Configuration {
+  defaults: Configuration
+): Configuration {
 
   let config;
 
@@ -118,7 +121,8 @@ export function getMainConfig(
 export function getSettings(
   defaults: Configuration, 
   config: Configuration, 
-  key: string): Configuration {
+  key: string
+): Configuration {
   
       let settings;
   if (Object.hasOwn(config, key)) {

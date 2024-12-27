@@ -2,12 +2,25 @@
   
   // Imports ------------------------------------------------------------------
 
+  import type { Snippet } from "svelte";
+  import type { Layout, LayoutEvent } from "./layout.svelte.ts";
+  import type { Configuration } from "./configuration.ts";
+
   import { getLayout } from "./layout.svelte.ts";
   import { getSettings } from "./configuration.ts";
 
+  // Interfaces ---------------------------------------------------------------
+
+  interface PopupEvent extends LayoutEvent {
+    action: string;
+  }
+
   // Events -------------------------------------------------------------------
 
-  function processEvent(event) {
+  function processEvent(
+    settings: Configuration, 
+    event: LayoutEvent
+  ): PopupEvent {
 
     // No actions exist for events with this key
     if (! Object.hasOwn(settings.actions, event.key)) {
@@ -34,33 +47,40 @@
     offset: 10
   };
 
- // Props ---------------------------------------------------------------------
+  // Props --------------------------------------------------------------------
 
-  let { key = "popup", children } = $props();
+  interface Props {
+    key?: string;
+    children?: Snippet<[key: string, data: object ]>;
+  }
+
+  let { key = "popup", children }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Bound elements -----------------------------------------------------------
   
-  let popup = $state();
+  let popup: HTMLDivElement | undefined = $state();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
-  const event = $derived(processEvent(layout.event));
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
+  const event: PopupEvent = $derived(processEvent(settings, layout.event));
 
   // Display ------------------------------------------------------------------
   
-  function getVisibility(event) {
+  function getVisibility(event: PopupEvent) {
     return (event.action === "activate") ? "visible" : "hidden";
   }
 
-  function getTop(event) {
+  function getTop(event: PopupEvent): string {
     let top = "auto";
-    if (Object.hasOwn(event, "e") && event.e !== null) {
+    if (Object.hasOwn(event, "e") && 
+        event.e !== null && 
+        event.e instanceof MouseEvent) {
       const targetTop = window.scrollY + event.e.clientY + settings.offset;
       if (event.e.clientY <= window.innerHeight / 2) {
         top = `${targetTop}px`;
@@ -69,9 +89,11 @@
     return top;
   }
 
-  function getBottom(event) {
+  function getBottom(event: PopupEvent): string {
     let bottom = "auto";
-    if (Object.hasOwn(event, "e") && event.e !== null) {
+    if (Object.hasOwn(event, "e") && 
+        event.e !== null && 
+        event.e instanceof MouseEvent) {
       const doc = document.documentElement;
       const targetBottom = doc.clientHeight - (window.scrollY + event.e.clientY) + settings.offset;
       if (event.e.clientY > window.innerHeight / 2) {
@@ -81,9 +103,11 @@
     return bottom;
   }
 
-  function getLeft(event) {
+  function getLeft(event: PopupEvent): string {
     let left = "auto";
-    if (Object.hasOwn(event, "e") && event.e !== null) {
+    if (Object.hasOwn(event, "e") && 
+        event.e !== null && 
+        event.e instanceof MouseEvent) {
       const targetLeft = window.scrollX + event.e.clientX + settings.offset;
       if (event.e.clientX <= window.innerWidth / 2) {
         left = `${targetLeft}px`;
@@ -92,9 +116,11 @@
     return left;
   }
 
-  function getRight(event) {
+  function getRight(event: PopupEvent): string {
     let right = "auto";
-    if (Object.hasOwn(event, "e") && event.e !== null) {
+    if (Object.hasOwn(event, "e") && 
+        event.e !== null && 
+        event.e instanceof MouseEvent) {
       const doc = document.documentElement;
       const targetRight = doc.clientWidth - (window.scrollX + event.e.clientX) + settings.offset;
       if (event.e.clientX > window.innerWidth / 2) {
@@ -115,7 +141,9 @@
   style:right={getRight(event)} 
   bind:this={popup} >
     {#if event.action === "activate"}
-      {@render children(event.key, event.data)}
+      {#if children}
+        {@render children(event.key, event.data)}
+      {/if}
     {/if}
 </div>
 
