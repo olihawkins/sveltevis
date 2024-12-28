@@ -1,6 +1,7 @@
 {
 	"name": "sveltevis",
 	"version": "0.0.13",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build && npm run package",

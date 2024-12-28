@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
   import "$lib/css/site.css";
   import "$lib/css/sveltevis.css";

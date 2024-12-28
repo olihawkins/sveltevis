@@ -4,15 +4,15 @@
   
   // Imports ------------------------------------------------------------------
 
-  import { getLayout } from "../layout.svelte.ts";
   import { getSettings } from "../configuration.ts";
+  import { getLayout } from "../layout.svelte.ts";
   
   // Defaults -----------------------------------------------------------------
 
   const defaults = {
     rect: {
       long: 50,
-      short: 3
+      short: 5
     }
   };
 

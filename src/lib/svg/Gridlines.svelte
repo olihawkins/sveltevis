@@ -5,8 +5,8 @@
   // Imports ------------------------------------------------------------------
 
   import { scaleLinear } from "d3-scale";
-  import { getLayout } from "../layout.svelte.ts";
   import { getSettings } from "../configuration.ts";
+  import { getLayout } from "../layout.svelte.ts";
 
   // Defaults -----------------------------------------------------------------
 

@@ -11,8 +11,8 @@
   import type { LayoutMargin } from "../layout.svelte.ts";
 
   import { scaleLinear } from "d3-scale";
-  import { getLayout } from "../layout.svelte.ts";
   import { getSettings } from "../configuration.ts";
+  import { getLayout } from "../layout.svelte.ts";
   
   // Functions ----------------------------------------------------------------
 
@@ -131,8 +131,8 @@
   }
 
   function getLabelRotation(
-    rotation: string, 
-    labelX: string, 
+    rotation: number, 
+    labelX: number, 
     marginTop: number, 
     plotHeight: number
   ): string {
@@ -176,7 +176,11 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "axisY" } = $props();
+  interface Props {
+    key?: string;
+  }
+
+  let { key = "axisY" }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 

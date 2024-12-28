@@ -80,7 +80,6 @@ p code {
   font-size: 10.5pt;
   color: var(--code-color);
   background-color: var(--code-background-color);
-  border-radius: 3px;
 }
 
 .codeblock {
@@ -90,6 +89,7 @@ p code {
   color: var(--code-color);
   background-color: var(--code-background-color);
   overflow-x: auto;
+  border-radius: 10px;
 }
 
 ol {

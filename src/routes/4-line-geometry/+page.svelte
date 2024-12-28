@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
   import "$lib/css/site.css";
   import "$lib/css/sveltevis.css";
@@ -12,8 +12,8 @@
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
   import LineGeometry from "$lib/svg/geometries/LineGeometry.svelte";
-  import { spec } from "./spec.js";
-  import data from "./visnet-training.json";
+  import { spec } from "./spec.ts";
+  import data from "./visnet-training.json" assert { type: "json" };
 
   const links = {
     previous: {

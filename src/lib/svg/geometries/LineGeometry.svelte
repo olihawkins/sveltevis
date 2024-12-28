@@ -4,14 +4,28 @@
   
   // Imports ------------------------------------------------------------------
 
+  import type { Configuration } from "../../configuration.ts";
+  import type { Layout } from "../../layout.svelte.ts";
+  import type { LayoutPlot } from "../../layout.svelte.ts";
+  import type { Observation } from "../../data.ts";
+
   import { line, curveLinear } from "d3-shape";
   import { scaleLinear } from "d3-scale";
-  import { getLayout } from "../../layout.svelte.ts";
   import { getSettings } from "../../configuration.ts";
+  import { getLayout } from "../../layout.svelte.ts";
+  
+  // Interfaces ---------------------------------------------------------------
+
+  interface Point { x: number; y: number };
 
   // Functions ----------------------------------------------------------------
   
-  function getPathProperty(series, settings, property) {
+  function getPathProperty(
+    series: Configuration, 
+    settings: Configuration, 
+    property: string
+  ): string {
+    
     if (Object.hasOwn(series, property)) {
       return series[property] 
     } else {
@@ -19,19 +33,32 @@
     }
   }
 
-  function createPaths(data, settings, scaleX, scaleY) {
+  function createPaths(
+    data: Observation[], 
+    settings: Configuration, 
+    scaleX: CallableFunction, 
+    scaleY: CallableFunction
+  ): object {
+    
+    // Create an object to store line properties
+    const paths: {[key: string]: Configuration} = {}
 
     // Extract names and mappings
     const mappings = settings.mappings;
-    const xName = mappings.x.name;
-    const yName = mappings.y.name;
-    const groupName = mappings.group.name;
-    
-    // Create an object to store line properties
-    const paths = {}
+    const xName = String(mappings.x.name);
+    const yName = String(mappings.y.name);
+    const groupName = String(mappings.group.name);
+
+    // Check names are valid
+    if (typeof xName !== "string" || 
+        typeof yName !== "string" || 
+        typeof groupName !== "string") {
+
+      return paths;
+    }
 
     // Determine properties for each line from mappings and settings
-    mappings.group.series.forEach(s => {
+    mappings.group.series.forEach((s: Configuration) => {
       paths[s.name] = {
         curve: getPathProperty(s, settings, "curve"),
         stroke: getPathProperty(s, settings, "stroke"),
@@ -46,17 +73,25 @@
       };
     });
 
-    // Compile data for each line
+    // Compile data for each path: only add observations with valid data
     data.forEach(d => {
-      paths[d[groupName]].data.push({
-        x: d[xName],
-        y: d[yName]
-      });
+      
+      if (Object.hasOwn(d, groupName) && 
+          Object.hasOwn(d, xName) && 
+          Object.hasOwn(d, yName)) {
+
+        const series = String(d[groupName]);
+
+        paths[series].data.push({
+          x: d[xName],
+          y: d[yName]
+        });
+      }
     });
 
     // Create path for each line
     for (const [, path] of Object.entries(paths)) {
-      const pathGenerator = line()
+      const pathGenerator = line<Point>()
         .x(d => scaleX(d.x))
         .y(d => scaleY(d.y))
         .curve(path.curve);
@@ -98,29 +133,36 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "lineGeometry", data } = $props();
+  interface Props {
+    key?: string;
+    data: Observation[]
+  }
+
+  let { key = "lineGeometry", data }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
-  const mappings = $derived(settings.mappings);
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
+  const mappings: Configuration = $derived(settings.mappings);
 
   // Scales -------------------------------------------------------------------
 
-  const plot = $derived(layout.plot);
+  const plot: LayoutPlot = $derived(layout.plot);
   
-  const scaleX = $derived(mappings.x.scale(
-    mappings.x.domain, 
-    [0, plot.width]));
+  const scaleX = $derived(
+    mappings.x.scale(
+      mappings.x.domain, 
+      [0, plot.width]));
 
-  const scaleY = $derived(mappings.y.scale(
-    mappings.y.domain, 
-    [plot.height, 0]));
+  const scaleY = $derived(
+    mappings.y.scale(
+      mappings.y.domain, 
+      [plot.height, 0]));
 
   // Properties ---------------------------------------------------------------
 
@@ -128,7 +170,7 @@
 
 </script>
 
-<g class="sveltevis-circle-geometry">
+<g class="sveltevis-line-geometry">
   {#each Object.entries(paths) as [name, path] (name)}
     <path 
       d={path.d} 

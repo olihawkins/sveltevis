@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
   import "$lib/css/site.css";
   import "$lib/css/sveltevis.css";
@@ -13,8 +13,8 @@
   import AxisY from "$lib/svg/AxisY.svelte";
   import Plot from "$lib/svg/Plot.svelte";
   import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
-  import { lightSpec, darkSpec } from "./spec.js";
-  import data from "./uk-election-2019-yh.json";
+  import { lightSpec, darkSpec } from "./spec.ts";
+  import data from "./uk-election-2019-yh.json" assert { type: "json" };
 
   const links = {
     previous: {

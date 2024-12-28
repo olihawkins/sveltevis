@@ -37,10 +37,10 @@ export interface LayoutEvent {
 
 export interface Layout {
   readonly config: Configuration;
-  readonly event: LayoutEvent;
   readonly graphic: LayoutGraphic;
   readonly plot: LayoutPlot;
   configs: Configuration[];
+  event: LayoutEvent;
   width: number;
   windowHeight: number;
   windowWidth: number;

@@ -1,7 +1,7 @@
 const strokeRangeLight = ["#ffa600", "#8d34e0"];
 const strokeRangeDark = ["#8c03fc", "#d9a311"];
 
-function getSpec(strokeRange) {
+function getSpec(strokeRange: string[]) {
 
   const spec = {
     main: {
@@ -15,14 +15,6 @@ function getSpec(strokeRange) {
             right: 40, 
             bottom: 40, 
             left: 50
-          }
-        }
-      },
-      popup: {
-        actions: {
-          circleGeometry: {
-            activate: ["activated"],
-            deactivate: ["deactivated"]
           }
         }
       },
@@ -72,6 +64,7 @@ function getSpec(strokeRange) {
         ]
       },
       circleGeometry: {
+        pointKey: "id",
         mappings: {
           x: {
             name: "median_age",
@@ -105,15 +98,7 @@ function getSpec(strokeRange) {
         },
         circle: {
           radius: 16,
-          strokeWidth: 1.5
-        },
-        active: {
-          enabled: true,
-          strokeWidth: 2.2
-        },
-        id: "id",
-        events: {
-          broadcast: true
+          strokeWidth: 1.4
         }
       }
     },
@@ -136,19 +121,13 @@ function getSpec(strokeRange) {
           circle: {
             radius: 10,
             strokeWidth: 1
-          },
-          active: {
-            fill: "#75edff",
-            stroke: "#1274ff",
-            strokeWidth: 1.6
-          },
+          }
         }
       }
     ]
   };
 
   return spec;
-
 }
 
 const lightSpec = getSpec(strokeRangeLight);

@@ -11,8 +11,9 @@
   import type { LayoutMargin } from "../layout.svelte.ts";
 
   import { scaleLinear } from "d3-scale";
-  import { getLayout } from "../layout.svelte.ts";
   import { getSettings } from "../configuration.ts";
+  import { getLayout } from "../layout.svelte.ts";
+  
   
   // Functions ----------------------------------------------------------------
 
@@ -201,7 +202,7 @@
   const config: Configuration = $derived(layout.config);
   const settings: Configuration = $derived(getSettings(defaults, config, key));
 
-  // Properties --------------------------------------------------------------
+  // Properties ---------------------------------------------------------------
 
   const graphic: LayoutGraphic = $derived(layout.graphic);
   const plot: LayoutPlot = $derived(layout.plot);
