@@ -141,7 +141,7 @@
 
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     scale: scaleLinear,
     domain: [-4, 4],
     showLine: true,
@@ -197,34 +197,34 @@
   const plot: LayoutPlot = $derived(layout.plot);
   const margin: LayoutMargin = $derived(graphic.margin);
 
-  const scale = $derived(settings.scale(
+  const scale: CallableFunction = $derived(settings.scale(
     settings.domain, 
     [margin.top + plot.height, margin.top]));
 
-  const lineX = $derived(getLineX(
+  const lineX: number = $derived(getLineX(
     settings.linePosition, 
     settings.linePositionMiddle,
     plot.width));
 
-  const tickX = $derived(getTickX( 
+  const tickX: number = $derived(getTickX( 
     settings.tickPosition,
     settings.tickWidth));
 
-  const tickLabelX = $derived(getTickLabelX( 
+  const tickLabelX: number = $derived(getTickLabelX( 
     settings.tickLabelPosition,
     settings.tickWidth,
     settings.tickLabelOffset));
 
-  const tickLabelAnchor = $derived(getTickLabelAnchor( 
+  const tickLabelAnchor: string = $derived(getTickLabelAnchor( 
     settings.tickLabelPosition));
 
-  const labelX = $derived(getLabelX( 
+  const labelX: number = $derived(getLabelX( 
     settings.labelPosition,
     settings.labelOffset,
     margin.left,
     plot.width));
 
-  const labelRotation = $derived(getLabelRotation(
+  const labelRotation: string = $derived(getLabelRotation(
     settings.labelRotation,
     labelX,
     margin.top,

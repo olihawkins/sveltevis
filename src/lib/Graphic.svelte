@@ -1,19 +1,26 @@
 <script lang="ts">
   // Imports ------------------------------------------------------------------
 
+  import type { Snippet } from "svelte";
+  import type { Layout } from "./layout.svelte.ts";
+
   import { getLayout } from "./layout.svelte.ts";
   
   // Props --------------------------------------------------------------------
 
-  let { children } = $props();
+  interface Props {
+    children?: Snippet;
+  }
+  
+  let { children }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Derived values -----------------------------------------------------------
 
-  let height = $derived(layout.graphic.height);
+  let height: number = $derived(layout.graphic.height);
 
 </script>
 

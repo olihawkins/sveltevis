@@ -4,32 +4,43 @@
   
   // Imports ------------------------------------------------------------------
 
+  import type { Snippet } from "svelte";
+  import type { Configuration } from "../configuration.ts";
+  import type { Layout } from "../layout.svelte.ts";
+  import type { LayoutPlot } from "../layout.svelte.ts";
+  import type { LayoutMargin } from "../layout.svelte.ts";
+
   import { getSettings } from "../configuration.ts";
   import { getLayout } from "../layout.svelte.ts";
   
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     clip: true
   };
 
- // Props --------------------------------------------------------------------
+  // Props --------------------------------------------------------------------
+  
+  interface Props {
+    key?: string;
+    children?: Snippet;
+  }
 
-  let { key = "plot", children } = $props();
+  let { key = "plot", children }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
 
   // Properties ---------------------------------------------------------------
 
-  let margin = $derived(layout.graphic.margin);
-  let plot = $derived(layout.plot);
+  let plot: LayoutPlot = $derived(layout.plot);
+  let margin: LayoutMargin = $derived(layout.graphic.margin);
 
 </script>
 
@@ -50,7 +61,7 @@
   </g>
 {:else}
   <g class="sveltevis-plot" transform={`translate(${margin.left} ${margin.top})`}>
-    {#if children !== null}
+    {#if children}
       {@render children()}
     {/if}
   </g>

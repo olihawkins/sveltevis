@@ -49,14 +49,6 @@
     const yName = String(mappings.y.name);
     const groupName = String(mappings.group.name);
 
-    // Check names are valid
-    if (typeof xName !== "string" || 
-        typeof yName !== "string" || 
-        typeof groupName !== "string") {
-
-      return paths;
-    }
-
     // Determine properties for each line from mappings and settings
     mappings.group.series.forEach((s: Configuration) => {
       paths[s.name] = {
@@ -103,7 +95,7 @@
 
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     mappings: {
       x: {
         name: null,
@@ -154,12 +146,12 @@
 
   const plot: LayoutPlot = $derived(layout.plot);
   
-  const scaleX = $derived(
+  const scaleX: CallableFunction = $derived(
     mappings.x.scale(
       mappings.x.domain, 
       [0, plot.width]));
 
-  const scaleY = $derived(
+  const scaleY: CallableFunction = $derived(
     mappings.y.scale(
       mappings.y.domain, 
       [plot.height, 0]));

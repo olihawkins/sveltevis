@@ -4,13 +4,19 @@
   
   // Imports ------------------------------------------------------------------
 
+  import type { Configuration } from "../configuration.ts";
+  import type { Layout } from "../layout.svelte.ts";
+  import type { LayoutGraphic } from "../layout.svelte.ts";
+  import type { LayoutPlot } from "../layout.svelte.ts";
+  import type { LayoutMargin } from "../layout.svelte.ts";
+
   import { scaleLinear } from "d3-scale";
   import { getSettings } from "../configuration.ts";
   import { getLayout } from "../layout.svelte.ts";
 
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     linesize: 0.5,
     x: {
       show: true,
@@ -40,28 +46,32 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "gridlines" } = $props();
+  interface Props {
+    key?: string;
+  }
+
+  let { key = "gridlines" }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
 
   // Properties --------------------------------------------------------------
 
-  const graphic = $derived(layout.graphic);
-  const plot = $derived(layout.plot);
-  const margin = $derived(graphic.margin);
+  const graphic: LayoutGraphic = $derived(layout.graphic);
+  const plot: LayoutPlot = $derived(layout.plot);
+  const margin: LayoutMargin = $derived(graphic.margin);
   
-  const scaleX = $derived(settings.x.scale(
+  const scaleX: CallableFunction = $derived(settings.x.scale(
     settings.x.domain, 
     [margin.left, margin.left + plot.width]));
 
-  const scaleY = $derived(settings.y.scale(
+  const scaleY: CallableFunction = $derived(settings.y.scale(
     settings.y.domain, 
     [margin.top + plot.height, margin.top]));
 

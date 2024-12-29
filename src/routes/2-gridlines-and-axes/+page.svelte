@@ -9,7 +9,7 @@
   import Gridlines from "$lib/svg/Gridlines.svelte";
   import AxisX from "$lib/svg/AxisX.svelte";
   import AxisY from "$lib/svg/AxisY.svelte";
-  import { spec } from "./spec.js";
+  import { spec } from "./spec.ts";
 
   const links = {
     previous: {

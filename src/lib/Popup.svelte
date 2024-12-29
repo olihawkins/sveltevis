@@ -42,7 +42,7 @@
 
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     actions: {},
     offset: 10
   };

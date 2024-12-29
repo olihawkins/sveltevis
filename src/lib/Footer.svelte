@@ -35,8 +35,8 @@
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
 </script>
 
 <div class="sveltevis-footer">

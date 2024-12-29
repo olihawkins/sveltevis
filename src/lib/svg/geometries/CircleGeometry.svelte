@@ -196,7 +196,7 @@
 
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     dataKey: "id",
     mappings: {
       x: {

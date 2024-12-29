@@ -4,12 +4,18 @@
   
   // Imports ------------------------------------------------------------------
 
+  import type { Configuration } from "../configuration.ts";
+  import type { Layout } from "../layout.svelte.ts";
+  import type { LayoutGraphic } from "../layout.svelte.ts";
+  import type { LayoutPlot } from "../layout.svelte.ts";
+  import type { LayoutMargin } from "../layout.svelte.ts";
+
   import { getSettings } from "../configuration.ts";
   import { getLayout } from "../layout.svelte.ts";
   
   // Defaults -----------------------------------------------------------------
 
-  const defaults = {
+  const defaults: Configuration = {
     rect: {
       long: 50,
       short: 5
@@ -18,26 +24,30 @@
 
   // Props --------------------------------------------------------------------
 
-  let { key = "layoutReport" } = $props();
+  interface Props {
+    key?: string;
+  }
+
+  let { key = "layoutReport" }: Props = $props();
 
   // Layout -------------------------------------------------------------------
 
-  const layout = getLayout();
+  const layout: Layout = getLayout();
 
   // Settings -----------------------------------------------------------------
 
-  const config = $derived(layout.config);
-  const settings = $derived(getSettings(defaults, config, key));
-  const rectLong = $derived(settings.rect.long);
-  const rectShort = $derived(settings.rect.short);
+  const config: Configuration = $derived(layout.config);
+  const settings: Configuration = $derived(getSettings(defaults, config, key));
+  const rectLong: number = $derived(settings.rect.long);
+  const rectShort: number = $derived(settings.rect.short);
 
   // Properties -----------------------------------------------------------
 
-  const windowWidth = $derived(layout.windowWidth);
-  const windowHeight = $derived(layout.windowHeight);
-  const graphic = $derived(layout.graphic);
-  const plot = $derived(layout.plot);
-  const margin = $derived(graphic.margin);
+  const graphic: LayoutGraphic = $derived(layout.graphic);
+  const plot: LayoutPlot = $derived(layout.plot);
+  const margin: LayoutMargin = $derived(graphic.margin);
+  const windowWidth: number = $derived(layout.windowWidth);
+  const windowHeight: number = $derived(layout.windowHeight);
 
 </script>
 
