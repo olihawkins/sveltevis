@@ -10,7 +10,7 @@
   import Graphic from "$lib/Graphic.svelte";
   import Svg from "$lib/svg/Svg.svelte";
   import LayoutReport from "$lib/svg/LayoutReport.svelte";
-  import { spec } from "./spec.js";
+  import { spec } from "./spec.ts";
   
   const links = {
     previous: {
