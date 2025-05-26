@@ -10,7 +10,7 @@ const spec = {
         margin: {
           top: 50, 
           right: 50, 
-          bottom: 60, 
+          bottom: 70, 
           left: 100
         }
       }
@@ -101,7 +101,7 @@ const spec = {
           margin: {
             top: 40, 
             right: 50, 
-            bottom: 60, 
+            bottom: 65, 
             left: 85
           }
         },
