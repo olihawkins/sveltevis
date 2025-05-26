@@ -6,7 +6,7 @@ https://github.com/olihawkins/sveltevis
 
 ## Status
 
-This package is in active but early development. The API should be regarded as unstable until version 1.0.0. The project is targetting <a href="https://svelte.dev/blog/svelte-5-release-candidate">Svelte 5</a> and uses <a href="https://svelte.dev/blog/runes">runes</a>.
+This package is in active development. The API should be regarded as unstable until version 1.0.0. The package supports Svelte 5 and TypeScript.
 
 ## Roadmap
 
@@ -30,47 +30,23 @@ The project currently contains the components needed to make responsive scatterp
 - `Popup`
 - `ColorSchemeObserver`
 
-### Next steps
-
-The priorities for future work are:
-
-- Create more geometry components
-- Develop an approach to animation
-
-## Trying the components
+## Using the components
 
 If you want to try the existing components, the easiest way right now is to download and run the demo project.
 
 1. Clone the project repository from <a href="https://github.com/olihawkins/sveltevis">GitHub</a>
 
-2. Run `npm install --force` to install the dependencies (the `force` argument is needed because the project uses Svelte 5, which is in beta)
+2. Run `npm install` to install the dependencies
 
 3. Run `npm run dev` to start the demo application on localhost:5173 
 
-It is also possible to install the package from NPM into a Vite Svelte template, but this requires modifying the template to run Svelte 5.
+It is also possible to install the package from NPM into a Vite Svelte template.
 
 1. Create a Svelte project with Vite using `npm create vite@latest my-svelte-project -- --template svelte`
 
 2. Run `npm install` to install the dependencies
 
-3. Update Svelte to version 5 with `npm i svelte@next`
-
-4. Install the package with `npm install sveltevis`
-
-Note that you will need to edit `main.js` in the Vite project to replace the old method of instantiating the app with the new method.
-
-```javascript
-// Add import for createRoot function
-import { createRoot } from 'svelte';
-
-// Comment out old method of instantiation
-// const app = new App({
-//   target: document.getElementById('app'),
-// })
-
-// Add new method
-const app = createRoot(App, { target: document.getElementById("app") });
-```
+3. Install the package with `npm install sveltevis`
 
 ## Styling components
 
