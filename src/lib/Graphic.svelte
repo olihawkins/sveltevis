@@ -2,9 +2,9 @@
   // Imports ------------------------------------------------------------------
 
   import type { Snippet } from "svelte";
-  import type { Layout } from "./layout.svelte.ts";
+  import type { Layout } from "./layout.svelte";
 
-  import { getLayout } from "./layout.svelte.ts";
+  import { getLayout } from "./layout.svelte";
   
   // Props --------------------------------------------------------------------
 

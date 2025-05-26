@@ -3,11 +3,11 @@
   // Imports ------------------------------------------------------------------
 
   import type { Snippet } from "svelte";
-  import type { Configuration } from "./configuration.ts";
-  import type { Layout } from "./layout.svelte.ts";
+  import type { Configuration } from "./configuration";
+  import type { Layout } from "./layout.svelte";
 
-  import { createConfigs } from "./configuration.ts";
-  import { createLayout } from "./layout.svelte.ts";
+  import { createConfigs } from "./configuration";
+  import { createLayout } from "./layout.svelte";
 
   // Defaults -----------------------------------------------------------------
 

@@ -4,15 +4,15 @@
   
   // Imports ------------------------------------------------------------------
 
-  import type { Configuration } from "../configuration.ts";
-  import type { Layout } from "../layout.svelte.ts";
-  import type { LayoutGraphic } from "../layout.svelte.ts";
-  import type { LayoutPlot } from "../layout.svelte.ts";
-  import type { LayoutMargin } from "../layout.svelte.ts";
+  import type { Configuration } from "../configuration";
+  import type { Layout } from "../layout.svelte";
+  import type { LayoutGraphic } from "../layout.svelte";
+  import type { LayoutPlot } from "../layout.svelte";
+  import type { LayoutMargin } from "../layout.svelte";
 
   import { scaleLinear } from "d3-scale";
-  import { getSettings } from "../configuration.ts";
-  import { getLayout } from "../layout.svelte.ts";
+  import { getSettings } from "../configuration";
+  import { getLayout } from "../layout.svelte";
   
   
   // Functions ----------------------------------------------------------------

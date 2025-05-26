@@ -133,7 +133,7 @@
   </pre>
   </div>
 
-<p>Every component has default settings, so you only need to specify values for settings that you need to override. Some aspects of the appearance of SvelteVis components are controlled with global CSS, but some are controlled with the spec. Broadly speaking, anything that is purely aesthetic (colors, fonts etc.) is controlled with CSS, while anything that affects the layout and its behaviour is controlled with the spec. In some cases there are aspects of a component's appearance that can be controlled using either CSS or the spec, and the best choice depends on what you are trying to do.
+<p>Every component has default settings, so you only need to specify values for settings that you need to override. Some aspects of the appearance of SvelteVis components are controlled with global CSS, but some are controlled with the spec. Broadly speaking, anything that is purely aesthetic (colors, fonts etc.) is controlled with CSS, while anything that affects the layout and its behaviour is controlled with the spec. In some cases there are aspects of a component's appearance that can be controlled using either CSS or the spec, and the best choice depends on what you are trying to do.</p>
 
 <h3>1.4. Responsiveness</h3>
 

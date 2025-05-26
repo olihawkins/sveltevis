@@ -1,6 +1,6 @@
 // Imports --------------------------------------------------------------------
 
-import type { Configuration } from "./configuration.ts";
+import type { Configuration } from "./configuration.js";
 
 import { getContext, setContext } from "svelte";
 

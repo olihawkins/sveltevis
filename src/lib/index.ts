@@ -2,16 +2,16 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import type { Configuration } from "./configuration.ts";
-import type { Layout } from "./layout.svelte.ts";
-import type { LayoutGraphic } from "./layout.svelte.ts";
-import type { LayoutMargin } from "./layout.svelte.ts";
-import type { LayoutPlot } from "./layout.svelte.ts";
-import type { LayoutEvent } from "./layout.svelte.ts";
-import type { Observation } from "./data.ts";
+import type { Configuration } from "./configuration";
+import type { Layout } from "./layout.svelte";
+import type { LayoutGraphic } from "./layout.svelte";
+import type { LayoutMargin } from "./layout.svelte";
+import type { LayoutPlot } from "./layout.svelte";
+import type { LayoutEvent } from "./layout.svelte";
+import type { Observation } from "./data";
 
-import { getLayout } from "$lib/layout.svelte.ts";
-import { getSettings } from "$lib/configuration.ts";
+import { getLayout } from "$lib/layout.svelte";
+import { getSettings } from "$lib/configuration";
 
 import Visualisation from "$lib/Visualisation.svelte";
 import ColorSchemeObserver from "$lib/ColorSchemeObserver.svelte";

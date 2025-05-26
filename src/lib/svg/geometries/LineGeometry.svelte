@@ -4,15 +4,15 @@
   
   // Imports ------------------------------------------------------------------
 
-  import type { Configuration } from "../../configuration.ts";
-  import type { Layout } from "../../layout.svelte.ts";
-  import type { LayoutPlot } from "../../layout.svelte.ts";
-  import type { Observation } from "../../data.ts";
+  import type { Configuration } from "../../configuration";
+  import type { Layout } from "../../layout.svelte";
+  import type { LayoutPlot } from "../../layout.svelte";
+  import type { Observation } from "../../data";
 
   import { line, curveLinear } from "d3-shape";
   import { scaleLinear } from "d3-scale";
-  import { getSettings } from "../../configuration.ts";
-  import { getLayout } from "../../layout.svelte.ts";
+  import { getSettings } from "../../configuration";
+  import { getLayout } from "../../layout.svelte";
   
   // Interfaces ---------------------------------------------------------------
 
