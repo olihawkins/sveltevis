@@ -14,7 +14,7 @@
   import Plot from "$lib/svg/Plot.svelte";
   import CircleGeometry from "$lib/svg/geometries/CircleGeometry.svelte";
   import { lightSpec, darkSpec } from "./spec.ts";
-  import data from "./uk-election-2019-yh.json" assert { type: "json" };
+  import data from "./uk-election-2019-yh.json" with { type: "json" };
 
   const links = {
     previous: {

@@ -13,7 +13,7 @@
   import Plot from "$lib/svg/Plot.svelte";
   import LineGeometry from "$lib/svg/geometries/LineGeometry.svelte";
   import { spec } from "./spec.ts";
-  import data from "./visnet-training.json" assert { type: "json" };
+  import data from "./visnet-training.json" with { type: "json" };
 
   const links = {
     previous: {
