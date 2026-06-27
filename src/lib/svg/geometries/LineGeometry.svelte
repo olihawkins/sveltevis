@@ -4,14 +4,14 @@
   
   // Imports ------------------------------------------------------------------
 
-  import type { Configuration } from "../../configuration";
+  import type { Configuration } from "../../configuration.js";
   import type { Layout } from "../../layout.svelte";
   import type { LayoutPlot } from "../../layout.svelte";
-  import type { Observation } from "../../data";
+  import type { Observation } from "../../data.js";
 
   import { line, curveLinear } from "d3-shape";
   import { scaleLinear } from "d3-scale";
-  import { getSettings } from "../../configuration";
+  import { getSettings } from "../../configuration.js";
   import { getLayout } from "../../layout.svelte";
   
   // Interfaces ---------------------------------------------------------------

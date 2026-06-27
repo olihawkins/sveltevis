@@ -5,12 +5,12 @@
   // Imports ------------------------------------------------------------------
 
   import type { Snippet } from "svelte";
-  import type { Configuration } from "../configuration";
+  import type { Configuration } from "../configuration.js";
   import type { Layout } from "../layout.svelte";
   import type { LayoutPlot } from "../layout.svelte";
   import type { LayoutMargin } from "../layout.svelte";
 
-  import { getSettings } from "../configuration";
+  import { getSettings } from "../configuration.js";
   import { getLayout } from "../layout.svelte";
   
   // Defaults -----------------------------------------------------------------

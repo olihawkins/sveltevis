@@ -7,10 +7,10 @@
   // Imports ------------------------------------------------------------------
 
   import type { Snippet } from "svelte";
-  import type { Configuration } from "./configuration";
+  import type { Configuration } from "./configuration.js";
   import type { Layout } from "./layout.svelte";
 
-  import { getSettings } from "./configuration";
+  import { getSettings } from "./configuration.js";
   import { getLayout } from "./layout.svelte";
 
   // Defaults -----------------------------------------------------------------

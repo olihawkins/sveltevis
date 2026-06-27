@@ -5,16 +5,16 @@
   // Imports ------------------------------------------------------------------
 
   import type { MouseEventHandler } from "svelte/elements";
-  import type { Configuration } from "../../configuration";
+  import type { Configuration } from "../../configuration.js";
   import type { Layout } from "../../layout.svelte";
   import type { LayoutPlot } from "../../layout.svelte";
   import type { LayoutEvent } from "../../layout.svelte";
-  import type { Observation } from "../../data";
+  import type { Observation } from "../../data.js";
 
   import { scaleLinear, scaleOrdinal, scaleSqrt } from "d3-scale";
-  import { getSettings } from "../../configuration";
+  import { getSettings } from "../../configuration.js";
   import { getLayout } from "../../layout.svelte";
-  import { noop } from "../../events";
+  import { noop } from "../../events.js";
   
   // Constants ----------------------------------------------------------------
 

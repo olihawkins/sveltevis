@@ -3,10 +3,11 @@
   // Imports ------------------------------------------------------------------
 
   import type { Snippet } from "svelte";
-  import type { Configuration } from "./configuration";
+  import type { Configuration } from "./configuration.js";
   import type { Layout } from "./layout.svelte";
 
-  import { createConfigs } from "./configuration";
+  import { untrack } from "svelte";
+  import { createConfigs } from "./configuration.js";
   import { createLayout } from "./layout.svelte";
 
   // Defaults -----------------------------------------------------------------
@@ -41,8 +42,8 @@
 
   // Layout -------------------------------------------------------------------
 
-  const layout: Layout = createLayout(createConfigs(spec, defaults));
   const configs: Configuration[] = $derived(createConfigs(spec, defaults));
+  const layout: Layout = createLayout(untrack(() => configs));
 
   $effect(() => {
     layout.configs = [];
