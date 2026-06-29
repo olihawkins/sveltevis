@@ -79,7 +79,7 @@
     updateWindowDimensions();
     
     // Create resize handler
-    const handleResize = (): void => {
+    const handleWindowResize = (): void => {
       if (windowWidth !== window.innerWidth || 
           windowHeight !== window.innerHeight) {
         updateWindowDimensions();
@@ -87,11 +87,11 @@
     };
 
     // Add resize listener
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleWindowResize);
 
     return () => {
       // Remove resize listener
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleWindowResize);
     }
   });
 
@@ -115,8 +115,6 @@
 
     return () => observer.disconnect();
   });
-
-  
 
 </script>
 
