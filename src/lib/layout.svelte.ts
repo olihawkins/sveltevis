@@ -36,37 +36,21 @@ export interface LayoutEvent {
 }
 
 export interface Layout {
-  readonly config: Configuration;
   readonly graphic: LayoutGraphic;
   readonly plot: LayoutPlot;
-  configs: Configuration[];
+  config: Configuration;
   event: LayoutEvent;
   width: number;
   windowHeight: number;
   windowWidth: number;
 }
 
-// Choose config based on width -----------------------------------------------
-
-function getNextConfig(
-  configs: Configuration[], 
-  width: number
-): Configuration {
-  
-  for (let i = 0; i < configs.length; i++) {
-    if (width > configs[i].visualisation.minwidth) {
-      return configs[i];
-    }
-  }
-  return configs[configs.length - 1];
-}
-
 // Create layout object -------------------------------------------------------
 
-export function createLayout(c: Configuration[]): Layout {
+export function createLayout(c: Configuration): Layout {
 
   // State
-  let configs: Configuration[] = $state(c);
+  let config: Configuration = $state(c);
   let windowWidth: number = $state(800);
   let windowHeight: number = $state(800);
   let width: number = $state(800);
@@ -77,9 +61,6 @@ export function createLayout(c: Configuration[]): Layout {
     type: "init",
     data: {}
   });
-
-  // Derived values
-  const config: Configuration = $derived(getNextConfig(configs, windowWidth));
 
   const graphic: LayoutGraphic = $derived({ 
     width: width, 
@@ -96,9 +77,6 @@ export function createLayout(c: Configuration[]): Layout {
   const layout: Layout = {
     get config(): Configuration {
       return config;
-    },
-    get configs(): Configuration[] {
-      return configs;
     },
     get event(): LayoutEvent {
       return event;
@@ -118,8 +96,8 @@ export function createLayout(c: Configuration[]): Layout {
     get windowWidth(): number {
       return windowWidth;
     },
-    set configs(c: Configuration[]) {
-      configs = c;
+    set config(c: Configuration) {
+      config = c;
     },
     set event(e: LayoutEvent) {
       event = e;

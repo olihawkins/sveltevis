@@ -43,12 +43,7 @@
   // Layout -------------------------------------------------------------------
 
   const configs: Configuration[] = $derived(createConfigs(spec, defaults));
-  const layout: Layout = createLayout(untrack(() => configs));
-
-  $effect(() => {
-    layout.configs = [];
-    layout.configs = configs;
-  });
+  const layout: Layout = createLayout(untrack(() => configs[0]));
 
   // Bound elements -----------------------------------------------------------
   
@@ -62,6 +57,47 @@
 
   let windowWidth: number = $derived(layout.windowWidth);
   let windowHeight: number = $derived(layout.windowHeight);
+
+  // Config selection ---------------------------------------------------------
+
+  function minWidthOf(c: Configuration): number {
+    return c.visualisation.minwidth;
+  }
+
+  $effect(() => {
+
+    // Create one media query per breakpoint, pair with config and sort
+    const breakpoints = configs
+      .filter(c => minWidthOf(c) > 0)
+      .map(c => ({
+        config: c,
+        mql: window.matchMedia(`(min-width: ${minWidthOf(c)}px)`)
+      }))
+      .sort((a, b) => minWidthOf(b.config) - minWidthOf(a.config));
+
+    // Floor config: used when viewport is below every breakpoint
+    const base = configs.find(c => !minWidthOf(c)) ?? configs[0];
+
+    // Largest matching breakpoint wins: fall back to the floor
+    const select = (): void => {
+      layout.config = breakpoints.find(b => b.mql.matches)?.config ?? base;
+    };
+
+    // Set the initial config immediately
+    select();
+
+    // Select a new config only when crossing a breakpoint
+    for (const b of breakpoints) {
+      b.mql.addEventListener("change", select);
+    }
+
+    return () => {
+      // Remove breakpoint listeners
+      for (const b of breakpoints) {
+        b.mql.removeEventListener("change", select);
+      }
+    };
+  });
 
   // Observe window width and update layout -----------------------------------
 
@@ -95,7 +131,7 @@
     }
   });
 
-  // Observe visualisation width and reveal once known ------------------------
+  // Observe visualisation width and update layout ----------------------------
   
   $effect(() => {
     
@@ -113,7 +149,10 @@
 
     observer.observe(element);
 
-    return () => observer.disconnect();
+    return () => {
+      // Remove resize observer
+      observer.disconnect();
+    }
   });
 
 </script>

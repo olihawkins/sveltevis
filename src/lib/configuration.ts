@@ -76,15 +76,7 @@ export function createConfigs(
     }
     
     // Sort the configs from largest to smallest minimum width
-    configs.sort((a, b) => {
-      if (a.minwidth > b.minwidth) {
-        return -1;
-      } else if (a.minwidth < b.minwidth) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    configs.sort((a, b) => b.minwidth - a.minwidth)
   }
   
   return configs;
