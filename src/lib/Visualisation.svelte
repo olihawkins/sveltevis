@@ -63,30 +63,26 @@
   let windowWidth: number = $derived(layout.windowWidth);
   let windowHeight: number = $derived(layout.windowHeight);
 
-  // Observe width and update layout ------------------------------------------
+  // Observe window width and update layout -----------------------------------
 
-  function updateLayout(): void {
+  function updateWindowDimensions(): void {
     if (vis instanceof HTMLDivElement) {
-      layout.width = vis.clientWidth;
       layout.windowWidth = window.innerWidth;
       layout.windowHeight = window.innerHeight;
     }
   }
 
-  // Set up resize handling 
+  // Set up window resize handling 
   $effect(() => {		
 
-    // Update width and downstream layout properties
-    updateLayout();
-
-    // Set visible once layout properties are known
-    visibility = "visible";
+    // Update the window dimensions in the layout
+    updateWindowDimensions();
     
     // Create resize handler
     const handleResize = (): void => {
       if (windowWidth !== window.innerWidth || 
           windowHeight !== window.innerHeight) {
-        updateLayout();
+        updateWindowDimensions();
       }
     };
 
@@ -98,6 +94,29 @@
       window.removeEventListener("resize", handleResize);
     }
   });
+
+  // Observe visualisation width and reveal once known ------------------------
+  
+  $effect(() => {
+    
+    if (!(vis instanceof HTMLDivElement)) return;
+
+    // capture a stable, non-nullable reference for the closure
+    const element = vis; 
+
+    const observer = new ResizeObserver(() => {
+      // Set layout width to draw in the space available
+      layout.width = element.clientWidth;
+      // Set visible once layout properties are known: no-op when unchanged
+      visibility = "visible";
+    });
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  });
+
+  
 
 </script>
 
