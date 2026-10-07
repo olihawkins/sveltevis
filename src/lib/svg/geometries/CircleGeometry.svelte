@@ -38,7 +38,7 @@
   function getActiveValue(
       point: Observation, 
       activePoint: Observation,
-      dataKey: string,
+      pointKey: string,
       scale: CallableFunction, 
       settings: Configuration, 
       dimension: string, 
@@ -46,7 +46,7 @@
     ): string {
 
     if (settings.active.enabled === true) {
-      if (point[dataKey] === activePoint[dataKey]) {
+      if (point[pointKey] === activePoint[pointKey]) {
         return settings.active[dimension];
       }
     }
@@ -102,7 +102,7 @@
   function getFill(
     point: Observation, 
     activePoint: Observation, 
-    dataKey: string,
+    pointKey: string,
     scale: CallableFunction, 
     settings: Configuration
   ): string {
@@ -110,7 +110,7 @@
     return getActiveValue(
       point, 
       activePoint,
-      dataKey,
+      pointKey,
       scale, 
       settings,
       "fill", 
@@ -120,7 +120,7 @@
   function getFillOpacity(
     point: Observation, 
     activePoint: Observation, 
-    dataKey: string,
+    pointKey: string,
     scale: CallableFunction, 
     settings: Configuration
   ): string {
@@ -128,7 +128,7 @@
     return getActiveValue(
       point, 
       activePoint,
-      dataKey,
+      pointKey,
       scale, 
       settings,
       "fillOpacity", 
@@ -138,7 +138,7 @@
   function getStroke(
     point: Observation, 
     activePoint: Observation, 
-    dataKey: string,
+    pointKey: string,
     scale: CallableFunction, 
     settings: Configuration
   ): string {
@@ -146,7 +146,7 @@
     return getActiveValue(
       point, 
       activePoint,
-      dataKey,
+      pointKey,
       scale, 
       settings,
       "stroke", 
@@ -156,7 +156,7 @@
   function getStrokeOpacity(
     point: Observation, 
     activePoint: Observation, 
-    dataKey: string,
+    pointKey: string,
     scale: CallableFunction, 
     settings: Configuration
   ): string {
@@ -164,7 +164,7 @@
     return getActiveValue(
       point, 
       activePoint,
-      dataKey,
+      pointKey,
       scale, 
       settings,
       "strokeOpacity", 
@@ -174,7 +174,7 @@
   function getStrokeWidth(
     point: Observation, 
     activePoint: Observation, 
-    dataKey: string,
+    pointKey: string,
     scale: CallableFunction, 
     settings: Configuration
   ): string {
@@ -182,7 +182,7 @@
     return getActiveValue(
       point, 
       activePoint,
-      dataKey,
+      pointKey,
       scale, 
       settings,
       "strokeWidth", 
@@ -197,7 +197,7 @@
   // Defaults -----------------------------------------------------------------
 
   const defaults: Configuration = {
-    dataKey: "id",
+    pointKey: "id",
     mappings: {
       x: {
         name: null,
@@ -286,7 +286,7 @@
   const config: Configuration = $derived(layout.config);
   const settings: Configuration = $derived(getSettings(defaults, config, key));
   const mappings: Configuration = $derived(settings.mappings);
-  const dataKey: string = $derived(settings.dataKey);
+  const pointKey: string = $derived(settings.pointKey);
 
   // State --------------------------------------------------------------------
 
@@ -344,7 +344,7 @@
     settings: Configuration, 
     layout: Layout, 
     point: Observation,
-    dataKey: string
+    pointKey: string
   ): MouseEventHandler<SVGCircleElement> {
     
     if (settings.events.broadcast === true) {
@@ -357,7 +357,7 @@
 
         // Bring point to front
         if (settings.events.raiseTarget === true) {
-          data = data.filter(d => d[dataKey] !== point[dataKey]);
+          data = data.filter(d => d[pointKey] !== point[pointKey]);
           data.push(point);
         }
         
@@ -386,7 +386,7 @@
     settings: Configuration, 
     layout: Layout, 
     point: Observation,
-    dataKey: string
+    pointKey: string
   ): MouseEventHandler<SVGCircleElement> {
 
     return getPointHandler(
@@ -395,14 +395,14 @@
       settings, 
       layout, 
       point,
-      dataKey);
+      pointKey);
   }
 
   function getDeactivatedHandler(
     key: string, 
     settings: Configuration, 
     layout: Layout, 
-    dataKey: string
+    pointKey: string
   ): MouseEventHandler<SVGCircleElement> {
 
     return getPointHandler(
@@ -410,14 +410,14 @@
       key, 
       settings, 
       layout, 
-      { [dataKey]: "" },
-      dataKey);
+      { [pointKey]: "" },
+      pointKey);
   }
 
 </script>
 
 <g class="sveltevis-circle-geometry">
-  {#each data as point: Observation (point[dataKey])}
+  {#each data as point: Observation (point[pointKey])}
     <!--svelte-ignore a11y_mouse_events_have_key_events-->
     <circle 
       class="sveltevis-circle-geometry-circle"
@@ -427,14 +427,14 @@
       role="img"
       aria-roledescription="data point"
       aria-label={getAriaLabel(point)}
-      onmousemove={getActivatedHandler(key, settings, layout, point, dataKey)}
-      onmouseover={getActivatedHandler(key, settings, layout, point, dataKey)}
-      onmouseout={getDeactivatedHandler(key, settings, layout, dataKey)}
-      style:fill={getFill(point, activePoint, dataKey, scaleFill, settings)}
-      style:fill-opacity={getFillOpacity(point, activePoint, dataKey, scaleFillOpacity, settings)}
-      style:stroke={getStroke(point, activePoint, dataKey, scaleStroke, settings)}
-      style:stroke-opacity={getStrokeOpacity(point, activePoint, dataKey, scaleStrokeOpacity, settings)}
-      style:stroke-width={getStrokeWidth(point, activePoint, dataKey, scaleStrokeWidth, settings)}>
+      onmousemove={getActivatedHandler(key, settings, layout, point, pointKey)}
+      onmouseover={getActivatedHandler(key, settings, layout, point, pointKey)}
+      onmouseout={getDeactivatedHandler(key, settings, layout, pointKey)}
+      style:fill={getFill(point, activePoint, pointKey, scaleFill, settings)}
+      style:fill-opacity={getFillOpacity(point, activePoint, pointKey, scaleFillOpacity, settings)}
+      style:stroke={getStroke(point, activePoint, pointKey, scaleStroke, settings)}
+      style:stroke-opacity={getStrokeOpacity(point, activePoint, pointKey, scaleStrokeOpacity, settings)}
+      style:stroke-width={getStrokeWidth(point, activePoint, pointKey, scaleStrokeWidth, settings)}>
     </circle>
   {/each}
 </g>

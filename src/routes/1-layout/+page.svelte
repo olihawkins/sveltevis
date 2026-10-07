@@ -1,15 +1,15 @@
 <script lang="ts">
 
-  import "$lib/css/site.css";
-  import "$lib/css/sveltevis.css";
-  import SiteHeader from "$lib/site/SiteHeader.svelte";
-  import SiteFooter from "$lib/site/SiteFooter.svelte";
-  import Visualisation from "$lib/Visualisation.svelte";
-  import Header from "$lib/Header.svelte";
-  import Footer from "$lib/Footer.svelte";
-  import Graphic from "$lib/Graphic.svelte";
-  import Svg from "$lib/svg/Svg.svelte";
-  import LayoutReport from "$lib/svg/LayoutReport.svelte";
+  import "#lib/css/site.css";
+  import "#lib/css/sveltevis.css";
+  import SiteHeader from "#lib/site/SiteHeader.svelte";
+  import SiteFooter from "#lib/site/SiteFooter.svelte";
+  import Visualisation from "#lib/Visualisation.svelte";
+  import Header from "#lib/Header.svelte";
+  import Footer from "#lib/Footer.svelte";
+  import Graphic from "#lib/Graphic.svelte";
+  import Svg from "#lib/svg/Svg.svelte";
+  import LayoutReport from "#lib/svg/LayoutReport.svelte";
   import { spec } from "./spec.ts";
   
   const links = {

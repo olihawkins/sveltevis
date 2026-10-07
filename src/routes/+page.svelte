@@ -1,7 +1,7 @@
 <script>
-  import "$lib/css/site.css";
-  import "$lib/css/sveltevis.css";
-  import SiteHeader from "$lib/site/SiteHeader.svelte";
+  import "#lib/css/site.css";
+  import "#lib/css/sveltevis.css";
+  import SiteHeader from "#lib/site/SiteHeader.svelte";
 </script>
 
 <div id="column">

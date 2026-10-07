@@ -1,6 +1,6 @@
 {
 	"name": "sveltevis",
-	"version": "0.0.17",
+	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build && npm run prepack",
@@ -31,19 +31,23 @@
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
 		"@sveltejs/package": "^2.5.8",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"publint": "^0.3.21",
-		"svelte": "^5.56.1",
+		"svelte": "^5.57.1",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
 	},
 	"keywords": [
 		"svelte"
 	],
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
+	},
 	"dependencies": {
 		"@types/d3": "^7.4.3",
 		"d3-scale": "^4.0.2",
