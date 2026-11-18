@@ -98,7 +98,7 @@
   function getConfig(clientWidth: number): Configuration {
       let config = layout.config;
       for (const c of configs) {
-        if (clientWidth > c.visualisation.minwidth) {
+        if (clientWidth >= c.visualisation.minwidth) {
           config = c;
           break;
         }
