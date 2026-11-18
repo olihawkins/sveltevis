@@ -60,44 +60,6 @@
 
   // Config selection ---------------------------------------------------------
 
-  function minWidthOf(c: Configuration): number {
-    return c.visualisation.minwidth;
-  }
-
-  $effect(() => {
-
-    // Create one media query per breakpoint, pair with config and sort
-    const breakpoints = configs
-      .filter(c => minWidthOf(c) > 0)
-      .map(c => ({
-        config: c,
-        mql: window.matchMedia(`(min-width: ${minWidthOf(c)}px)`)
-      }))
-      .sort((a, b) => minWidthOf(b.config) - minWidthOf(a.config));
-
-    // Floor config: used when viewport is below every breakpoint
-    const base = configs.find(c => !minWidthOf(c)) ?? configs[0];
-
-    // Largest matching breakpoint wins: fall back to the floor
-    const select = (): void => {
-      layout.config = breakpoints.find(b => b.mql.matches)?.config ?? base;
-    };
-
-    // Set the initial config immediately
-    select();
-
-    // Select a new config only when crossing a breakpoint
-    for (const b of breakpoints) {
-      b.mql.addEventListener("change", select);
-    }
-
-    return () => {
-      // Remove breakpoint listeners
-      for (const b of breakpoints) {
-        b.mql.removeEventListener("change", select);
-      }
-    };
-  });
 
   // Observe window width and update layout -----------------------------------
 
@@ -131,8 +93,21 @@
     }
   });
 
-  // Observe visualisation width and update layout ----------------------------
+  // Config selection ---------------------------------------------------------
   
+  function getConfig(clientWidth: number): Configuration {
+      let config = layout.config;
+      for (const c of configs) {
+        if (clientWidth > c.visualisation.minwidth) {
+          config = c;
+          break;
+        }
+      }
+      return config;
+  }
+
+  // Observe visualisation width and update layout ----------------------------
+
   $effect(() => {
     
     if (!(vis instanceof HTMLDivElement)) return;
@@ -143,6 +118,8 @@
     const observer = new ResizeObserver(() => {
       // Set layout width to draw in the space available
       layout.width = element.clientWidth;
+      // Set config based on clientWidth
+      layout.config = getConfig(element.clientWidth);
       // Set visible once layout properties are known: no-op when unchanged
       visibility = "visible";
     });

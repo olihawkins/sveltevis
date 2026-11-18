@@ -1,8 +1,8 @@
 /* SvelteVis styles */
 
-/* CSS variables ----------------------------------------------------------- */
+/* Visualisation ----------------------------------------------------------- */
 
-:root {
+.sveltevis-visualisation { 
   --sveltevis-color: #404040;
   --sveltevis-active-fill: #75edff;
   --sveltevis-active-stroke: #1274ff;
@@ -12,31 +12,30 @@
   --sveltevis-subtitle-font-size: 12pt;
 }
 
-@media all and (max-width: 700px) {
-  :root {
-    --sveltevis-font-size: 10pt;
-    --sveltevis-title-font-size: 14pt;
-    --sveltevis-subtitle-font-size: 10pt;
-  } 
+.sveltevis-visualisation { 
+  container: visualisation / inline-size; 
+  margin: 0;
+  padding: 0;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
+  .sveltevis-visualisation {
     --sveltevis-color: #404040;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  .sveltevis-visualisation {
     --sveltevis-color: #c0c0c0;
   }
 }
 
-/* Visualisation ----------------------------------------------------------- */
-
-.sveltevis-visualisation {
-  margin: 0;
-  padding: 0;
+@container visualisation (max-width: 700px) {
+  .sveltevis-visualisation > * {
+    --sveltevis-font-size: 10pt;
+    --sveltevis-title-font-size: 14pt;
+    --sveltevis-subtitle-font-size: 10pt;
+  } 
 }
 
 /* Header ------------------------------------------------------------------ */
@@ -158,5 +157,11 @@
 .sveltevis-layout-report-label {
   fill: var(--sveltevis-color);
   stroke: "none";
+  font-size: var(--sveltevis-font-size);
+}
+
+/* Popup ------------------------------------------------------------------- */
+
+.sveltevis-popup {
   font-size: var(--sveltevis-font-size);
 }
