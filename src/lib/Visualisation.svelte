@@ -58,9 +58,6 @@
   let windowWidth: number = $derived(layout.windowWidth);
   let windowHeight: number = $derived(layout.windowHeight);
 
-  // Config selection ---------------------------------------------------------
-
-
   // Observe window width and update layout -----------------------------------
 
   function updateWindowDimensions(): void {
