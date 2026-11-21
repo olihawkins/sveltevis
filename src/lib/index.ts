@@ -39,6 +39,7 @@ export {
   getSettings,
   ColorSchemeObserver,
   Visualisation,
+  Visualisation as Visualization,
   Header,
   Footer,
   Graphic,
